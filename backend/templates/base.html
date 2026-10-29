@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Page Settings -->
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="MediChat - AI Healthcare Assistant and Comparative Analysis of Health Chatbots">
+
+    <meta name="theme-color" content="#f0f4e8">
+
+    <!-- Page Title -->
+    <title>
+        {% block title %}
+            MediChat — AI Healthcare Assistant
+        {% endblock %}
+    </title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Global Theme CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/theme.css') }}">
+
+    <!-- General Website CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Page-Specific CSS -->
+    {% block extra_css %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <!-- Navigation Section -->
+    <!-- Individual pages can provide their own navigation -->
+    {% block nav %}
+    {% endblock %}
+
+    <!-- Main Page Content -->
+    <main id="main-content">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <!-- Global JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <!-- Page-Specific JavaScript -->
+    {% block extra_js %}
+    {% endblock %}
+
+</body>
+
+</html>

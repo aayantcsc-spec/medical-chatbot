@@ -1,0 +1,253 @@
+
+{% extends "base.html" %}
+
+{% block title %}MediChat — Health Assistant{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="chat-page">
+
+    <!-- Sidebar -->
+    <aside class="mc-sidebar" id="mcSidebar">
+
+        <div class="mc-sidebar-top">
+            <a href="{{ url_for('dashboard') }}" class="mc-brand">
+                <span class="mc-brand-icon" aria-hidden="true">♡</span>
+                <span class="mc-brand-name">MediChat</span>
+            </a>
+
+            <button type="button"
+                    class="mc-mobile-menu"
+                    id="mobileMenuBtn"
+                    aria-label="Toggle sidebar"
+                    aria-expanded="false">☰</button>
+        </div>
+
+        <button class="mc-new-chat" id="newChatBtn" type="button">
+            <span class="mc-plus" aria-hidden="true">＋</span>
+            <span>New chat</span>
+        </button>
+
+        <label class="mc-search-wrap" for="searchBox">
+            <span class="mc-search-icon" aria-hidden="true">⌕</span>
+            <input id="searchBox"
+                   type="search"
+                   placeholder="Search chats"
+                   autocomplete="off">
+        </label>
+
+        <div class="mc-history-title">Recent chats</div>
+
+        <div class="mc-conversation-list"
+             id="convList"
+             aria-live="polite">
+            <div class="mc-conversation-empty">
+                Your conversations will appear here.
+            </div>
+        </div>
+
+        <div class="mc-sidebar-bottom">
+            <a href="{{ url_for('dashboard') }}" class="mc-dashboard-link">
+                <span class="mc-dashboard-icon" aria-hidden="true">⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+            <div class="mc-user-profile">
+                <div class="mc-user-avatar" aria-hidden="true">♡</div>
+
+                <div class="mc-user-details">
+                    <span class="mc-user-name">
+                        {{ session.get('user_name', 'MediChat User') }}
+                    </span>
+                    <span class="mc-user-caption">MediChat account</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main chat -->
+    <main class="mc-main">
+
+        <!-- Header -->
+        <header class="mc-topbar">
+            <div class="mc-heading">
+                <div class="mc-heading-copy">
+                    <span class="mc-heading-title">MediChat</span>
+                    <span class="mc-heading-tag">Health Assistant</span>
+                </div>
+            </div>
+
+            <div class="mc-topbar-right">
+                <span class="mc-status-dot" aria-hidden="true"></span>
+                <span class="mc-status-text">General health</span>
+            </div>
+        </header>
+
+        <!-- Kept for compatibility with existing chat.js -->
+        <section class="mc-modelbar" aria-hidden="true" hidden>
+            <div class="mc-model-tabs">
+                <button type="button" class="mc-model-tab active"
+                        data-bot="auto">Hybrid</button>
+                <button type="button" class="mc-model-tab"
+                        data-bot="rule">Rule-Based</button>
+                <button type="button" class="mc-model-tab"
+                        data-bot="ml">TF-IDF + SVM</button>
+                <button type="button" class="mc-model-tab"
+                        data-bot="dl">DistilBERT</button>
+            </div>
+
+            <div class="mc-chat-tools">
+                <button id="pinBtn" type="button" disabled>Pin</button>
+                <button id="shareBtn" type="button" disabled>Share</button>
+                <button id="downloadBtn" type="button" disabled>Export</button>
+            </div>
+        </section>
+
+        <div class="mc-banner" id="banner"
+             role="status" aria-live="polite"></div>
+
+        {% if context_items %}
+        <div class="mc-context-note">
+            Your onboarding information may be used to personalize relevant suggestions.
+        </div>
+        {% endif %}
+
+        <!-- Conversation messages -->
+        <section class="mc-messages" id="messages" aria-live="polite">
+
+            <!-- Welcome screen -->
+            <div class="mc-welcome" id="welcomeScreen">
+
+                <span class="mc-welcome-eyebrow">
+                    MEDICHAT HEALTH ASSISTANT
+                </span>
+
+                <h1>How can I help you today?</h1>
+
+                <p class="mc-welcome-description">
+                    Ask a health question in your own words.
+                    Explore common symptoms, everyday care, and when
+                    to seek professional medical advice.
+                </p>
+
+                <div class="mc-quick-prompts-title">
+                    Suggested questions
+                </div>
+
+                <div class="mc-quick-prompts">
+
+                    <button type="button" class="mc-quick-btn"
+                            data-question="What are some common causes of a fever?">
+                        <span class="mc-prompt-icon mc-icon-fever"
+                              aria-hidden="true">✳</span>
+                        <span class="mc-prompt-text">
+                            <strong>What causes a fever?</strong>
+                            <small>Common causes and general care</small>
+                        </span>
+                        <span class="mc-prompt-arrow" aria-hidden="true">↗</span>
+                    </button>
+
+                    <button type="button" class="mc-quick-btn"
+                            data-question="What can cause a headache?">
+                        <span class="mc-prompt-icon mc-icon-headache"
+                              aria-hidden="true">☼</span>
+                        <span class="mc-prompt-text">
+                            <strong>Why do headaches happen?</strong>
+                            <small>Possible causes and next steps</small>
+                        </span>
+                        <span class="mc-prompt-arrow" aria-hidden="true">↗</span>
+                    </button>
+
+                    <button type="button" class="mc-quick-btn"
+                            data-question="What should I know about a persistent cough?">
+                        <span class="mc-prompt-icon mc-icon-cough"
+                              aria-hidden="true">❋</span>
+                        <span class="mc-prompt-text">
+                            <strong>What about a persistent cough?</strong>
+                            <small>Symptoms and general care</small>
+                        </span>
+                        <span class="mc-prompt-arrow" aria-hidden="true">↗</span>
+                    </button>
+
+                    <button type="button" class="mc-quick-btn"
+                            data-question="What are common causes of stomach pain?">
+                        <span class="mc-prompt-icon mc-icon-stomach"
+                              aria-hidden="true">♡</span>
+                        <span class="mc-prompt-text">
+                            <strong>What causes stomach pain?</strong>
+                            <small>Common causes to consider</small>
+                        </span>
+                        <span class="mc-prompt-arrow" aria-hidden="true">↗</span>
+                    </button>
+
+                    <button type="button" class="mc-quick-btn"
+                            data-question="Mujhe bukhar aur khansi ho rahi hai, kya karu?">
+                        <span class="mc-prompt-icon mc-icon-hindi"
+                              aria-hidden="true">अ</span>
+                        <span class="mc-prompt-text">
+                            <strong>Ask in Hindi or Hinglish</strong>
+                            <small>Mujhe bukhar aur khansi hai</small>
+                        </span>
+                        <span class="mc-prompt-arrow" aria-hidden="true">↗</span>
+                    </button>
+
+                </div>
+
+                <p class="mc-welcome-note">
+                    <span aria-hidden="true">✦</span>
+                    General health information, explained with care.
+                </p>
+            </div>
+        </section>
+
+        <!-- Composer -->
+        <footer class="mc-composer-area">
+
+            <form class="mc-composer" id="chatForm">
+                <textarea
+                    id="messageInput"
+                    class="mc-textarea"
+                    rows="1"
+                    maxlength="1000"
+                    placeholder="Message MediChat..."
+                    aria-label="Your health question"
+                    required
+                ></textarea>
+
+                <div class="mc-composer-bottom">
+                    <span class="mc-char-count" id="charCount" hidden>
+                        0 / 1000
+                    </span>
+
+                    <button id="sendBtn"
+                            class="mc-send"
+                            type="submit"
+                            aria-label="Send message">
+                        <span aria-hidden="true">↑</span>
+                    </button>
+                </div>
+            </form>
+
+            <p class="mc-input-hint">
+                Enter to send <span>·</span> Shift + Enter for a new line
+            </p>
+
+            <p class="mc-disclaimer">
+                MediChat provides general health information, not a diagnosis
+                or a substitute for professional medical advice. For urgent
+                or severe symptoms, seek professional medical care.
+            </p>
+        </footer>
+    </main>
+</div>
+
+<div class="mc-mobile-overlay" id="mobileOverlay"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

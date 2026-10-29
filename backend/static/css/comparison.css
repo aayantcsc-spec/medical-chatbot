@@ -1,0 +1,1692 @@
+
+/* =========================================================
+   MEDICHAT — PROFESSIONAL COMPARISON PAGE
+   Theme: Olive Green • Dark Brown • Warm Cream
+   File: static/css/comparison.css
+   ========================================================= */
+
+:root {
+    --mc-bg: #f5f1e7;
+    --mc-surface: #fffdf7;
+    --mc-surface-soft: #efeddf;
+    --mc-border: #e2dac6;
+    --mc-border-strong: #c6b99c;
+
+    --mc-text: #292d1d;
+    --mc-text-secondary: #625e4b;
+    --mc-muted: #89836f;
+
+    --mc-primary: #626b36;
+    --mc-primary-dark: #424a25;
+    --mc-primary-light: #e7e9d5;
+
+    --mc-brown: #79563c;
+    --mc-brown-light: #f1e5d8;
+
+    --mc-warning-bg: #faf0dc;
+    --mc-warning-border: #e8d5ae;
+    --mc-warning-text: #76552b;
+
+    --mc-shadow: 0 5px 20px rgba(57, 53, 33, 0.055);
+    --mc-shadow-hover: 0 10px 28px rgba(57, 53, 33, 0.10);
+
+    --mc-radius: 16px;
+    --mc-radius-small: 10px;
+}
+
+/* ==================== BASE ==================== */
+
+body.research {
+    margin: 0;
+    background: var(--mc-bg);
+    color: var(--mc-text);
+    font-family: "DM Sans", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+body.research *,
+body.research *::before,
+body.research *::after {
+    box-sizing: border-box;
+}
+
+body.research h1,
+body.research h2,
+body.research h3,
+body.research h4 {
+    color: var(--mc-text);
+    font-family: "Manrope", Arial, sans-serif;
+    letter-spacing: -0.025em;
+    line-height: 1.35;
+}
+
+body.research h2 {
+    margin: 0 0 8px;
+    font-size: 21px;
+    font-weight: 750;
+}
+
+body.research h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 750;
+}
+
+body.research p {
+    color: var(--mc-text-secondary);
+}
+
+body.research a {
+    color: var(--mc-primary);
+    text-decoration: none;
+}
+
+body.research a:hover {
+    color: var(--mc-brown);
+}
+
+body.research button,
+body.research input,
+body.research select,
+body.research textarea {
+    font: inherit;
+}
+
+body.research button {
+    cursor: pointer;
+}
+
+body.research button:focus-visible,
+body.research a:focus-visible,
+body.research input:focus-visible,
+body.research select:focus-visible,
+body.research textarea:focus-visible {
+    outline: 3px solid rgba(98, 107, 54, 0.3);
+    outline-offset: 3px;
+}
+
+body.research ::selection {
+    background: var(--mc-primary-light);
+    color: var(--mc-text);
+}
+
+body.research .hidden {
+    display: none !important;
+}
+
+/* ==================== MAIN LAYOUT ==================== */
+
+.rs-wrap {
+    width: min(1240px, calc(100% - 48px));
+    margin: 0 auto;
+    padding-bottom: 180px;
+}
+
+.rs-top {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--mc-border);
+}
+
+.rs-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.rs-logo {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 13px;
+    background: var(--mc-primary-dark);
+    color: #fffdf7;
+    font-size: 21px;
+    font-weight: 800;
+    box-shadow: var(--mc-shadow);
+}
+
+.rs-brand-name {
+    margin: 0;
+    color: var(--mc-text) !important;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.rs-brand-sub {
+    margin: 3px 0 0;
+    color: var(--mc-muted) !important;
+    font-size: 11px;
+}
+
+.rs-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border: 1px solid var(--mc-border);
+    border-radius: 10px;
+    background: var(--mc-surface);
+    color: var(--mc-text-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.rs-nav a:hover {
+    background: var(--mc-primary-light);
+    color: var(--mc-primary-dark);
+}
+
+/* ==================== PAGE INTRO ==================== */
+
+.rs-wrap > section:first-of-type {
+    max-width: 850px;
+    margin-bottom: 28px;
+}
+
+.rs-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 12px;
+    color: var(--mc-primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.rs-title {
+    margin: 0;
+    font-size: clamp(30px, 4vw, 43px);
+    font-weight: 800;
+    letter-spacing: -0.045em !important;
+    line-height: 1.15 !important;
+}
+
+.rs-sub {
+    max-width: 760px;
+    margin: 12px 0 0;
+    color: var(--mc-text-secondary);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* ==================== NAVIGATION TABS ==================== */
+
+.tabs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 5px;
+    margin-bottom: 24px;
+    border: 1px solid var(--mc-border);
+    border-radius: 13px;
+    background: var(--mc-surface-soft);
+}
+
+.tab {
+    min-height: 42px;
+    flex: 1 1 auto;
+    padding: 10px 17px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--mc-text-secondary);
+    font-size: 12px;
+    font-weight: 750;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+.tab:hover {
+    background: var(--mc-surface);
+    color: var(--mc-primary-dark);
+}
+
+.tab[aria-selected="true"] {
+    border-color: var(--mc-primary-dark);
+    background: var(--mc-primary-dark);
+    color: #fffdf7;
+    box-shadow: 0 3px 8px rgba(57, 62, 34, 0.15);
+}
+
+/* ==================== PAGE SECTIONS ==================== */
+
+.rs-section {
+    display: none;
+    min-width: 0;
+}
+
+.rs-section.active {
+    display: block;
+    animation: mc-enter 0.2s ease both;
+}
+
+@keyframes mc-enter {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.panel {
+    min-width: 0;
+    padding: 23px;
+    margin-bottom: 18px;
+    border: 1px solid var(--mc-border);
+    border-radius: var(--mc-radius);
+    background: var(--mc-surface);
+    box-shadow: var(--mc-shadow);
+}
+
+.panel > p {
+    margin: 0 0 16px;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.panel > p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==================== DISCLAIMER BANNERS ==================== */
+
+.banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px 17px;
+    margin-bottom: 20px;
+    border: 1px solid var(--mc-warning-border);
+    border-radius: 12px;
+    background: var(--mc-warning-bg);
+    color: var(--mc-warning-text);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.banner > span:first-child {
+    display: grid;
+    place-items: center;
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #f0dfbc;
+    color: var(--mc-warning-text);
+    font-weight: 800;
+}
+
+.banner strong {
+    color: #604322;
+}
+
+.banner.info {
+    border-color: #d5d9b8;
+    background: #eff0e1;
+    color: #4d5535;
+}
+
+.banner.info > span:first-child {
+    background: #dfe3c7;
+    color: var(--mc-primary-dark);
+}
+
+.banner.info strong {
+    color: var(--mc-primary-dark);
+}
+
+/* ==================== ARCHITECTURE CARDS ==================== */
+
+.architecture-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 22px;
+}
+
+.architecture-card {
+    min-width: 0;
+    padding: 21px;
+    border: 1px solid var(--mc-border);
+    border-radius: 13px;
+    background: #faf8ef;
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+}
+
+.architecture-card:nth-child(2) {
+    background: #f8f0e6;
+    border-top: 3px solid var(--mc-brown);
+}
+
+.architecture-card:nth-child(1) {
+    border-top: 3px solid var(--mc-primary);
+}
+
+.architecture-card:nth-child(3) {
+    background: #f0f0e4;
+    border-top: 3px solid #77794c;
+}
+
+.architecture-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--mc-border-strong);
+    box-shadow: var(--mc-shadow-hover);
+}
+
+.architecture-icon {
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    margin-bottom: 14px;
+    border-radius: 11px;
+    background: var(--mc-primary-light);
+    color: var(--mc-primary-dark);
+    font-size: 20px;
+}
+
+.architecture-card:nth-child(2) .architecture-icon {
+    background: var(--mc-brown-light);
+    color: var(--mc-brown);
+}
+
+.architecture-card h3 {
+    margin-bottom: 7px;
+    font-size: 15px;
+}
+
+.architecture-card p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* ==================== SCORING CRITERIA ==================== */
+
+.mc-howto {
+    border-top: 3px solid var(--mc-primary);
+}
+
+.mc-howto > p:first-of-type {
+    max-width: 850px;
+}
+
+.mc-weights {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    padding: 0;
+    margin: 20px 0;
+    list-style: none;
+}
+
+.mc-weights li {
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid var(--mc-border);
+    border-radius: 12px;
+    background: var(--mc-surface-soft);
+    color: var(--mc-text);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.mc-weights li b {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--mc-primary-dark);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.mc-weights li:nth-child(2) b {
+    color: var(--mc-brown);
+}
+
+.mc-weights small {
+    display: block;
+    margin-top: 7px;
+    color: var(--mc-muted);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.7;
+}
+
+.hint,
+.muted {
+    color: var(--mc-muted) !important;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.mc-howto .hint {
+    padding-top: 12px;
+    border-top: 1px solid var(--mc-border);
+}
+
+/* ==================== SECTION HEADINGS ==================== */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 30px 0 15px;
+}
+
+.section-heading h2 {
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.section-heading p {
+    max-width: 800px;
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.mc-perf-head {
+    align-items: flex-end;
+}
+
+/* ==================== BUTTONS ==================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 41px;
+    padding: 10px 17px;
+    border: 1px solid var(--mc-primary-dark);
+    border-radius: 10px;
+    background: var(--mc-primary-dark);
+    color: #fffdf7 !important;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.4;
+    text-align: center;
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    border-color: var(--mc-brown);
+    background: var(--mc-brown);
+    box-shadow: var(--mc-shadow);
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn.secondary {
+    border-color: var(--mc-border-strong);
+    background: var(--mc-surface);
+    color: var(--mc-text) !important;
+    box-shadow: none;
+}
+
+.btn.secondary:hover {
+    background: var(--mc-primary-light);
+    color: var(--mc-primary-dark) !important;
+}
+
+/* ==================== QUESTION SUGGESTIONS ==================== */
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 22px;
+}
+
+.chips button,
+.chips .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 7px 12px;
+    border: 1px solid var(--mc-border);
+    border-radius: 999px;
+    background: var(--mc-surface);
+    color: var(--mc-text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.chips button:hover,
+.chips .chip:hover {
+    border-color: var(--mc-primary);
+    background: var(--mc-primary-light);
+    color: var(--mc-primary-dark);
+}
+
+/* ==================== EMPTY STATES ==================== */
+
+.empty-state {
+    padding: 38px 22px;
+    margin: 16px 0;
+    border: 1px dashed var(--mc-border-strong);
+    border-radius: var(--mc-radius);
+    background: var(--mc-surface);
+    text-align: center;
+}
+
+.empty-state > div:first-child {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 15px;
+    border-radius: 15px;
+    background: var(--mc-primary-light);
+}
+
+.empty-state h3 {
+    margin-bottom: 7px;
+    font-size: 17px;
+}
+
+.empty-state p {
+    max-width: 590px;
+    margin: 0 auto;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* ==================== FORMS AND INPUTS ==================== */
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.field label,
+.field .label {
+    color: var(--mc-text);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.field select,
+.field input,
+body.research input[type="number"],
+body.research input[type="text"],
+body.research select,
+body.research textarea {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid var(--mc-border-strong);
+    border-radius: 9px;
+    background: var(--mc-surface);
+    color: var(--mc-text);
+    font-size: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field select:focus,
+.field input:focus,
+body.research select:focus,
+body.research input:focus,
+body.research textarea:focus {
+    border-color: var(--mc-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(98, 107, 54, 0.12);
+}
+
+.form-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 13px;
+    flex-wrap: wrap;
+}
+
+.form-row .field {
+    flex: 1;
+}
+
+.ev-select {
+    padding: 24px;
+}
+
+.ev-head {
+    margin-bottom: 22px;
+}
+
+.ev-head h2 {
+    margin-bottom: 7px;
+}
+
+.ev-head p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.ev-controls {
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr)
+                           minmax(240px, 1.6fr)
+                           minmax(150px, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+.ev-count {
+    grid-column: 1 / -1;
+    max-width: 300px;
+}
+
+.ev-field-msg {
+    color: #a33e36;
+    font-size: 11px;
+}
+
+.seg {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 5px;
+    border: 1px solid var(--mc-border);
+    border-radius: 10px;
+    background: var(--mc-surface-soft);
+}
+
+.seg label {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 6px;
+    padding: 8px;
+    border-radius: 7px;
+    color: var(--mc-text-secondary);
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.seg label:has(input:checked) {
+    background: var(--mc-surface);
+    color: var(--mc-primary-dark);
+    box-shadow: 0 1px 4px rgba(57, 53, 33, 0.08);
+}
+
+.seg input {
+    accent-color: var(--mc-primary);
+}
+
+/* ==================== EVALUATION SUMMARY ==================== */
+
+.ev-summary {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 11px;
+    padding: 0;
+    margin: 22px 0 16px;
+}
+
+.ev-summary > div {
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid var(--mc-border);
+    border-radius: 11px;
+    background: var(--mc-surface-soft);
+}
+
+.ev-summary dt {
+    color: var(--mc-text-secondary);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.ev-summary dd {
+    overflow-wrap: anywhere;
+    margin: 6px 0 0;
+    color: var(--mc-text);
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.ev-summary .ev-sum-main {
+    border-color: #cbd2a8;
+    background: #e9ebd9;
+}
+
+.ev-summary .ev-sum-main dd {
+    color: var(--mc-primary-dark);
+}
+
+.ev-summary .ev-sum-wide {
+    grid-column: 1 / -1;
+}
+
+.ev-summary .ev-sum-wide dd {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.tip {
+    display: inline-grid;
+    place-items: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--mc-primary-light);
+    color: var(--mc-primary-dark);
+    font-size: 10px;
+    cursor: help;
+}
+
+.ev-info {
+    padding: 12px 14px;
+    border-radius: 9px;
+    background: var(--mc-surface-soft);
+}
+
+.ev-run {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* ==================== STATUS MESSAGES ==================== */
+
+.status-message {
+    padding: 12px 15px;
+    margin: 14px 0;
+    border: 1px solid #d1d7b8;
+    border-radius: 10px;
+    background: #eff0e1;
+    color: var(--mc-primary-dark);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.status-message.error,
+.status-message.is-error {
+    border-color: #e8c7bf;
+    background: #fbefeb;
+    color: #963d34;
+}
+
+/* ==================== PROGRESS BAR ==================== */
+
+.progress {
+    padding: 17px;
+    margin-top: 18px;
+    border: 1px solid var(--mc-border);
+    border-radius: 12px;
+    background: var(--mc-surface);
+}
+
+.progress-track {
+    height: 8px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: #e4e1d4;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--mc-primary);
+    transition: width 0.3s ease;
+}
+
+.progress-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-top: 12px;
+    color: var(--mc-text-secondary);
+    font-size: 11px;
+}
+
+.progress-stats strong {
+    color: var(--mc-text);
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 9px;
+    border: 1px solid #d4d6b8;
+    border-radius: 999px;
+    background: #eff0e1;
+    color: var(--mc-primary-dark);
+    font-size: 10px;
+    font-weight: 800;
+}
+
+/* ==================== EXPANDABLE DETAILS ==================== */
+
+.fold {
+    margin: 14px 0 22px;
+    overflow: hidden;
+    border: 1px solid var(--mc-border);
+    border-radius: 12px;
+    background: var(--mc-surface);
+}
+
+.fold summary {
+    padding: 14px 17px;
+    color: var(--mc-text);
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    list-style-position: inside;
+}
+
+.fold summary:hover {
+    background: var(--mc-surface-soft);
+}
+
+.fold > ul,
+.fold > p,
+.fold > dl {
+    margin: 0 18px 17px;
+}
+
+.fold li {
+    margin: 7px 0;
+    color: var(--mc-text-secondary);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.ev-defs {
+    display: grid;
+    grid-template-columns: minmax(130px, 0.7fr) minmax(0, 2fr);
+    gap: 11px 18px;
+}
+
+.ev-defs dt {
+    color: var(--mc-primary-dark);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.ev-defs dd {
+    margin: 0;
+    color: var(--mc-text-secondary);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+body.research code {
+    padding: 2px 5px;
+    border-radius: 5px;
+    background: var(--mc-surface-soft);
+    color: var(--mc-primary-dark);
+    font-size: 0.9em;
+}
+
+/* ==================== DYNAMIC COMPARISON RESULTS ==================== */
+
+#history,
+#liveHistory,
+#latestComparison,
+#perfBody,
+#evalResults,
+#evalRuns,
+#studyForm,
+#studySummary {
+    min-width: 0;
+}
+
+#history > *,
+#liveHistory > *,
+#latestComparison > *,
+#perfBody > *,
+#evalResults > *,
+#evalRuns > *,
+#studyForm > *,
+#studySummary > * {
+    max-width: 100%;
+}
+
+#history .panel,
+#liveHistory .panel,
+#latestComparison .panel {
+    box-shadow: none;
+}
+
+.scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-color: #b9b69b transparent;
+    scrollbar-width: thin;
+}
+
+body.research table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+body.research th {
+    padding: 12px 13px;
+    background: var(--mc-surface-soft);
+    color: var(--mc-text);
+    font-size: 10px;
+    font-weight: 800;
+    text-align: left;
+    white-space: nowrap;
+}
+
+body.research td {
+    padding: 12px 13px;
+    border-bottom: 1px solid var(--mc-border);
+    color: var(--mc-text-secondary);
+    vertical-align: top;
+}
+
+body.research tbody tr:hover {
+    background: #faf8ef;
+}
+
+body.research tr:last-child td {
+    border-bottom: 0;
+}
+
+/* ==================== RESULT STATUS LABELS ==================== */
+
+body.research .winner,
+body.research .best-response {
+    border-color: #cbd2a8;
+    background: #e8ebd6;
+    color: var(--mc-primary-dark);
+}
+
+body.research .tie,
+body.research .status-tie {
+    border-color: #dfc9b4;
+    background: var(--mc-brown-light);
+    color: #704c32;
+}
+
+/* ==================== USER STUDY ==================== */
+
+#studyForm .panel,
+#studySummary .panel {
+    margin-top: 18px;
+}
+
+#studyRun {
+    max-width: 520px;
+}
+
+#studyAggNote {
+    font-size: 12px;
+}
+
+/* ==================== FIXED QUESTION COMPOSER ==================== */
+
+.composer {
+    position: fixed;
+    z-index: 50;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 14px 20px;
+    border-top: 1px solid rgba(198, 185, 156, 0.75);
+    background: rgba(245, 241, 231, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.composer-inner {
+    width: min(850px, 100%);
+    display: block;
+    margin: 0 auto;
+    padding: 13px 16px 11px;
+    border: 1px solid var(--mc-border-strong);
+    border-radius: 15px;
+    background: var(--mc-surface);
+    box-shadow: var(--mc-shadow);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.composer-inner:focus-within {
+    border-color: var(--mc-primary);
+    box-shadow: 0 0 0 3px rgba(98, 107, 54, 0.10),
+                var(--mc-shadow);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+    border: 0;
+}
+
+#q {
+    display: block;
+    width: 100%;
+    min-height: 36px;
+    max-height: 150px;
+    padding: 5px 2px;
+    resize: vertical;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: var(--mc-text);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+#q:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#q::placeholder {
+    color: #96917e;
+}
+
+.composer-tools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 10px;
+    margin-top: 7px;
+    border-top: 1px solid var(--mc-border);
+}
+
+.composer-tools .hint {
+    font-size: 10px;
+}
+
+#sendBtn {
+    min-width: 108px;
+    min-height: 39px;
+    flex-shrink: 0;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 900px) {
+    .rs-wrap {
+        width: calc(100% - 36px);
+    }
+
+    .architecture-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mc-weights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ev-controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ev-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mc-perf-head {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .rs-wrap {
+        width: calc(100% - 24px);
+        padding-bottom: 185px;
+    }
+
+    .rs-top {
+        min-height: 68px;
+        margin-bottom: 25px;
+    }
+
+    .rs-logo {
+        width: 37px;
+        height: 37px;
+        border-radius: 11px;
+    }
+
+    .rs-brand-name {
+        font-size: 16px;
+    }
+
+    .rs-brand-sub {
+        font-size: 10px;
+    }
+
+    .rs-nav a {
+        padding: 8px 10px;
+        font-size: 10px;
+    }
+
+    .rs-title {
+        font-size: 31px;
+    }
+
+    .rs-sub {
+        font-size: 13px;
+        line-height: 1.8;
+    }
+
+    .tabs {
+        flex-wrap: nowrap;
+        gap: 4px;
+        padding: 4px;
+        margin-bottom: 20px;
+        overflow-x: auto;
+    }
+
+    .tab {
+        min-height: 39px;
+        padding: 9px 11px;
+        font-size: 10px;
+    }
+
+    .panel {
+        padding: 17px;
+        border-radius: 13px;
+    }
+
+    body.research h2 {
+        font-size: 19px;
+    }
+
+    .architecture-grid {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+
+    .architecture-card {
+        padding: 17px;
+    }
+
+    .architecture-icon {
+        margin-bottom: 11px;
+    }
+
+    .mc-weights {
+        gap: 8px;
+    }
+
+    .mc-weights li {
+        padding: 12px 10px;
+    }
+
+    .mc-weights li b {
+        font-size: 22px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 26px;
+    }
+
+    .section-heading > .btn {
+        align-self: flex-start;
+    }
+
+    .ev-select {
+        padding: 16px;
+    }
+
+    .ev-controls {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .ev-count {
+        grid-column: auto;
+        max-width: none;
+    }
+
+    .ev-summary {
+        gap: 8px;
+    }
+
+    .ev-summary > div {
+        padding: 11px;
+    }
+
+    .ev-summary dd {
+        font-size: 20px;
+    }
+
+    .ev-summary .ev-sum-wide {
+        grid-column: 1 / -1;
+    }
+
+    .ev-run {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .ev-run .btn {
+        width: 100%;
+    }
+
+    .ev-defs {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .ev-defs dd {
+        margin-bottom: 10px;
+    }
+
+    .form-row {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .form-row .field {
+        width: 100%;
+    }
+
+    .composer {
+        padding: 9px 9px max(9px, env(safe-area-inset-bottom));
+    }
+
+    .composer-inner {
+        padding: 10px 11px;
+        border-radius: 12px;
+    }
+
+    #q {
+        font-size: 12px;
+    }
+
+    .composer-tools {
+        align-items: center;
+        gap: 8px;
+    }
+
+    .composer-tools .hint {
+        max-width: 70%;
+        font-size: 9px;
+    }
+
+    #sendBtn {
+        min-width: 86px;
+        padding: 9px 12px;
+    }
+
+    .banner {
+        padding: 12px;
+        font-size: 11px;
+    }
+
+    body.research table {
+        min-width: 580px;
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+    body.research *,
+    body.research *::before,
+    body.research *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =========================================================
+   MEDICHAT — COMPARISON RESULTS LAYOUT + TEXT SPACING FIX
+   Appended overrides: preserves the existing theme and logic.
+   ========================================================= */
+
+/* Keep dynamic comparison sections from overflowing their panels */
+body.research #history,
+body.research #liveHistory,
+body.research #latestComparison,
+body.research #perfBody,
+body.research #evalResults,
+body.research #evalRuns {
+    min-width: 0;
+    width: 100%;
+    overflow-wrap: anywhere;
+}
+
+body.research #history > *,
+body.research #liveHistory > *,
+body.research #latestComparison > *,
+body.research #perfBody > *,
+body.research #evalResults > *,
+body.research #evalRuns > * {
+    min-width: 0;
+    max-width: 100%;
+}
+
+/* Result cards: comfortable padding, no fixed-height clipping */
+body.research #history .panel,
+body.research #liveHistory .panel,
+body.research #latestComparison .panel,
+body.research #history .comparison-card,
+body.research #liveHistory .comparison-card,
+body.research #latestComparison .comparison-card,
+body.research #history .result-card,
+body.research #liveHistory .result-card,
+body.research #latestComparison .result-card,
+body.research #history .model-card,
+body.research #liveHistory .model-card,
+body.research #latestComparison .model-card {
+    box-sizing: border-box;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    padding: 20px;
+    overflow: visible;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+/* If results are rendered as a direct set of cards, space them evenly */
+body.research #history:has(> .comparison-card),
+body.research #history:has(> .result-card),
+body.research #history:has(> .model-card),
+body.research #liveHistory:has(> .comparison-card),
+body.research #liveHistory:has(> .result-card),
+body.research #liveHistory:has(> .model-card),
+body.research #latestComparison:has(> .comparison-card),
+body.research #latestComparison:has(> .result-card),
+body.research #latestComparison:has(> .model-card) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 18px;
+}
+
+/* Ensure the cards themselves can shrink within the grid */
+body.research #history .comparison-card,
+body.research #history .result-card,
+body.research #history .model-card,
+body.research #liveHistory .comparison-card,
+body.research #liveHistory .result-card,
+body.research #liveHistory .model-card,
+body.research #latestComparison .comparison-card,
+body.research #latestComparison .result-card,
+body.research #latestComparison .model-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Card headings and descriptions: prevent text touching edges */
+body.research #history h1,
+body.research #history h2,
+body.research #history h3,
+body.research #history h4,
+body.research #liveHistory h1,
+body.research #liveHistory h2,
+body.research #liveHistory h3,
+body.research #liveHistory h4,
+body.research #latestComparison h1,
+body.research #latestComparison h2,
+body.research #latestComparison h3,
+body.research #latestComparison h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
+body.research #history p,
+body.research #liveHistory p,
+body.research #latestComparison p {
+    margin-top: 0;
+    margin-bottom: 12px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+body.research #history p:last-child,
+body.research #liveHistory p:last-child,
+body.research #latestComparison p:last-child {
+    margin-bottom: 0;
+}
+
+/* Metric blocks: keep label and value separate, with internal breathing room */
+body.research #history dl,
+body.research #liveHistory dl,
+body.research #latestComparison dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+}
+
+body.research #history dl > div,
+body.research #liveHistory dl > div,
+body.research #latestComparison dl > div {
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid var(--mc-border);
+    border-radius: 10px;
+    background: var(--mc-surface-soft);
+}
+
+body.research #history dt,
+body.research #liveHistory dt,
+body.research #latestComparison dt {
+    display: block;
+    margin: 0 0 6px;
+    color: var(--mc-text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+body.research #history dd,
+body.research #liveHistory dd,
+body.research #latestComparison dd {
+    display: block;
+    margin: 0;
+    color: var(--mc-text);
+    font-size: 15px;
+    font-weight: 750;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+/* Common score/metric class names, in case JS uses divs instead of dl */
+body.research #history .metric,
+body.research #history .metric-item,
+body.research #history .score-item,
+body.research #history .stat,
+body.research #liveHistory .metric,
+body.research #liveHistory .metric-item,
+body.research #liveHistory .score-item,
+body.research #liveHistory .stat,
+body.research #latestComparison .metric,
+body.research #latestComparison .metric-item,
+body.research #latestComparison .score-item,
+body.research #latestComparison .stat {
+    min-width: 0;
+    padding: 12px 14px;
+    margin: 0 0 10px;
+    border: 1px solid var(--mc-border);
+    border-radius: 10px;
+    background: var(--mc-surface-soft);
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+/* Keep label and score readable if the JS output uses inline spans */
+body.research #history .metric-label,
+body.research #history .score-label,
+body.research #history .stat-label,
+body.research #liveHistory .metric-label,
+body.research #liveHistory .score-label,
+body.research #liveHistory .stat-label,
+body.research #latestComparison .metric-label,
+body.research #latestComparison .score-label,
+body.research #latestComparison .stat-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--mc-text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+body.research #history .metric-value,
+body.research #history .score-value,
+body.research #history .stat-value,
+body.research #liveHistory .metric-value,
+body.research #liveHistory .score-value,
+body.research #liveHistory .stat-value,
+body.research #latestComparison .metric-value,
+body.research #latestComparison .score-value,
+body.research #latestComparison .stat-value {
+    display: block;
+    color: var(--mc-text);
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* General spacing for text inside dynamically rendered result cards */
+body.research #history .panel > *,
+body.research #liveHistory .panel > *,
+body.research #latestComparison .panel > *,
+body.research #history .comparison-card > *,
+body.research #liveHistory .comparison-card > *,
+body.research #latestComparison .comparison-card > *,
+body.research #history .result-card > *,
+body.research #liveHistory .result-card > *,
+body.research #latestComparison .result-card > *,
+body.research #history .model-card > *,
+body.research #liveHistory .model-card > *,
+body.research #latestComparison .model-card > * {
+    min-width: 0;
+    max-width: 100%;
+}
+
+body.research #history ul,
+body.research #liveHistory ul,
+body.research #latestComparison ul,
+body.research #history ol,
+body.research #liveHistory ol,
+body.research #latestComparison ol {
+    padding-left: 20px;
+    margin-top: 8px;
+    margin-bottom: 14px;
+}
+
+body.research #history li,
+body.research #liveHistory li,
+body.research #latestComparison li {
+    margin-bottom: 7px;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+}
+
+/* Avoid global max-width rules causing children to touch card borders */
+body.research #history .panel,
+body.research #liveHistory .panel,
+body.research #latestComparison .panel {
+    padding: clamp(16px, 2vw, 24px);
+    border-radius: 14px;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+    body.research #history:has(> .comparison-card),
+    body.research #history:has(> .result-card),
+    body.research #history:has(> .model-card),
+    body.research #liveHistory:has(> .comparison-card),
+    body.research #liveHistory:has(> .result-card),
+    body.research #liveHistory:has(> .model-card),
+    body.research #latestComparison:has(> .comparison-card),
+    body.research #latestComparison:has(> .result-card),
+    body.research #latestComparison:has(> .model-card) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    body.research #history:has(> .comparison-card),
+    body.research #history:has(> .result-card),
+    body.research #history:has(> .model-card),
+    body.research #liveHistory:has(> .comparison-card),
+    body.research #liveHistory:has(> .result-card),
+    body.research #liveHistory:has(> .model-card),
+    body.research #latestComparison:has(> .comparison-card),
+    body.research #latestComparison:has(> .result-card),
+    body.research #latestComparison:has(> .model-card) {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    body.research #history .panel,
+    body.research #liveHistory .panel,
+    body.research #latestComparison .panel,
+    body.research #history .comparison-card,
+    body.research #liveHistory .comparison-card,
+    body.research #latestComparison .comparison-card,
+    body.research #history .result-card,
+    body.research #liveHistory .result-card,
+    body.research #latestComparison .result-card,
+    body.research #history .model-card,
+    body.research #liveHistory .model-card,
+    body.research #latestComparison .model-card {
+        padding: 16px;
+    }
+
+    body.research #history dl,
+    body.research #liveHistory dl,
+    body.research #latestComparison dl {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+    }
+}

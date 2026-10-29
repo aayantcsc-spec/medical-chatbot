@@ -1,0 +1,70 @@
+{
+  "run_id": "mlp-20261029T054256Z",
+  "trained_at": "2026-10-29T05:42:56+00:00",
+  "architecture": "TfidfVectorizer (char_wb 2-4 grams) + MLPClassifier (scikit-learn feed-forward network)",
+  "seed": 42,
+  "sklearn_version": "1.9.1",
+  "dataset": "datasets/intent_splits/{train,val}.csv",
+  "train_examples": 1406,
+  "train_question_rows": 648,
+  "train_keyword_rows": 758,
+  "val_examples": 148,
+  "classes": 91,
+  "hyperparameters": {
+    "hidden": [
+      128
+    ],
+    "alpha": 0.001,
+    "val_accuracy": 0.8649
+  },
+  "tuning_trials_on_validation": [
+    {
+      "hidden": [
+        128
+      ],
+      "alpha": 0.0001,
+      "val_accuracy": 0.8446
+    },
+    {
+      "hidden": [
+        128
+      ],
+      "alpha": 0.001,
+      "val_accuracy": 0.8649
+    },
+    {
+      "hidden": [
+        256
+      ],
+      "alpha": 0.0001,
+      "val_accuracy": 0.8311
+    },
+    {
+      "hidden": [
+        256
+      ],
+      "alpha": 0.001,
+      "val_accuracy": 0.8514
+    },
+    {
+      "hidden": [
+        128,
+        64
+      ],
+      "alpha": 0.0001,
+      "val_accuracy": 0.8243
+    },
+    {
+      "hidden": [
+        128,
+        64
+      ],
+      "alpha": 0.001,
+      "val_accuracy": 0.8378
+    }
+  ],
+  "min_confidence": 0.336,
+  "min_confidence_note": "chosen on validation split only; below it the bot declines to answer",
+  "training_seconds": 638.903,
+  "artifact": "models/health_mlp/pipeline.pkl"
+}

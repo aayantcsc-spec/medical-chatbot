@@ -1,0 +1,215 @@
+{
+  "run_id": "svm-20261029T055727Z",
+  "trained_at": "2026-10-29T05:57:27.362736+00:00",
+  "architecture": "TfidfVectorizer (word + char) + LinearSVC",
+  "seed": 42,
+  "sklearn_version": "1.9.1",
+  "dataset": "datasets/intent_splits/{train,val}.csv",
+  "train_examples": 1406,
+  "train_question_rows": 648,
+  "train_keyword_rows": 758,
+  "val_examples": 148,
+  "classes": 91,
+  "hyperparameters": {
+    "C": 0.3,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "char_ngrams": true,
+    "stop_words": "english",
+    "sublinear_tf": true
+  },
+  "tuning_trials_on_validation": [
+    {
+      "C": 0.1,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "char_ngrams": false,
+      "val_accuracy": 0.7027
+    },
+    {
+      "C": 0.1,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "char_ngrams": true,
+      "val_accuracy": 0.8041
+    },
+    {
+      "C": 0.1,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "char_ngrams": false,
+      "val_accuracy": 0.7365
+    },
+    {
+      "C": 0.1,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "char_ngrams": true,
+      "val_accuracy": 0.8243
+    },
+    {
+      "C": 0.3,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "char_ngrams": false,
+      "val_accuracy": 0.7297
+    },
+    {
+      "C": 0.3,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "char_ngrams": true,
+      "val_accuracy": 0.8311
+    },
+    {
+      "C": 0.3,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "char_ngrams": false,
+      "val_accuracy": 0.7365
+    },
+    {
+      "C": 0.3,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "char_ngrams": true,
+      "val_accuracy": 0.8446
+    },
+    {
+      "C": 1.0,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "char_ngrams": false,
+      "val_accuracy": 0.7838
+    },
+    {
+      "C": 1.0,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "char_ngrams": true,
+      "val_accuracy": 0.8378
+    },
+    {
+      "C": 1.0,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "char_ngrams": false,
+      "val_accuracy": 0.7703
+    },
+    {
+      "C": 1.0,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "char_ngrams": true,
+      "val_accuracy": 0.8378
+    },
+    {
+      "C": 3.0,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "char_ngrams": false,
+      "val_accuracy": 0.7973
+    },
+    {
+      "C": 3.0,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "char_ngrams": true,
+      "val_accuracy": 0.8243
+    },
+    {
+      "C": 3.0,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "char_ngrams": false,
+      "val_accuracy": 0.7905
+    },
+    {
+      "C": 3.0,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "char_ngrams": true,
+      "val_accuracy": 0.8311
+    },
+    {
+      "C": 10.0,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "char_ngrams": false,
+      "val_accuracy": 0.7838
+    },
+    {
+      "C": 10.0,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "char_ngrams": true,
+      "val_accuracy": 0.8041
+    },
+    {
+      "C": 10.0,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "char_ngrams": false,
+      "val_accuracy": 0.777
+    },
+    {
+      "C": 10.0,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "char_ngrams": true,
+      "val_accuracy": 0.8108
+    }
+  ],
+  "min_margin": -0.2225,
+  "temperature": 8,
+  "val_log_loss": 0.6789,
+  "min_margin_note": "chosen on validation split only; 0.0 means no rejection threshold met",
+  "training_seconds": 6.309,
+  "artifact": "models/svm/svm_pipeline.pkl",
+  "known_limitations": [
+    "Small author-written dataset (~7 train questions per class, plus keyword phrases).",
+    "Temperature fitted on only ~150 validation examples; treat the score as a rough indicator."
+  ]
+}

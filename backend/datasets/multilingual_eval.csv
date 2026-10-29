@@ -1,0 +1,53 @@
+question,label,lang
+mujhe bukhar hai aur badan toot raha hai,fever,hinglish
+sir mein bahut dard ho raha hai kya karun,headache,hinglish
+mujhe khansi ho rahi hai kai din se,cough,hinglish
+zukam aur naak band hai kya karu,common_cold,hinglish
+gale mein kharash hai nigalne mein dard hota hai,sore_throat,hinglish
+khade hone par chakkar aa rahe hain,dizziness,hinglish
+pet mein gas aur acidity rehti hai,indigestion,hinglish
+kharab khana khane ke baad ulti aur dast ho rahe hain,food_poisoning,hinglish
+bahut thakan rehti hai poora din,fatigue,hinglish
+raat ko neend nahi aati kya karun,insomnia,hinglish
+sugar ki bimari kya hoti hai,diabetes_basics,hinglish
+bp high rehta hai kaise control karein,blood_pressure,hinglish
+office ka bahut stress ho raha hai,stress_signs,hinglish
+bina wajah ghabrahat hoti hai,anxiety_signs,hinglish
+kamar dard bahut hai kya karein,back_pain,hinglish
+ghutne mein dard rehta hai,joint_pain,hinglish
+skin par daane aur khujli hai,skin_rash,hinglish
+daant mein dard hai,toothache,hinglish
+roz kitna paani peena chahiye,hydration,hinglish
+healthy khana kya hota hai,healthy_diet,hinglish
+bachche ko bukhar hai kya karein,child_fever,hinglish
+periods mein bahut dard hota hai,menstrual_cramps,hinglish
+peshab mein jalan ho rahi hai,uti,hinglish
+kaun sa doctor dikhana chahiye pet dard ke liye,doctor_digestive,hinglish
+thyroid ke liye kis doctor ko dikhayein,doctor_thyroid,hinglish
+paracetamol kitni goli leni chahiye,medication_dosage_request,hinglish
+dawai khane se pehle kya savdhani rakhein,medicine_precautions,hinglish
+haath dhone ka sahi tarika kya hai,handwashing,hinglish
+मुझे बुखार है,fever,hi
+सिर में बहुत दर्द है,headache,hi
+कई दिनों से खांसी आ रही है,cough,hi
+जुकाम और नाक बंद है,common_cold,hi
+गले में खराश है,sore_throat,hi
+खड़े होने पर चक्कर आते हैं,dizziness,hi
+पेट में गैस और एसिडिटी रहती है,indigestion,hi
+बहुत थकान रहती है,fatigue,hi
+रात को नींद नहीं आती,insomnia,hi
+डायबिटीज़ क्या होता है,diabetes_basics,hi
+ब्लड प्रेशर कैसे कंट्रोल करें,blood_pressure,hi
+बहुत तनाव हो रहा है,stress_signs,hi
+बिना वजह घबराहट होती है,anxiety_signs,hi
+कमर में दर्द है,back_pain,hi
+जोड़ों में दर्द रहता है,joint_pain,hi
+त्वचा पर खुजली और दाने हैं,skin_rash,hi
+दांत में दर्द है,toothache,hi
+रोज़ कितना पानी पीना चाहिए,hydration,hi
+बच्चे को बुखार है क्या करें,child_fever,hi
+पीरियड्स में बहुत दर्द होता है,menstrual_cramps,hi
+पेशाब में जलन हो रही है,uti,hi
+पेट दर्द के लिए कौन से डॉक्टर को दिखाएं,doctor_digestive,hi
+थायरॉइड के लिए किस डॉक्टर को दिखाएं,doctor_thyroid,hi
+दवा लेने से पहले क्या सावधानी रखें,medicine_precautions,hi

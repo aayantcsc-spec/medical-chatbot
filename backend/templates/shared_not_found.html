@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Medichat - Link not found{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+        .wrap { min-height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; padding:24px; }
+        .wrap h1 { font-size:26px; margin-bottom:10px; }
+        .wrap p { color: var(--muted); margin-bottom:20px; max-width:420px; }
+        .wrap a { background: var(--primary); color:#fff; padding:10px 20px; border-radius:8px; text-decoration:none; }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="wrap">
+        <h1>This shared conversation isn't available</h1>
+        <p>The link may have been revoked by its owner, or the conversation may have been deleted. If you were sent this link, ask the sender to share it again.</p>
+        <a href="{{ url_for('home') }}">Back to Medichat</a>
+    </div>
+{% endblock %}

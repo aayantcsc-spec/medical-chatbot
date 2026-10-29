@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediChat | AI Healthcare Assistant</title>
+    <meta name="description" content="Explore and compare rule-based, machine learning, and deep learning approaches for healthcare chatbots.">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/home.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="site-header">
+        <nav class="navbar container">
+            <a href="{{ url_for('home') }}" class="brand">
+                <span class="brand-icon">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </span>
+                <span>Medi<span class="brand-highlight">Chat</span></span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#architectures" class="nav-link">AI Approaches</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="{{ url_for('login') }}" class="login-link">Log in</a>
+                <a href="{{ url_for('register') }}" class="btn btn-primary nav-button">
+                    Get Started <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <button class="mobile-menu-button"
+                    id="mobileMenuButton"
+                    type="button"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#home">Home</a>
+            <a href="#architectures">AI Approaches</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#about">About</a>
+            <a href="{{ url_for('login') }}">Log in</a>
+            <a href="{{ url_for('register') }}">Create an account</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero-section" id="home">
+            <div class="container hero-grid">
+
+                <div class="hero-content">
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        HEALTHCARE AI RESEARCH PLATFORM
+                    </div>
+
+                    <h1>
+                        Better insights.<br>
+                        <span>Smarter healthcare AI.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Explore how different artificial intelligence approaches
+                        respond to healthcare questions. Compare their performance,
+                        understand their strengths, and study their limitations
+                        with MediChat.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="{{ url_for('register') }}" class="btn btn-primary btn-large">
+                            Get Started
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                        <a href="#architectures" class="btn btn-secondary btn-large">
+                            Explore AI Approaches
+                        </a>
+                    </div>
+
+                    <div class="hero-trust-row">
+                        <div class="trust-icon">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                        <div>
+                            <strong>Built for healthcare research</strong>
+                            <span>Informational support, not medical diagnosis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI architecture illustration; no robot image -->
+                <div class="hero-visual">
+                    <div class="visual-topbar">
+                        <div class="visual-heading">
+                            <span class="visual-kicker">MEDICHAT FRAMEWORK</span>
+                            <h2>One platform. Three AI approaches.</h2>
+                        </div>
+                        <span class="live-indicator">
+                            <span></span> COMPARATIVE STUDY
+                        </span>
+                    </div>
+
+                    <div class="architecture-canvas">
+                        <div class="orbit orbit-one"></div>
+                        <div class="orbit orbit-two"></div>
+
+                        <svg class="connection-lines"
+                             viewBox="0 0 520 390"
+                             preserveAspectRatio="xMidYMid meet"
+                             aria-hidden="true">
+                            <path d="M260 188 C210 145 160 115 110 86"></path>
+                            <path d="M260 188 C310 145 360 115 410 86"></path>
+                            <path d="M260 218 L260 300"></path>
+                            <circle cx="110" cy="86" r="4"></circle>
+                            <circle cx="410" cy="86" r="4"></circle>
+                            <circle cx="260" cy="300" r="4"></circle>
+                        </svg>
+
+                        <div class="architecture-node rule-node">
+                            <span class="node-icon"><i class="fa-solid fa-list-check"></i></span>
+                            <span class="node-number">01 / LOGIC</span>
+                            <strong>Rule-Based</strong>
+                            <small>Predefined rules</small>
+                        </div>
+
+                        <div class="architecture-node ml-node">
+                            <span class="node-icon"><i class="fa-solid fa-brain"></i></span>
+                            <span class="node-number">02 / LEARNING</span>
+                            <strong>Machine Learning</strong>
+                            <small>Patterns and prediction</small>
+                        </div>
+
+                        <div class="architecture-node dl-node">
+                            <span class="node-icon"><i class="fa-solid fa-network-wired"></i></span>
+                            <span class="node-number">03 / NEURAL</span>
+                            <strong>Deep Learning</strong>
+                            <small>Neural networks</small>
+                        </div>
+
+                        <div class="central-node">
+                            <div class="central-icon">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                            <strong>MediChat</strong>
+                            <span>Healthcare AI Research</span>
+                        </div>
+                    </div>
+
+                    <div class="visual-footer">
+                        <span><i class="fa-solid fa-chart-column"></i> Performance</span>
+                        <span><i class="fa-solid fa-scale-balanced"></i> Comparison</span>
+                        <span><i class="fa-solid fa-magnifying-glass-chart"></i> Analysis</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-bottom container">
+                <span>DESIGNED FOR COMPARATIVE STUDY</span>
+                <div class="hero-bottom-line"></div>
+                <span>RULES <b>·</b> ML <b>·</b> DL</span>
+            </div>
+        </section>
+
+        <!-- Architecture cards -->
+        <section class="section architecture-section" id="architectures">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-label">THE THREE APPROACHES</span>
+                    <h2>Different architectures.<br><span>One research objective.</span></h2>
+                    <p>
+                        Examine three approaches to building healthcare chatbots
+                        and understand how each processes user questions.
+                    </p>
+                </div>
+
+                <div class="architecture-cards">
+                    <article class="approach-card">
+                        <div class="approach-card-top">
+                            <span class="approach-icon icon-rule">
+                                <i class="fa-solid fa-diagram-project"></i>
+                            </span>
+                            <span class="approach-index">01</span>
+                        </div>
+                        <span class="approach-tag">LOGIC-DRIVEN</span>
+                        <h3>Rule-Based Chatbot</h3>
+                        <p>
+                            Uses predefined rules, keywords, and conditions
+                            to match user input with prepared responses.
+                        </p>
+                        <div class="approach-divider"></div>
+                        <div class="approach-detail">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Explicit rules and predictable outputs</span>
+                        </div>
+                        <div class="approach-detail">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Depends on rule coverage</span>
+                        </div>
+                    </article>
+
+                    <article class="approach-card featured-card">
+                        <div class="featured-label">LEARNING-BASED</div>
+                        <div class="approach-card-top">
+                            <span class="approach-icon icon-ml">
+                                <i class="fa-solid fa-brain"></i>
+                            </span>
+                            <span class="approach-index">02</span>
+                        </div>
+                        <span class="approach-tag">DATA-DRIVEN</span>
+                        <h3>Machine Learning</h3>
+                        <p>
+                            Learns patterns from examples and uses trained
+                            models to classify or interpret user questions.
+                        </p>
+                        <div class="approach-divider"></div>
+                        <div class="approach-detail">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Learns from labelled examples</span>
+                        </div>
+                        <div class="approach-detail">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Depends on data and model quality</span>
+                        </div>
+                    </article>
+
+                    <article class="approach-card">
+                        <div class="approach-card-top">
+                            <span class="approach-icon icon-dl">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </span>
+                            <span class="approach-index">03</span>
+                        </div>
+                        <span class="approach-tag">NEURAL NETWORKS</span>
+                        <h3>Deep Learning</h3>
+                        <p>
+                            Uses multilayer neural networks to learn complex
+                            patterns in text and other forms of data.
+                        </p>
+                        <div class="approach-divider"></div>
+                        <div class="approach-detail">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Can model complex language patterns</span>
+                        </div>
+                        <div class="approach-detail">
+                            <i class="fa-solid fa-check"></i>
+                            <span>May require more data and computing</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow -->
+        <section class="section workflow-section" id="how-it-works">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-label">THE WORKFLOW</span>
+                    <h2>From a question to <span>useful insights.</span></h2>
+                    <p>
+                        A structured workflow helps you examine chatbot responses
+                        and compare the approaches consistently.
+                    </p>
+                </div>
+
+                <div class="workflow-grid">
+                    <article class="workflow-step">
+                        <span class="step-number">01</span>
+                        <div class="workflow-icon"><i class="fa-regular fa-message"></i></div>
+                        <h3>Ask</h3>
+                        <p>Enter a healthcare question in natural language.</p>
+                    </article>
+
+                    <div class="workflow-connector"><i class="fa-solid fa-arrow-right"></i></div>
+
+                    <article class="workflow-step">
+                        <span class="step-number">02</span>
+                        <div class="workflow-icon"><i class="fa-solid fa-gears"></i></div>
+                        <h3>Process</h3>
+                        <p>Process the question using the available chatbot approach.</p>
+                    </article>
+
+                    <div class="workflow-connector"><i class="fa-solid fa-arrow-right"></i></div>
+
+                    <article class="workflow-step">
+                        <span class="step-number">03</span>
+                        <div class="workflow-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <h3>Compare</h3>
+                        <p>Examine differences in responses and measured performance.</p>
+                    </article>
+
+                    <div class="workflow-connector"><i class="fa-solid fa-arrow-right"></i></div>
+
+                    <article class="workflow-step">
+                        <span class="step-number">04</span>
+                        <div class="workflow-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <h3>Analyze</h3>
+                        <p>Review metrics and feedback to understand the results.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Platform features -->
+        <section class="section features-section">
+            <div class="container feature-layout">
+                <div class="feature-intro">
+                    <span class="section-label">EXPLORE MEDICHAT</span>
+                    <h2>A research workspace for <span>healthcare AI.</span></h2>
+                    <p>
+                        Explore chatbot responses, study performance, and
+                        organize comparative findings in one place.
+                    </p>
+                    <a href="{{ url_for('register') }}" class="text-link">
+                        Explore the platform <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="feature-list">
+                    <article class="feature-item">
+                        <span class="feature-icon"><i class="fa-regular fa-comments"></i></span>
+                        <div>
+                            <h3>Chat</h3>
+                            <p>Interact with the healthcare chatbot using natural-language questions.</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square feature-arrow"></i>
+                    </article>
+
+                    <article class="feature-item">
+                        <span class="feature-icon"><i class="fa-solid fa-chart-column"></i></span>
+                        <div>
+                            <h3>Analysis</h3>
+                            <p>Review available metrics and performance insights.</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square feature-arrow"></i>
+                    </article>
+
+                    <article class="feature-item">
+                        <span class="feature-icon"><i class="fa-solid fa-scale-balanced"></i></span>
+                        <div>
+                            <h3>Comparison</h3>
+                            <p>Compare the responses and results of different approaches.</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square feature-arrow"></i>
+                    </article>
+
+                    <article class="feature-item">
+                        <span class="feature-icon"><i class="fa-solid fa-users"></i></span>
+                        <div>
+                            <h3>User Study</h3>
+                            <p>Collect feedback about response quality and usability.</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square feature-arrow"></i>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- About and safety -->
+        <section class="section about-section" id="about">
+            <div class="container about-grid">
+                <div class="about-symbol">
+                    <div class="about-symbol-ring">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <span class="symbol-caption">AI + HEALTHCARE</span>
+                </div>
+
+                <div class="about-content">
+                    <span class="section-label">WHY MEDICHAT?</span>
+                    <h2>Understand the technology behind <span>the response.</span></h2>
+                    <p>
+                        Healthcare chatbots can use different methods to interpret
+                        questions and generate information. MediChat provides a
+                        project workspace for examining these approaches and
+                        evaluating their performance.
+                    </p>
+
+                    <div class="about-points">
+                        <div><i class="fa-solid fa-circle-check"></i> Compare distinct AI architectures</div>
+                        <div><i class="fa-solid fa-circle-check"></i> Examine measurable results</div>
+                        <div><i class="fa-solid fa-circle-check"></i> Consider safety and usability</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="safety-notice">
+                    <div class="safety-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                    <div>
+                        <h3>Important healthcare notice</h3>
+                        <p>
+                            MediChat is intended for research and general informational
+                            support. Its responses are not a medical diagnosis and
+                            should not replace advice from a qualified healthcare
+                            professional. If you may be experiencing a medical
+                            emergency, contact local emergency services immediately.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-main">
+            <div class="footer-brand-block">
+                <a href="{{ url_for('home') }}" class="brand footer-brand">
+                    <span class="brand-icon">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </span>
+                    <span>Medi<span class="brand-highlight">Chat</span></span>
+                </a>
+                <p>
+                    Exploring AI architectures for healthcare chatbot
+                    performance, safety, and usability.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <a href="#architectures">AI Approaches</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#about">About MediChat</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Your Account</h4>
+                <a href="{{ url_for('login') }}">Log in</a>
+                <a href="{{ url_for('register') }}">Create an account</a>
+            </div>
+
+            <div class="footer-project">
+                <span class="section-label">RESEARCH PROJECT</span>
+                <p>Comparative Analysis of Health Chatbots Based on Framework and Architecture.</p>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <span>&copy; <span id="currentYear"></span> MediChat. All rights reserved.</span>
+            <span>Built for healthcare AI research.</span>
+        </div>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById("mobileMenuButton");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuButton.addEventListener("click", function () {
+            const isOpen = mobileMenu.classList.toggle("is-open");
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.innerHTML = isOpen
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        });
+
+        mobileMenu.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                mobileMenu.classList.remove("is-open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            });
+        });
+
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+    </script>
+</body>
+</html>

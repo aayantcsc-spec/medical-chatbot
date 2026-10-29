@@ -1,0 +1,12 @@
+{
+    "model": "TF-IDF + Logistic Regression",
+    "architecture_label": "Machine Learning",
+    "dataset": "datasets/Symptom2Disease.csv",
+    "train_rows": 960,
+    "test_rows": 240,
+    "num_classes": 24,
+    "accuracy": 0.9583,
+    "precision_weighted": 0.9607,
+    "recall_weighted": 0.9583,
+    "f1_weighted": 0.9579
+}

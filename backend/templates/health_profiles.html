@@ -1,0 +1,971 @@
+{% extends "base.html" %}
+
+{% block title %}Health Profile | HealthBot{% endblock %}
+
+{% block extra_css %}
+<style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f8f7;
+            color: #17342b;
+        }
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            height: 72px;
+            background: #ffffff;
+            border-bottom: 1px solid #e6eeeb;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            text-decoration: none;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 11px;
+
+            background: #087f5b;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+        }
+
+        .brand-name {
+            color: #087f5b;
+            font-size: 18px;
+            font-weight: 750;
+        }
+
+        .brand-subtitle {
+            color: #8b9792;
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            color: #65736d;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            color: #087f5b;
+        }
+
+        .profile-small {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+
+            background: #dff4eb;
+            color: #087f5b;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .page {
+            max-width: 1150px;
+            margin: auto;
+
+            padding: 40px 25px 70px;
+        }
+
+        /* =====================================================
+           PAGE HEADER
+        ===================================================== */
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            margin-bottom: 30px;
+        }
+
+        .header-title h1 {
+            font-size: 29px;
+            margin-bottom: 8px;
+        }
+
+        .header-title p {
+            color: #7b8983;
+            font-size: 13px;
+        }
+
+        .edit-button {
+            border: none;
+
+            background: #087f5b;
+            color: white;
+
+            padding: 11px 18px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .edit-button:hover {
+            background: #066b4d;
+        }
+
+        /* =====================================================
+           PROFILE OVERVIEW
+        ===================================================== */
+
+        .profile-card {
+            background: white;
+
+            border: 1px solid #e4ece8;
+
+            border-radius: 17px;
+
+            padding: 27px;
+
+            box-shadow:
+                0 8px 30px rgba(24, 70, 55, .05);
+
+            margin-bottom: 25px;
+        }
+
+        .profile-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .avatar {
+            width: 75px;
+            height: 75px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                #087f5b,
+                #23a47d
+            );
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .profile-name h2 {
+            font-size: 21px;
+            margin-bottom: 5px;
+        }
+
+        .profile-name p {
+            color: #8a9691;
+            font-size: 12px;
+        }
+
+        .profile-status {
+            margin-left: auto;
+
+            background: #e9f8f1;
+            color: #087f5b;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           GRID
+        ===================================================== */
+
+        .grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 22px;
+        }
+
+        .section-card {
+            background: white;
+
+            border: 1px solid #e4ece8;
+
+            border-radius: 17px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 8px 30px rgba(24, 70, 55, .04);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 22px;
+
+            padding-bottom: 14px;
+
+            border-bottom: 1px solid #edf2ef;
+        }
+
+        .section-icon {
+            width: 35px;
+            height: 35px;
+
+            border-radius: 9px;
+
+            background: #e9f7f1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 17px;
+        }
+
+        .section-title h3 {
+            font-size: 15px;
+        }
+
+        /* =====================================================
+           INFORMATION ROW
+        ===================================================== */
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid #f0f3f2;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #8a9691;
+            font-size: 11px;
+        }
+
+        .info-value {
+            color: #273a33;
+            font-size: 12px;
+            font-weight: 650;
+
+            text-align: right;
+        }
+
+        /* =====================================================
+           TAGS
+        ===================================================== */
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #eef8f4;
+            color: #087f5b;
+
+            border-radius: 20px;
+
+            padding: 7px 11px;
+
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .tag.warning {
+            background: #fff5df;
+            color: #9a6800;
+        }
+
+        .tag.none {
+            background: #f3f5f4;
+            color: #7b8782;
+        }
+
+        /* =====================================================
+           EMPTY MESSAGE
+        ===================================================== */
+
+        .empty {
+            color: #8a9691;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* =====================================================
+           PRIVACY
+        ===================================================== */
+
+        .privacy-card {
+            margin-top: 25px;
+
+            background: #f0f8f5;
+
+            border: 1px solid #dceee7;
+
+            border-radius: 14px;
+
+            padding: 17px 20px;
+
+            display: flex;
+            gap: 13px;
+
+            align-items: flex-start;
+        }
+
+        .privacy-icon {
+            font-size: 18px;
+        }
+
+        .privacy-text h4 {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .privacy-text p {
+            color: #718079;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+            text-align: center;
+
+            color: #9aa49f;
+
+            font-size: 10px;
+
+            margin-top: 35px;
+        }
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 750px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-right {
+                gap: 12px;
+            }
+
+            .nav-link {
+                display: none;
+            }
+
+            .page {
+                padding: 25px 15px 50px;
+            }
+
+            .page-header {
+                align-items: flex-start;
+                gap: 15px;
+                flex-direction: column;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-top {
+                align-items: flex-start;
+            }
+
+            .profile-status {
+                display: none;
+            }
+
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="page">
+
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-header">
+
+        <div class="header-title">
+
+            <h1>
+                My Health Profile
+            </h1>
+
+            <p>
+                Manage the personal information used to
+                personalize your HealthBot experience.
+            </p>
+
+        </div>
+
+
+        <a href="{{ url_for('onboarding') }}"
+           class="edit-button">
+
+            ✎ Edit Profile
+
+        </a>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PROFILE SUMMARY
+    ====================================================== -->
+
+    <div class="profile-card">
+
+        <div class="profile-top">
+
+            <div class="avatar" id="avatarContainer" style="position:relative; cursor:pointer;" onclick="document.getElementById('avatarFileInput').click();">
+
+                {% if avatar_url %}
+                    <img id="avatarImage" src="{{ avatar_url }}" alt="Profile photo"
+                         style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+                {% else %}
+                    <span id="avatarInitial">{{ user_name[0]|upper if user_name else "U" }}</span>
+                {% endif %}
+
+                <div style="position:absolute; bottom:-2px; right:-2px; background:#14b88a; color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; border:2px solid var(--card-bg, white);">
+                    📷
+                </div>
+
+            </div>
+
+            <input type="file" id="avatarFileInput" accept="image/png,image/jpeg,image/webp" style="display:none;" onchange="uploadAvatar(this)">
+
+
+            <div class="profile-name">
+
+                <h2>
+                    {{ user_name or "HealthBot User" }}
+                </h2>
+
+                <p>
+                    {{ user_email or "Email not available" }}
+                </p>
+
+            </div>
+
+
+            <div class="profile-status">
+
+                ✓ Profile Active
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         INFORMATION GRID
+    ====================================================== -->
+
+    <div class="grid">
+
+
+        <!-- PERSONAL INFORMATION -->
+
+        <div class="section-card">
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    👤
+                </div>
+
+                <h3>
+                    Personal Information
+                </h3>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Full Name
+                </span>
+
+                <span class="info-value">
+                    {{ profile.full_name
+                       if profile and profile.full_name
+                       else user_name }}
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Age
+                </span>
+
+                <span class="info-value">
+
+                    {% if profile and profile.age %}
+                        {{ profile.age }} years
+                    {% else %}
+                        Not provided
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Sex
+                </span>
+
+                <span class="info-value">
+
+                    {{ profile.sex
+                       if profile and profile.sex
+                       else "Not provided" }}
+
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Blood Group
+                </span>
+
+                <span class="info-value">
+
+                    {{ profile.blood_group
+                       if profile and profile.blood_group
+                       else "Not provided" }}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BODY INFORMATION -->
+
+        <div class="section-card">
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    ⚖️
+                </div>
+
+                <h3>
+                    Body Information
+                </h3>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Height
+                </span>
+
+                <span class="info-value">
+
+                    {% if profile and profile.height %}
+                        {{ profile.height }} cm
+                    {% else %}
+                        Not provided
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Weight
+                </span>
+
+                <span class="info-value">
+
+                    {% if profile and profile.weight %}
+                        {{ profile.weight }} kg
+                    {% else %}
+                        Not provided
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Activity Level
+                </span>
+
+                <span class="info-value">
+
+                    {{ profile.activity_level
+                       if profile and profile.activity_level
+                       else "Not provided" }}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HEALTH INFORMATION -->
+
+        <div class="section-card">
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    ❤️
+                </div>
+
+                <h3>
+                    Health Information
+                </h3>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Existing Conditions
+                </span>
+
+                <span class="info-value">
+
+                    {% if profile and profile.medical_conditions %}
+                        {{ profile.medical_conditions }}
+                    {% else %}
+                        None provided
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Allergies
+                </span>
+
+                <span class="info-value">
+
+                    {% if profile and profile.allergies %}
+                        {{ profile.allergies }}
+                    {% else %}
+                        None provided
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Current Medications
+                </span>
+
+                <span class="info-value">
+
+                    {% if profile and profile.medications %}
+                        {{ profile.medications }}
+                    {% else %}
+                        None provided
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LIFESTYLE -->
+
+        <div class="section-card">
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    🌿
+                </div>
+
+                <h3>
+                    Lifestyle Information
+                </h3>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Smoking
+                </span>
+
+                <span class="info-value">
+
+                    {{ profile.smoking
+                       if profile and profile.smoking
+                       else "Not provided" }}
+
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Alcohol
+                </span>
+
+                <span class="info-value">
+
+                    {{ profile.alcohol
+                       if profile and profile.alcohol
+                       else "Not provided" }}
+
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Sleep
+                </span>
+
+                <span class="info-value">
+
+                    {% if profile and profile.sleep_hours %}
+                        {{ profile.sleep_hours }} hours/day
+                    {% else %}
+                        Not provided
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PRIVACY
+    ====================================================== -->
+
+    <div class="privacy-card">
+
+        <div class="privacy-icon">
+            🔒
+        </div>
+
+        <div class="privacy-text">
+
+            <h4>
+                Your health information is private
+            </h4>
+
+            <p>
+                Information in your health profile is used
+                to provide a more personalized chatbot
+                experience. HealthBot provides general
+                health information and does not replace
+                diagnosis or professional medical advice.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        HealthBot • AI Healthcare Assistant
+
+    </div>
+
+
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+
+    async function uploadAvatar(input) {
+
+        const file = input.files[0];
+        if (!file) return;
+
+        if (file.size > 2 * 1024 * 1024) {
+            alert("Image is too large. Please choose a file under 2MB.");
+            input.value = "";
+            return;
+        }
+
+        const allowedTypes = ["image/png", "image/jpeg", "image/webp"];
+        if (!allowedTypes.includes(file.type)) {
+            alert("Please choose a PNG, JPG, or WEBP image.");
+            input.value = "";
+            return;
+        }
+
+        // Instant local preview while the upload is in flight.
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const container = document.getElementById("avatarContainer");
+            container.innerHTML = `
+                <img id="avatarImage" src="${e.target.result}" alt="Profile photo"
+                     style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+                <div style="position:absolute; bottom:-2px; right:-2px; background:#14b88a; color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px;">📷</div>
+            `;
+        };
+        reader.readAsDataURL(file);
+
+        const formData = new FormData();
+        formData.append("avatar", file);
+
+        try {
+            const res = await fetch("/api/profile/avatar", {
+                method: "POST",
+                body: formData,
+            });
+            const data = await res.json();
+
+            if (!data.success) {
+                alert(data.error || "Could not upload your photo.");
+                return;
+            }
+
+        } catch (err) {
+            alert("Network error while uploading your photo.");
+        }
+    }
+
+</script>
+{% endblock %}

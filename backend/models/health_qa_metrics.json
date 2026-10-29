@@ -1,0 +1,7 @@
+{
+  "ml_accuracy": 0.8266,
+  "dl_accuracy": 0.8671,
+  "topics": 54,
+  "train_rows": 692,
+  "test_rows": 173
+}

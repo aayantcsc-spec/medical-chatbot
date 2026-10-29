@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MediChat</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+
+<body>
+    <main class="login-page">
+
+        <!-- Decorative background -->
+        <div class="background-glow"></div>
+        <div class="decor-circle decor-circle-top"></div>
+        <div class="decor-circle decor-circle-bottom"></div>
+
+        <!-- Left welcome section -->
+        <section class="welcome-panel">
+
+            <a href="{{ url_for('home') }}" class="brand">
+                <span class="brand-icon">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M3 12h4l2.3-5 4.1 10 2.2-5H21"
+                              stroke="currentColor" stroke-width="2.2"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 21s-8.5-5.1-8.5-11A4.5 4.5 0 0 1 12 7.5
+                                 4.5 4.5 0 0 1 20.5 10c0 5.9-8.5 11-8.5 11Z"
+                              stroke="currentColor" stroke-width="1.5"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="brand-name">Medi<span>Chat</span></span>
+            </a>
+
+            <div class="welcome-content">
+                <div class="eyebrow">
+                    <span class="status-dot"></span>
+                    YOUR HEALTH. OUR AI SUPPORT.
+                </div>
+
+                <h1>
+                    Welcome back<br>
+                    to <span>MediChat.</span>
+                </h1>
+
+                <p class="welcome-description">
+                    Continue your healthcare journey with personalized
+                    AI support, trusted insights and smarter answers
+                    to your health questions.
+                </p>
+
+                <div class="benefits">
+                    <div class="benefit">
+                        <span class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7
+                                8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8
+                                8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5
+                                a8.5 8.5 0 0 1 8 8v.5Z"
+                                stroke="currentColor" stroke-width="1.7"
+                                stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                        <span>Ask Health<br>Questions</span>
+                    </div>
+
+                    <span class="benefit-divider"></span>
+
+                    <div class="benefit">
+                        <span class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"
+                                      stroke="currentColor" stroke-width="1.7"
+                                      stroke-linejoin="round"/>
+                                <path d="m9 12 2 2 4-4"
+                                      stroke="currentColor" stroke-width="1.7"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                        <span>Get Trusted<br>Information</span>
+                    </div>
+
+                    <span class="benefit-divider"></span>
+
+                    <div class="benefit">
+                        <span class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1
+                                a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5
+                                1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
+                                stroke="currentColor" stroke-width="1.7"
+                                stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                        <span>Make Better<br>Health Decisions</span>
+                    </div>
+                </div>
+
+                <div class="health-note">
+                    <span>Your health matters.</span>
+                    <svg viewBox="0 0 230 12" preserveAspectRatio="none" aria-hidden="true">
+                        <path d="M2 9 Q105 -2 228 5"
+                              fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Decorative botanical illustration made with CSS -->
+            <div class="leaf-decoration" aria-hidden="true">
+                <span class="leaf leaf-one"></span>
+                <span class="leaf leaf-two"></span>
+                <span class="leaf leaf-three"></span>
+                <span class="leaf leaf-four"></span>
+                <span class="leaf-stem"></span>
+            </div>
+        </section>
+
+        <!-- Right login section -->
+        <section class="form-panel">
+            <div class="login-card">
+
+                <div class="form-label">LOGIN</div>
+
+                <h2>Sign in to <span>MediChat</span></h2>
+
+                <p class="form-description">
+                    Access your dashboard and continue your
+                    healthcare AI research.
+                </p>
+
+                {% if error %}
+                    <div class="form-error" role="alert">{{ error }}</div>
+                {% endif %}
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="form-message {{ category }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <form action="{{ url_for('login') }}" method="POST">
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+
+                        <div class="input-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="14" rx="2"
+                                      stroke="currentColor" stroke-width="1.8"/>
+                                <path d="m3 7 9 6 9-6"
+                                      stroke="currentColor" stroke-width="1.8"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email address"
+                                autocomplete="email"
+                                value="{{ request.form.get('email', '') }}"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="password-heading">
+                            <label for="password">Password</label>
+                            <a href="#" class="forgot-link"
+                               onclick="alert('Please use your existing password recovery process.'); return false;">
+                                Forgot password?
+                            </a>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <rect x="4" y="10" width="16" height="11" rx="2"
+                                      stroke="currentColor" stroke-width="1.8"/>
+                                <path d="M8 10V7a4 4 0 0 1 8 0v3"
+                                      stroke="currentColor" stroke-width="1.8"
+                                      stroke-linecap="round"/>
+                                <path d="M12 14v3"
+                                      stroke="currentColor" stroke-width="1.8"
+                                      stroke-linecap="round"/>
+                            </svg>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required>
+
+                            <button type="button" class="toggle-password"
+                                    id="togglePassword"
+                                    aria-label="Show password">
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"
+                                          stroke="currentColor" stroke-width="1.8"/>
+                                    <circle cx="12" cy="12" r="3"
+                                            stroke="currentColor" stroke-width="1.8"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <label class="remember-option">
+                        <input type="checkbox" name="remember" value="1">
+                        <span class="custom-checkbox"></span>
+                        <span>Remember me on this device</span>
+                    </label>
+
+                    <button type="submit" class="login-button">
+                        <span>Log in</span>
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M5 12h14m-6-6 6 6-6 6"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <div class="or-divider">
+                    <span></span>
+                    <p>OR</p>
+                    <span></span>
+                </div>
+
+                <a href="/login/google" class="google-button">
+                    <svg viewBox="0 0 48 48" aria-hidden="true">
+                        <path fill="#4285F4" d="M43.6 24.5c0-1.4-.1-2.8-.4-4.1H24v7.8h11
+                        c-.5 2.5-1.9 4.6-4.1 6v5h6.6c3.9-3.6 6.1-8.8 6.1-14.7Z"/>
+                        <path fill="#34A853" d="M24 44c5.5 0 10.1-1.8 13.5-4.8l-6.6-5
+                        c-1.8 1.2-4.1 1.9-6.9 1.9-5.3 0-9.8-3.6-11.4-8.4H5.8v5.2
+                        C9.2 39.6 16 44 24 44Z"/>
+                        <path fill="#FBBC05" d="M12.6 27.7a12 12 0 0 1 0-7.4v-5.2H5.8
+                        a20 20 0 0 0 0 17.8l6.8-5.2Z"/>
+                        <path fill="#EA4335" d="M24 12.1c3 0 5.7 1 7.8 3.1l5.8-5.8
+                        C34.1 6.1 29.5 4 24 4 16 4 9.2 8.4 5.8 15.1l6.8 5.2
+                        c1.6-4.8 6.1-8.2 11.4-8.2Z"/>
+                    </svg>
+                    <span>Continue with Google</span>
+                </a>
+
+                <p class="register-prompt">
+                    Don't have an account?
+                    <a href="{{ url_for('register') }}">Register</a>
+                </p>
+
+                <p class="security-note">
+                    Your health conversations deserve care and privacy.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordInput = document.getElementById("password");
+
+        togglePassword.addEventListener("click", function () {
+            const isHidden = passwordInput.type === "password";
+            passwordInput.type = isHidden ? "text" : "password";
+            this.setAttribute(
+                "aria-label",
+                isHidden ? "Hide password" : "Show password"
+            );
+        });
+    </script>
+</body>
+</html>

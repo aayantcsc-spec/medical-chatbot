@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}{{ conversation.title }} - Shared Medichat conversation{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+        .shared-wrap { max-width: 720px; margin: 0 auto; padding: 32px 16px 60px; }
+        .shared-header { margin-bottom: 24px; }
+        .shared-header .badge { display:inline-block; background:var(--secondary); color:var(--primary-dark); font-size:12px; padding:4px 10px; border-radius:12px; margin-bottom:8px; }
+        .msg { margin-bottom: 18px; }
+        .msg .who { font-size:12px; color:var(--muted); margin-bottom:4px; }
+        .bubble-user { background:var(--secondary); border-radius:12px 12px 2px 12px; padding:12px 14px; display:inline-block; max-width:85%; }
+        .bubble-bot { background:#fff; border:1px solid var(--border); border-radius:12px 12px 12px 2px; padding:12px 14px; display:inline-block; max-width:85%; white-space:pre-wrap; }
+        .msg-row { display:flex; }
+        .msg-row.user { justify-content:flex-end; }
+        .meta { font-size:11px; color:var(--muted); margin-top:4px; }
+        .footer-note { margin-top:40px; padding-top:16px; border-top:1px solid var(--border); font-size:12px; color:var(--muted); }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="shared-wrap">
+    <div class="shared-header">
+        <span class="badge">Read-only shared conversation</span>
+        <h1>{{ conversation.title }}</h1>
+        <p class="meta">Last updated {{ conversation.updated_at }}</p>
+    </div>
+
+    {% if messages %}
+        {% for m in messages %}
+        <div class="msg">
+            <div class="msg-row user">
+                <div>
+                    <div class="who">You</div>
+                    <div class="bubble-user">{{ m.user_message }}</div>
+                </div>
+            </div>
+            <div class="msg-row" style="margin-top:8px;">
+                <div>
+                    <div class="who">Medichat &middot; {{ m.chatbot_type }}</div>
+                    <div class="bubble-bot">{{ m.bot_response }}</div>
+                    <div class="meta">{{ "%.3f"|format(m.response_time) if m.response_time else "" }}{% if m.response_time %}s{% endif %}</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>This conversation has no messages yet.</p>
+    {% endif %}
+
+    <div class="footer-note">
+        Medichat is an educational AI system for healthcare information and chatbot
+        architecture evaluation. It does not provide a medical diagnosis or replace
+        a qualified healthcare professional.
+    </div>
+</div>
+{% endblock %}

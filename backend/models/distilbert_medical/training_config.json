@@ -1,0 +1,23 @@
+{
+  "run_id": "distilbert-20261024T122822Z",
+  "trained_at": "2026-10-24T12:28:22.652482+00:00",
+  "base_model": "distilbert-base-uncased",
+  "seed": 42,
+  "hyperparameters": {
+    "epochs": 15,
+    "lr": 5e-05,
+    "batch": 16,
+    "max_length": 128,
+    "patience": 3
+  },
+  "train_examples": 648,
+  "val_examples": 148,
+  "classes": 91,
+  "epochs_run": 15,
+  "best_val_loss": 1.1081,
+  "training_seconds": 1018.51,
+  "device": "cpu",
+  "max_length": 128,
+  "min_confidence": 0.0,
+  "torch_version": "2.14.1+cpu"
+}

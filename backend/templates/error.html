@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}{{ code }} | HealthBot{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    body { display: flex; min-height: 100vh; align-items: center; justify-content: center; }
+    .error-card {
+        background: var(--mc-surface);
+        border: 1px solid var(--mc-border);
+        max-width: 620px;
+        padding: 40px;
+        border-radius: var(--mc-radius);
+        text-align: center;
+    }
+    .error-card h1 { font-size: 56px; margin: 0 0 8px; }
+    .error-card .title { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+    .error-card .message { line-height: 1.6; color: var(--mc-text-muted); }
+    .error-card a.back {
+        display: inline-block;
+        margin-top: 22px;
+        padding: 12px 18px;
+        border-radius: var(--mc-radius-sm);
+        text-decoration: none;
+        background: var(--mc-accent);
+        color: #06251c;
+        font-weight: 700;
+    }
+    .error-card code {
+        background: var(--mc-accent-soft);
+        padding: 2px 6px;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="error-card">
+    <h1>{{ code }}</h1>
+    <div class="title">{{ title }}</div>
+    <div class="message">{{ message }}</div>
+    <a class="back" href="{{ url_for('home') }}">Back to Home</a>
+    {% if code == 500 %}
+    <p class="message">For development, check the Flask terminal for the full traceback.</p>
+    {% endif %}
+</div>
+{% endblock %}

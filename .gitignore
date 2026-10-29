@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# Secrets / local state
+backend/.env
+backend/.flask_secret
+*.db-wal
+*.db-shm
+
+# Local database (created automatically on first run; contains user data)
+backend/healthbot.db
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary files from atomic writes
+*.tmp

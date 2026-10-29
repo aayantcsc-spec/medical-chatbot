@@ -1,0 +1,39 @@
+{
+  "run_id": "lr-20261029T053217Z",
+  "trained_at": "2026-10-29T05:32:17+00:00",
+  "architecture": "TfidfVectorizer (word 1-2 grams) + LogisticRegression",
+  "seed": 42,
+  "sklearn_version": "1.9.1",
+  "dataset": "datasets/intent_splits/{train,val}.csv",
+  "train_examples": 1406,
+  "train_question_rows": 648,
+  "train_keyword_rows": 758,
+  "val_examples": 148,
+  "classes": 91,
+  "hyperparameters": {
+    "C": 10.0,
+    "val_accuracy": 0.7838
+  },
+  "tuning_trials_on_validation": [
+    {
+      "C": 1.0,
+      "val_accuracy": 0.7095
+    },
+    {
+      "C": 3.0,
+      "val_accuracy": 0.75
+    },
+    {
+      "C": 10.0,
+      "val_accuracy": 0.7838
+    },
+    {
+      "C": 30.0,
+      "val_accuracy": 0.777
+    }
+  ],
+  "min_confidence": 0.39,
+  "min_confidence_note": "chosen on validation split only; below it the bot declines to answer",
+  "training_seconds": 5.33,
+  "artifact": "models/health_lr/pipeline.pkl"
+}

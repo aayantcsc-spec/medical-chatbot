@@ -1,0 +1,84 @@
+/* =========================================
+   SETTINGS -- extends dashboard.css (sidebar +
+   .dash-card already defined there).
+========================================= */
+
+.settings-card {
+    margin-bottom: 18px;
+    max-width: 640px;
+}
+
+.settings-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--text, #1d2b32);
+    margin-bottom: 6px;
+}
+
+.settings-heading i { color: var(--primary, #08785d); font-size: 18px; }
+
+.settings-sub {
+    color: var(--muted, #63717a);
+    font-size: 13px;
+    margin: 0 0 16px;
+}
+
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.settings-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.settings-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--muted, #63717a);
+    font-weight: 600;
+}
+
+.settings-form input {
+    padding: 10px 12px;
+    border: 1px solid var(--border, #dce9e5);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text, #1d2b32);
+}
+
+.settings-form input:disabled {
+    background: #f3f6f5;
+    color: var(--muted, #63717a);
+}
+
+.settings-hint {
+    margin: -8px 0 0;
+    font-size: 12px;
+    color: var(--muted, #63717a);
+}
+
+.settings-banner {
+    background: var(--secondary, #dff5ee);
+    color: var(--primary, #08785d);
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    max-width: 640px;
+}
+
+@media (max-width: 600px) {
+    .settings-row { grid-template-columns: 1fr; }
+}

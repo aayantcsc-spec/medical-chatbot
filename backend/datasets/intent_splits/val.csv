@@ -1,0 +1,149 @@
+text,label,category,category46
+How can I reduce hair loss?,acne_hair_care,Skin and Hair Health,skin_hair
+what causes skin pigmentation or dark spots,acne_hair_care,Skin and Hair Health,skin_hair
+How do I know if I have a food allergy?,allergy_general,Allergies,allergies
+what are common allergy triggers,allergy_general,Allergies,allergies
+What foods help with iron deficiency?,anemia,Blood Health,common_diseases
+When should antibiotics be used?,antibiotics,Medication,medication_information
+What causes anxiety?,anxiety_signs,Stress and Anxiety,stress_anxiety
+How can I stop feeling anxious?,anxiety_signs,Stress and Anxiety,stress_anxiety
+How do I know if I have asthma?,asthma,Respiratory Health,respiratory_health
+neck and shoulder pain from desk work,back_pain,Symptoms,physical_symptoms
+My back hurts when I sit for long,back_pain,Symptoms,physical_symptoms
+Why is high blood pressure called a silent killer?,blood_pressure,Heart Health,blood_pressure
+my report shows abnormal values what should I do,blood_tests_reports,Medical Tests and Reports,medical_tests_reports
+what are normal ranges in blood test,blood_tests_reports,Medical Tests and Reports,medical_tests_reports
+i am gasping for air,breathing_difficulty,Emergency,medical_emergency
+trouble breathing and wheezing at rest,breathing_difficulty,Emergency,medical_emergency
+What to do for sudden chest pain?,chest_pain_emergency,Emergency,medical_emergency
+sudden chest pain spreading to arm,chest_pain_emergency,Emergency,medical_emergency
+child diarrhea treatment,child_dehydration,Child Health,childrens_health
+How to treat fever in kids?,child_fever,Child Health,childrens_health
+What to do when a person chokes on food?,choking,Emergency,medical_emergency
+What causes high cholesterol?,cholesterol,Blood Health,heart_health
+what is chronic disease management,chronic_disease_management,Chronic Disease Management,chronic_disease_management
+How can I remember to take my medicines every day?,chronic_disease_management,Chronic Disease Management,chronic_disease_management
+Why do I sneeze so much?,common_cold,General Medical,common_diseases
+When should I worry about a cough?,cough,Respiratory Health,respiratory_health
+How do I know if I am depressed?,depression_signs,Mental Health,depression_low_mood
+How can I manage high blood sugar?,diabetes_basics,Diabetes and Blood Sugar,diabetes_blood_sugar
+how do I check my blood sugar,diabetes_basics,Diabetes and Blood Sugar,diabetes_blood_sugar
+Who is at risk of diabetes?,diabetes_risk,Prevention,diabetes_blood_sugar
+disabilty health care,disability_accessibility,Disability and Accessibility-Related Health,disability_accessibility
+caring for someone with cerebral palsy,disability_accessibility,Disability and Accessibility-Related Health,disability_accessibility
+Why is the room spinning?,dizziness,Symptoms,physical_symptoms
+doctor for constipation that does not go away,doctor_digestive,Doctor and Specialist Guidance,doctor_guidance
+Which doctor treats stomach problems?,doctor_digestive,Doctor and Specialist Guidance,doctor_guidance
+Should I see a general physician or a specialist?,doctor_general_guidance,Doctor and Specialist Guidance,doctor_guidance
+Which specialist treats my problem?,doctor_general_guidance,Doctor and Specialist Guidance,doctor_guidance
+doctor for brain and nerve problems,doctor_headache_neuro,Doctor and Specialist Guidance,doctor_guidance
+headache doctor near me what type,doctor_headache_neuro,Doctor and Specialist Guidance,doctor_guidance
+when should I see a rheumatologist,doctor_joint_bone,Doctor and Specialist Guidance,doctor_guidance
+which doctar for joint pain,doctor_joint_bone,Doctor and Specialist Guidance,doctor_guidance
+Which specialist treats skin allergies?,doctor_skin,Doctor and Specialist Guidance,doctor_guidance
+dermatologist or general physician for rash,doctor_skin,Doctor and Specialist Guidance,doctor_guidance
+doctor for thyroid disease,doctor_thyroid,Doctor and Specialist Guidance,doctor_guidance
+who treats hypothyroidism,doctor_thyroid,Doctor and Specialist Guidance,doctor_guidance
+When should I go to the emergency room?,emergency_warning_signs_general,Emergency Warning Signs,emergency_warning_signs
+how do I know if my symptoms are serious,emergency_warning_signs_general,Emergency Warning Signs,emergency_warning_signs
+How can I manage my emotions better?,emotional_support,Emotional Well-Being,emotional_wellbeing
+How do I cope with grief?,emotional_support,Emotional Well-Being,emotional_wellbeing
+What does physical activity do for the body?,exercise_benefits,Fitness & Exercise,fitness_exercise
+How can I stay motivated to exercise?,exercise_start,Fitness & Exercise,fitness_exercise
+What are the symptoms of pink eye?,eye_irritation,Eye Health,eye_vision
+How can I reduce eye strain from screens?,eye_strain,Eye Health,eye_vision
+How to make a home safe for older adults?,fall_prevention,Older Adult Health,older_adults_health
+tiredness and weakness reasons,fatigue,Symptoms,physical_symptoms
+What are the common symptoms of fever?,fever,General Medical,infections_fever
+What are the symptoms of a fever?,fever,General Medical,infections_fever
+fever symptoms,fever,General Medical,infections_fever
+How to reduce fever at home?,fever,General Medical,infections_fever
+How is influenza treated?,flu,Infections & Diseases,infections_fever
+okay and then what,follow_up_next_steps,Follow-Up Questions and Next Steps,follow_up
+So what now?,follow_up_next_steps,Follow-Up Questions and Next Steps,follow_up
+what do you mean by that,follow_up_simplify,Follow-Up Questions and Next Steps,follow_up
+"that was confusing, can you rephrase",follow_up_simplify,Follow-Up Questions and Next Steps,follow_up
+I have vomiting and diarrhoea after eating,food_poisoning,Infections & Diseases,digestive_health
+how to live a healthy life,general_health_education,General Health,general_health
+tips for good overall health,general_health_education,General Health,general_health
+What causes bad breath?,gum_care,Dental Health,dental_oral
+handwashing steps,handwashing,Health & Hygiene,disease_prevention
+How can I relieve a headache?,headache,General Medical,physical_symptoms
+When is a headache serious?,headache,General Medical,physical_symptoms
+Which foods are good for health?,healthy_diet,Nutrition,diet_nutrition
+healty food list,healthy_diet,Nutrition,diet_nutrition
+Why do I feel breathless on climbing stairs?,heart_warning_signs,Heart Health,heart_health
+home care for a mild stomach upset,home_remedies_selfcare,Self-Care and Home Care,self_care
+What can I do at home for mild illness?,home_remedies_selfcare,Self-Care and Home Care,self_care
+home remidies for mild illness,home_remedies_selfcare,Self-Care and Home Care,self_care
+dehydration symptoms,hydration,Nutrition,diet_nutrition
+benefits of drinking water,hydration,Nutrition,diet_nutrition
+Why do I feel nauseous after eating?,indigestion,Symptoms,digestive_health
+acidity problem what to do,indigestion,Symptoms,digestive_health
+How can I prevent the spread of infections?,infection_prevention,Health & Hygiene,disease_prevention
+slepp problems,insomnia,Sleep Health,sleep_problems
+I cannot fall asleep what should I do?,insomnia,Sleep Health,sleep_problems
+What causes joint pain?,joint_pain,Older Adult Health,physical_symptoms
+How can I get help for depression?,low_mood_support,Depression and Low Mood,depression_low_mood
+I feel sad and empty for no reason,low_mood_support,Depression and Low Mood,depression_low_mood
+can I increase my dose if the pain is bad,medication_dosage_request,Medication Information,medication_information
+how often can I take painkillers,medication_dosage_request,Medication Information,medication_information
+What are the side effects of painkillers?,medication_information,Medication Information,medication_information
+How should I store my medicines?,medication_information,Medication Information,medication_information
+Is it safe to take medicine without a doctor?,medicine_precautions,Medication,medication_information
+How can older adults keep their memory sharp?,memory_changes,Older Adult Health,older_adults_health
+What are the symptoms of prostate problems?,mens_health,Men's Health,mens_health
+how to check for testicular problems,mens_health,Men's Health,mens_health
+What causes painful periods?,menstrual_cramps,Women's Health,womens_health
+My family member is acting very confused and scared and is not making sense,mental_health_crisis,Mental Health Emergencies,mental_health_emergency
+someone I know is seeing things that are not there and is very frightened,mental_health_crisis,Mental Health Emergencies,mental_health_emergency
+What are signs of poor mental health?,mental_health_general,Mental Health,mental_health
+How do I treat a burn at home?,minor_burn,First Aid,first_aid
+How to treat a small burn?,minor_burn,First Aid,first_aid
+how to treat a small burn at home,minor_burn,First Aid,first_aid
+When does a cut need stitches?,minor_cut,First Aid,first_aid
+I have tingling in my fingers at night,numbness_tingling,Brain and Nervous System Health,brain_nervous_system
+How can I look after my brain health?,numbness_tingling,Brain and Nervous System Health,brain_nervous_system
+How can elderly people stay healthy?,older_adult_care,Older Adult Health,older_adults_health
+how often should seniors get a health check,older_adult_care,Older Adult Health,older_adults_health
+Who is the prime minister of Canada?,out_of_scope,Out-of-Scope Questions and Safe Fallbacks,out_of_scope
+What is the best laptop to buy?,out_of_scope,Out-of-Scope Questions and Safe Fallbacks,out_of_scope
+pcod symptoms,pcos_periods,Women's Health,womens_health
+what causes heavy periods,pcos_periods,Women's Health,womens_health
+someone swallowed a battery,poisoning,Emergency,medical_emergency
+someone drank cleaning liquid,poisoning,Emergency,medical_emergency
+when should I go to hospital during pregnancy,pregnancy_care,Pregnancy and Maternal Health,pregnancy_maternal
+How many antenatal check-ups do I need?,pregnancy_care,Pregnancy and Maternal Health,pregnancy_maternal
+What are the early signs of pregnancy?,pregnancy_signs,Women's Health,pregnancy_maternal
+preventive health screening,preventive_checkups,Prevention,disease_prevention
+What is rehabilitation?,rehabilitation_recovery,Rehabilitation and Recovery,rehabilitation_recovery
+What is physiotherapy and how does it help?,rehabilitation_recovery,Rehabilitation and Recovery,rehabilitation_recovery
+I want to disappear forever,self_harm,Emergency,suicidal_self_harm
+I feel like harming myself,self_harm,Emergency,suicidal_self_harm
+I feel like hurting myself,self_harm,Emergency,suicidal_self_harm
+signs of a serious allergy,severe_allergy,Emergency,medical_emergency
+I cut my leg badly and it keeps bleeding,severe_bleeding,Emergency,medical_emergency
+emergency contraception information,sexual_reproductive_health,Sexual and Reproductive Health,sexual_reproductive_health
+how do condoms prevent infections,sexual_reproductive_health,Sexual and Reproductive Health,sexual_reproductive_health
+skin allergy symptoms,skin_rash,Symptoms,skin_hair
+I have an itchy red rash on my arm,skin_rash,Symptoms,skin_hair
+What happens if I do not get enough sleep?,sleep_importance,Sleep Health,sleep_problems
+sore throat treatment,sore_throat,General Medical,physical_symptoms
+i feel very stresed,stress_signs,Mental Health,stress_anxiety
+How do I know if I am stressed?,stress_signs,Mental Health,stress_anxiety
+What to do if someone has a stroke?,stroke_signs,Emergency,medical_emergency
+What are the signs of a stroke?,stroke_signs,Emergency,medical_emergency
+What are the warning signs of a stroke?,stroke_signs,Emergency,medical_emergency
+How can I quit smoking?,substance_use_support,Substance Use and Addiction Support,substance_use_addiction
+Where can I get help for alcohol addiction?,substance_use_support,Substance Use and Addiction Support,substance_use_addiction
+puberty changes in boys and girls,teen_health,Teenage Health,teenage_health
+my teenager is always tired and moody,teen_health,Teenage Health,teenage_health
+Is toothache serious?,toothache,Dental Health,dental_oral
+What are the side effects of treatment in general?,treatment_information,Treatment Information,treatment_information
+How is this condition usually treated?,treatment_information,Treatment Information,treatment_information
+denge fever symptoms,tropical_fevers,Infections and Fever,common_diseases
+what is typhoid fever,tropical_fevers,Infections and Fever,common_diseases
+burning sensation while passing urine,uti,Women's Health,womens_health
+can I take a vaccine if I have a cold,vaccination_info,Vaccination and Immunization,vaccination_immunization
+vacination schedule,vaccination_info,Vaccination and Immunization,vaccination_immunization
+weight loss tips,weight_management,Nutrition,diet_nutrition

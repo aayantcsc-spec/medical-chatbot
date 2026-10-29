@@ -1,0 +1,321 @@
+{
+ "description": "Author-defined mapping from the models' fine-grained intent ids to the 19 coarse categories used in datasets/evaluation_questions.csv (expected_intent). The FIRST category is the intent's primary category (strict scoring). All listed categories are acceptable (lenient scoring), because several intents legitimately belong to two categories (e.g. chest_pain_emergency is both 'emergency' and 'cardiovascular'). An empty list means the intent can never be a correct health category (out_of_scope). This mapping is an ASSUMPTION made by the project authors - it is not clinical ground truth, and results depend on it.",
+ "version": "1",
+ "map": {
+  "fever": [
+   "fever"
+  ],
+  "headache": [
+   "headache"
+  ],
+  "common_cold": [
+   "respiratory"
+  ],
+  "sore_throat": [
+   "respiratory"
+  ],
+  "medicine_precautions": [
+   "medication_safety"
+  ],
+  "antibiotics": [
+   "medication_safety",
+   "infection"
+  ],
+  "chest_pain_emergency": [
+   "emergency",
+   "cardiovascular"
+  ],
+  "stroke_signs": [
+   "emergency"
+  ],
+  "poisoning": [
+   "emergency",
+   "medication_safety"
+  ],
+  "self_harm": [
+   "mental_wellbeing",
+   "emergency"
+  ],
+  "severe_allergy": [
+   "allergy",
+   "emergency"
+  ],
+  "choking": [
+   "emergency"
+  ],
+  "severe_bleeding": [
+   "emergency"
+  ],
+  "breathing_difficulty": [
+   "respiratory",
+   "emergency"
+  ],
+  "asthma": [
+   "respiratory",
+   "allergy"
+  ],
+  "cough": [
+   "respiratory"
+  ],
+  "heart_warning_signs": [
+   "cardiovascular",
+   "emergency"
+  ],
+  "blood_pressure": [
+   "cardiovascular"
+  ],
+  "stress_signs": [
+   "mental_wellbeing"
+  ],
+  "depression_signs": [
+   "mental_wellbeing"
+  ],
+  "healthy_diet": [
+   "lifestyle",
+   "general_health"
+  ],
+  "hydration": [
+   "lifestyle",
+   "general_health"
+  ],
+  "exercise_benefits": [
+   "lifestyle",
+   "general_health"
+  ],
+  "exercise_start": [
+   "lifestyle",
+   "musculoskeletal"
+  ],
+  "sleep_importance": [
+   "lifestyle",
+   "general_health"
+  ],
+  "insomnia": [
+   "lifestyle",
+   "mental_wellbeing"
+  ],
+  "flu": [
+   "infection",
+   "respiratory",
+   "fever"
+  ],
+  "food_poisoning": [
+   "digestive",
+   "infection"
+  ],
+  "toothache": [
+   "general_health"
+  ],
+  "gum_care": [
+   "general_health",
+   "prevention"
+  ],
+  "eye_irritation": [
+   "eye_ear",
+   "allergy"
+  ],
+  "eye_strain": [
+   "eye_ear"
+  ],
+  "anemia": [
+   "general_health"
+  ],
+  "cholesterol": [
+   "cardiovascular",
+   "metabolic"
+  ],
+  "dizziness": [
+   "general_health",
+   "headache"
+  ],
+  "fatigue": [
+   "general_health"
+  ],
+  "minor_burn": [
+   "skin",
+   "general_health"
+  ],
+  "minor_cut": [
+   "skin",
+   "general_health"
+  ],
+  "menstrual_cramps": [
+   "womens_health"
+  ],
+  "pregnancy_signs": [
+   "womens_health"
+  ],
+  "child_fever": [
+   "fever"
+  ],
+  "child_dehydration": [
+   "general_health",
+   "digestive"
+  ],
+  "fall_prevention": [
+   "prevention",
+   "musculoskeletal"
+  ],
+  "memory_changes": [
+   "general_health",
+   "mental_wellbeing"
+  ],
+  "weight_management": [
+   "lifestyle",
+   "metabolic"
+  ],
+  "back_pain": [
+   "musculoskeletal"
+  ],
+  "indigestion": [
+   "digestive"
+  ],
+  "skin_rash": [
+   "skin",
+   "allergy"
+  ],
+  "joint_pain": [
+   "musculoskeletal"
+  ],
+  "uti": [
+   "urinary",
+   "infection"
+  ],
+  "infection_prevention": [
+   "infection",
+   "prevention"
+  ],
+  "handwashing": [
+   "infection",
+   "prevention"
+  ],
+  "diabetes_risk": [
+   "metabolic"
+  ],
+  "preventive_checkups": [
+   "prevention"
+  ],
+  "general_health_education": [
+   "general_health"
+  ],
+  "mental_health_general": [
+   "mental_wellbeing"
+  ],
+  "mental_health_crisis": [
+   "mental_wellbeing",
+   "emergency"
+  ],
+  "anxiety_signs": [
+   "mental_wellbeing"
+  ],
+  "low_mood_support": [
+   "mental_wellbeing"
+  ],
+  "emotional_support": [
+   "mental_wellbeing"
+  ],
+  "doctor_general_guidance": [
+   "general_health"
+  ],
+  "doctor_headache_neuro": [
+   "headache"
+  ],
+  "doctor_skin": [
+   "skin"
+  ],
+  "doctor_thyroid": [
+   "metabolic",
+   "general_health"
+  ],
+  "doctor_digestive": [
+   "digestive"
+  ],
+  "doctor_joint_bone": [
+   "musculoskeletal"
+  ],
+  "treatment_information": [
+   "general_health"
+  ],
+  "home_remedies_selfcare": [
+   "general_health"
+  ],
+  "medication_information": [
+   "medication_safety"
+  ],
+  "medication_dosage_request": [
+   "medication_safety"
+  ],
+  "mens_health": [
+   "general_health",
+   "urinary"
+  ],
+  "teen_health": [
+   "general_health"
+  ],
+  "acne_hair_care": [
+   "skin"
+  ],
+  "numbness_tingling": [
+   "general_health",
+   "headache",
+   "musculoskeletal"
+  ],
+  "diabetes_basics": [
+   "metabolic"
+  ],
+  "allergy_general": [
+   "allergy"
+  ],
+  "blood_tests_reports": [
+   "general_health",
+   "metabolic"
+  ],
+  "vaccination_info": [
+   "prevention",
+   "infection"
+  ],
+  "chronic_disease_management": [
+   "general_health",
+   "metabolic"
+  ],
+  "rehabilitation_recovery": [
+   "musculoskeletal",
+   "general_health"
+  ],
+  "substance_use_support": [
+   "mental_wellbeing",
+   "general_health"
+  ],
+  "sexual_reproductive_health": [
+   "womens_health",
+   "general_health"
+  ],
+  "disability_accessibility": [
+   "general_health"
+  ],
+  "emergency_warning_signs_general": [
+   "emergency"
+  ],
+  "follow_up_simplify": [
+   "general_health"
+  ],
+  "follow_up_next_steps": [
+   "general_health"
+  ],
+  "out_of_scope": [],
+  "tropical_fevers": [
+   "fever",
+   "infection"
+  ],
+  "pcos_periods": [
+   "womens_health"
+  ],
+  "pregnancy_care": [
+   "womens_health"
+  ],
+  "older_adult_care": [
+   "general_health",
+   "prevention"
+  ]
+ }
+}

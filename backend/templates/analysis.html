@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediChat | Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/research.css') }}">
+    <style>
+        /* Analysis page only (an-*). Tokens come from research.css. */
+        .an-nav { position: sticky; top: 0; z-index: 15; display: flex; gap: 6px; flex-wrap: wrap; padding: 8px; margin: 0 0 22px; background: rgba(255,253,247,.94);
+                  backdrop-filter: blur(6px); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); }
+        .an-nav a { padding: 7px 13px; border-radius: 9px; color: var(--forest); text-decoration: none; font: 700 13px "DM Sans", sans-serif; }
+        .an-nav a:hover { background: var(--ok-bg); }
+        .an-sec { margin: 0 0 30px; scroll-margin-top: 78px; }
+        .an-sec > h2 { margin: 0 0 4px; font: 800 22px "Manrope", sans-serif; }
+        .an-sec > .an-lead { margin: 0 0 14px; color: var(--muted); font-size: 14px; max-width: 80ch; }
+        .an-picker { display: grid; grid-template-columns: minmax(260px, 1fr) auto; gap: 14px; align-items: end; }
+        .an-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .an-chip { padding: 5px 11px; border-radius: 999px; background: var(--cream); border: 1px solid var(--border); font-size: 12.5px; }
+        .an-chip b { font-weight: 700; }
+        .an-two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; } .an-three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+        .an-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); min-width: 0; }
+        .an-card h3 { margin: 0 0 8px; font: 800 16px "Manrope", sans-serif; } .an-card h4 { margin: 14px 0 6px; font: 800 12px "Manrope", sans-serif; letter-spacing: .05em; text-transform: uppercase; color: var(--sage); }
+        .an-list { margin: 0; padding-left: 1.2em; font-size: 14px; } .an-list li { margin: 0 0 7px; }
+        .an-list.hyp { color: #5d4716; } .an-list.hyp li::marker { color: var(--warning); }
+        .an-tag { display: inline-block; font: 700 11px "DM Sans", sans-serif; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; margin-right: 6px; background: var(--ok-bg); color: var(--forest); }
+        .an-tag.hyp { background: var(--warning-bg); color: var(--warning); } .an-tag.sug { background: #EFEFE6; color: #4a5d51; }
+        .an-filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; margin-bottom: 14px; }
+        .an-filters .field { min-width: 150px; max-width: 220px; }
+        .an-ex td, .an-ex th { vertical-align: top; } .an-ex .q { min-width: 220px; overflow-wrap: anywhere; }
+        .an-ex details summary { cursor: pointer; font-size: 12px; color: var(--sage); font-weight: 700; }
+        .an-resp { margin: 6px 0 0; padding: 8px 10px; background: var(--cream); border-radius: 8px; font-size: 12.5px; overflow-wrap: anywhere; white-space: pre-wrap; }
+        .an-bar { display: grid; grid-template-columns: 140px 1fr 64px; gap: 10px; align-items: center; margin: 6px 0; font-size: 13px; }
+        .an-note { font-size: 12.5px; color: var(--muted); margin: 8px 0 0; }
+        .an-find h3 { margin: 18px 0 6px; font: 800 15px "Manrope", sans-serif; } .an-find h3:first-child { margin-top: 0; }
+        .an-loading { padding: 40px; text-align: center; color: var(--muted); }
+        .an-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 12px; }
+        .an-kpi { background: var(--cream); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; }
+        .an-kpi b { display: block; font: 800 20px "Manrope", sans-serif; } .an-kpi small { color: var(--muted); font-size: 12px; }
+        @media (max-width: 1000px) { .an-three, .an-two { grid-template-columns: 1fr; } }
+        @media (max-width: 640px) { .an-picker { grid-template-columns: 1fr; } .an-bar { grid-template-columns: 96px 1fr 56px; } .rs-wrap { padding: 18px 14px 60px; } .an-filters .field { max-width: none; flex: 1 1 100%; } }
+    </style>
+</head>
+<body class="research">
+<div class="rs-wrap">
+    <header class="rs-top">
+        <div class="rs-brand">
+            <div class="rs-logo" aria-hidden="true">M</div>
+            <div><p class="rs-brand-name">MediChat</p><p class="rs-brand-sub">Healthcare AI research</p></div>
+        </div>
+        <nav class="rs-nav" aria-label="Site">
+            <a href="{{ url_for('comparison') }}#eval">Run an evaluation</a>
+            <a href="{{ url_for('comparison') }}">Comparison</a>
+            <a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+        </nav>
+    </header>
+
+    <section>
+        <span class="rs-eyebrow">✦ Research analysis</span>
+        <h1 class="rs-title">Why the architectures performed differently</h1>
+        <p class="rs-sub">This page interprets a <strong>saved</strong> evaluation run: patterns, errors, architecture-specific observations, safety probes and limitations.
+            It never starts a new evaluation. Raw metrics, confusion matrices and history live on the Evaluation tab.</p>
+    </section>
+
+    <div class="banner">
+        <span aria-hidden="true">ⓘ</span>
+        <div><strong>Healthcare information disclaimer.</strong> MediChat is a research and educational application, not a substitute for professional medical advice, diagnosis or treatment.
+            Scores here describe <em>intent classification on a test set</em>; they do not show medical correctness or clinical safety. In an emergency call 112 (India) or your local emergency number.</div>
+    </div>
+
+    <div class="panel" id="an-picker-panel">
+        <h2>Select a saved evaluation run</h2>
+        <div class="an-picker">
+            <div class="field"><label for="runSelect">Completed runs</label><select id="runSelect" disabled><option>Loading…</option></select></div>
+            <button class="btn secondary" id="reloadBtn" type="button">Refresh list</button>
+        </div>
+        <div class="an-chips" id="runChips"></div>
+        <div id="an-status" class="status-message hidden" role="status" aria-live="polite" style="margin-top:12px"></div>
+    </div>
+
+    <div id="an-empty" class="empty-state hidden">
+        <div aria-hidden="true" style="font-size:30px">🔎</div>
+        <h3>No completed evaluation run yet</h3>
+        <p>The analysis is built from saved evaluation runs, and none exists yet. Open the Evaluation tab, choose a dataset and press <strong>Run evaluation</strong>; the finished run will appear here automatically.</p>
+        <p style="margin-top:14px"><a class="btn" href="{{ url_for('comparison') }}#eval">Go to Evaluation</a></p>
+    </div>
+
+    <div id="an-loading" class="an-loading hidden"><span class="spinner dark"></span> Loading run…</div>
+
+    <div id="an-body" class="hidden">
+        <nav class="an-nav" aria-label="Analysis sections">
+            <a href="#sec-overview">Overview</a><a href="#sec-errors">Errors</a><a href="#sec-arch">Architectures</a>
+            <a href="#sec-data">Datasets &amp; language</a><a href="#sec-safety">Safety</a><a href="#sec-findings">Findings</a>
+        </nav>
+        <section class="an-sec" id="sec-overview"></section>
+        <section class="an-sec" id="sec-errors"></section>
+        <section class="an-sec" id="sec-arch"></section>
+        <section class="an-sec" id="sec-data"></section>
+        <section class="an-sec" id="sec-safety"></section>
+        <section class="an-sec" id="sec-findings"></section>
+    </div>
+</div>
+
+<script>
+(() => {
+    "use strict";
+    /* Data sources (existing endpoints, unchanged):
+         GET /api/comparison/evaluation/runs        -> list of saved runs
+         GET /api/comparison/evaluation/runs/<id>   -> one saved run with per-question predictions
+       Everything below is computed in the browser from those saved records. No number or sentence is hardcoded
+       as a result; text only changes wording according to the values computed. */
+    const $ = (s, r = document) => r.querySelector(s);
+    const ARCH = ["rule", "ml", "dl"];
+    const NAMES = { rule: "Rule-Based", ml: "ML (TF-IDF + SVM)", dl: "DL (DistilBERT)" };
+    const SHORT = { rule: "Rule-Based", ml: "ML", dl: "DL" };
+    const COLORS = { rule: "#A3B18A", ml: "#588157", dl: "#344E41" };
+    const LANG = { en: "English", hi: "Hindi", hinglish: "Hinglish" };
+    const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    const pct = (v, d = 1) => (v == null || isNaN(v) ? "n/a" : (v * 100).toFixed(d) + "%");
+    const pts = (v) => (v * 100).toFixed(1) + " points";
+    const ms = (v) => (v == null ? "n/a" : (v >= 100 ? v.toFixed(0) : v.toFixed(1)) + " ms");
+    const trunc = (s, n) => (String(s).length > n ? String(s).slice(0, n - 1) + "…" : String(s));
+    const nice = (s) => String(s == null ? "" : s).replace(/_/g, " ");
+    const when = (iso) => { const d = new Date(iso); return isNaN(d) ? iso || "" : d.toLocaleString(); };
+    const median = (a) => { if (!a.length) return null; const s = a.slice().sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+    const join = (a) => (a.length <= 1 ? a.join("") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]);
+    const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+
+    const S = { runs: [], cache: new Map(), run: null, A: null, f: { model: "", cat: "", out: "", lang: "" }, shown: 10 };
+
+    async function api(url) {
+        let res;
+        try { res = await fetch(url, { credentials: "same-origin" }); } catch (e) { throw new Error("Could not reach the server. Check your connection and try again."); }
+        let data = {}; try { data = await res.json(); } catch (_) {}
+        if (res.status === 401 || data.login_required) { location.href = "/login"; throw new Error("Please sign in again."); }
+        if (!res.ok || data.success === false) throw new Error(data.error || `Request failed (${res.status}).`);
+        return data;
+    }
+    function say(msg, kind = "") { const el = $("#an-status"); el.textContent = msg || ""; el.className = "status-message" + (kind ? " " + kind : "") + (msg ? "" : " hidden"); }
+
+    /* ------------------------------------------------------------------ analysis maths (pure) */
+    const okRec = (r) => r && r.status !== "unavailable" && r.status !== "error";
+    function analyse(run) {
+        const kind = run.dataset.kind, safety = !!run.safety;
+        const primary = (x) => (kind === "mapped" ? x.correct_lenient : x.correct_strict);
+        const A = { kind, safety, n: run.progress.completed, models: {}, rows: [], keys: ARCH.filter((k) => run.metrics && run.metrics[k] && run.metrics[k].key && run.metrics[k].valid_predictions > 0),
+            dead: ARCH.filter((k) => run.metrics && run.metrics[k] && run.metrics[k].key && !(run.metrics[k].valid_predictions > 0)) };
+        A.rows = (run.per_question || []).map((r) => {
+            const o = {};
+            A.keys.forEach((k) => { const x = r.models[k];
+                if (!okRec(x)) o[k] = { failed: true, rec: x };
+                else if (safety) o[k] = { failed: false, rec: x };
+                else o[k] = { failed: false, rec: x, ok: !!primary(x), nm: x.predicted === "NO_MATCH" || x.status === "no_match", pred: x.predicted_lenient || x.predicted || "NO_MATCH" };
+            });
+            return { id: r.id, q: r.question, exp: r.expected, lang: r.lang, extra: r.extra || {}, m: o };
+        });
+        A.keys.forEach((k) => {
+            const M = run.metrics[k], c = M.classification, e = { k, M, c, valid: M.valid_predictions, failed: M.failed, lat: M.latency || {}, nm: M.no_confident_match || 0, byCat: {}, byLang: {}, conf: { ok: [], wrong: [], nm: [] }, conf2: {} };
+            if (!safety) {
+                A.rows.forEach((r) => { const x = r.m[k]; if (x.failed) return;
+                    const bc = (e.byCat[r.exp] = e.byCat[r.exp] || { n: 0, ok: 0, nm: 0 }); bc.n++; bc.ok += x.ok ? 1 : 0; bc.nm += x.nm ? 1 : 0;
+                    const L = r.lang || "unknown", bl = (e.byLang[L] = e.byLang[L] || { n: 0, ok: 0, nm: 0 }); bl.n++; bl.ok += x.ok ? 1 : 0; bl.nm += x.nm ? 1 : 0;
+                    if (x.rec.confidence != null) (x.nm ? e.conf.nm : x.ok ? e.conf.ok : e.conf.wrong).push(x.rec.confidence); });
+                e.wrong = e.valid - (c ? Math.round(c.accuracy * c.n) : 0);
+                e.acc = c ? c.accuracy : null; e.P = c && c.macro ? c.macro.precision : null; e.R = c && c.macro ? c.macro.recall : null; e.F = c && c.macro ? c.macro.f1 : null;
+                e.strict = kind === "mapped" && M.classification_strict ? M.classification_strict.accuracy : e.acc;
+                e.nmRate = e.valid ? e.nm / e.valid : null;
+                e.wrongClass = e.valid ? e.valid - Math.round((e.acc || 0) * e.valid) - e.nm : null;
+                const conf = {}; A.rows.forEach((r) => { const x = r.m[k]; if (x.failed || x.ok || x.nm) return; const key = `${r.exp}\u2192${x.pred}`; (conf[key] = conf[key] || { exp: r.exp, pred: x.pred, n: 0 }).n++; });
+                e.confusions = Object.values(conf).sort((a, b) => b.n - a.n);
+            }
+            A.models[k] = e;
+        });
+        if (!safety) {   // agreement across models (only questions every model answered)
+            const both = A.rows.filter((r) => A.keys.every((k) => !r.m[k].failed));
+            A.agree = { n: both.length, allOk: 0, allWrong: 0, split: 0, only: {}, missedOnly: {} };
+            A.keys.forEach((k) => { A.agree.only[k] = 0; A.agree.missedOnly[k] = 0; });
+            both.forEach((r) => { const oks = A.keys.map((k) => r.m[k].ok), s = oks.filter(Boolean).length;
+                r.cls = s === A.keys.length ? "allok" : s === 0 ? "allwrong" : "split";
+                if (r.cls === "allok") A.agree.allOk++; else if (r.cls === "allwrong") A.agree.allWrong++; else A.agree.split++;
+                if (A.keys.length >= 3 && s === 1) A.agree.only[A.keys[oks.indexOf(true)]]++;
+                if (A.keys.length >= 3 && s === A.keys.length - 1) A.agree.missedOnly[A.keys[oks.indexOf(false)]]++; });
+        }
+        return A;
+    }
+    const leaders = (A, f, high = true) => { const v = A.keys.map((k) => [k, f(A.models[k])]).filter(([, x]) => x != null && !isNaN(x)); if (!v.length) return null;
+        const best = (high ? Math.max : Math.min)(...v.map((x) => x[1])); return { keys: v.filter((x) => Math.abs(x[1] - best) < 1e-9).map((x) => x[0]), value: best, all: v }; };
+
+    /* ----------------------------------------------------------------------------- sections */
+    function scopeCard(run, A) {
+        const d = run.dataset, sel = run.selection || {};
+        const cat = sel.category ? ` · only “${nice(sel.category)}”` : "";
+        const lim = (run.limitations || []).map((l) => `<li>${esc(l)}</li>`).join("");
+        return `<div class="an-card" style="margin-top:14px"><h3>Scope of this run</h3>
+            ${A.dead.length ? `<p class="bad" style="margin:0 0 8px">${esc(A.dead.map((k) => NAMES[k]).join(", "))} produced no valid predictions in this run (${esc(A.dead.map((k) => run.metrics[k].error || "all calls failed").join("; "))}). ${A.dead.length > 1 ? "They are" : "It is"} left out of every comparison below; nothing is inferred for ${A.dead.length > 1 ? "them" : "it"}.</p>` : ""}
+            <p style="margin:0 0 6px"><strong>${esc(d.title)}</strong> · ${A.n} question${A.n === 1 ? "" : "s"} evaluated${sel.category_eligible ? ` of ${sel.category_eligible} eligible` : ""}${cat}${run.sampled ? " · <span class=\"pill warn\">sample</span>" : ""}.
+            ${d.kind === "mapped" ? "Labels are 19 coarse categories compared with 91 model intents through an author-defined mapping, so scores depend on that mapping." : d.kind === "exact" ? "Exact intent labels: a prediction is correct only if it equals the expected intent." : "Safety probes: emergency handling and out-of-scope behaviour, assessed separately from classification."}</p>
+            ${lim ? `<details class="fold"><summary>Dataset warnings and limitations saved with this run</summary><ul class="an-list">${lim}</ul></details>` : ""}</div>`;
+    }
+    function scatter(A) {
+        const pts_ = A.keys.filter((k) => A.models[k].acc != null && A.models[k].lat.median_ms != null);
+        if (pts_.length < 2) return "";
+        const W = 560, H = 280, L = 50, B = 44, T = 16, R = 24;
+        const xs = pts_.map((k) => A.models[k].lat.median_ms), xmax = Math.max(...xs) * 1.25 || 1;
+        const x = (v) => L + (W - L - R) * (v / xmax), y = (v) => T + (H - T - B) * (1 - v);
+        let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Accuracy against median latency for each model" style="width:100%;height:auto">`;
+        for (let i = 0; i <= 4; i++) { const yy = y(i / 4); s += `<line x1="${L}" x2="${W - R}" y1="${yy}" y2="${yy}" stroke="#E5E5DB"/><text x="${L - 6}" y="${yy + 4}" font-size="11" text-anchor="end" fill="#55635A">${i * 25}%</text>`; }
+        for (let i = 0; i <= 4; i++) { const v = (xmax * i) / 4, xx = x(v); s += `<text x="${xx}" y="${H - 24}" font-size="11" text-anchor="middle" fill="#55635A">${v < 10 ? v.toFixed(1) : v.toFixed(0)}</text>`; }
+        s += `<text x="${(L + W - R) / 2}" y="${H - 6}" font-size="12" text-anchor="middle" fill="#344E41">Median latency (ms) → slower</text><text x="14" y="${(T + H - B) / 2}" font-size="12" text-anchor="middle" fill="#344E41" transform="rotate(-90 14 ${(T + H - B) / 2})">Accuracy</text>`;
+        pts_.forEach((k) => { const m = A.models[k]; const cx = x(m.lat.median_ms), cy = y(m.acc);
+            s += `<circle cx="${cx}" cy="${cy}" r="9" fill="${COLORS[k]}" stroke="#FFFDF7" stroke-width="2"><title>${esc(NAMES[k])}: accuracy ${pct(m.acc)}, median ${ms(m.lat.median_ms)}</title></circle>`;
+            s += `<text x="${Math.min(cx + 13, W - R - 4)}" y="${cy + 4}" font-size="12" font-weight="700" fill="#24392F" ${cx + 13 > W - R - 70 ? `text-anchor="end" x="${cx - 13}"` : ""}>${esc(SHORT[k])}</text>`; });
+        return s + "</svg>";
+    }
+    function overview(run, A) {
+        const el = $("#sec-overview");
+        if (A.safety) {
+            el.innerHTML = `<h2>Overview</h2><p class="an-lead">This is a safety / out-of-scope run, so there is no classification accuracy to interpret. See the Safety section below; latency is summarised here.</p>
+                <div class="an-card">${latLines(A)}</div>${scopeCard(run, A)}`; return;
+        }
+        const out = [], n = A.n, one = 100 / n;
+        const acc = leaders(A, (m) => m.acc);
+        const sorted = A.keys.filter((k) => A.models[k].acc != null).sort((a, b) => A.models[b].acc - A.models[a].acc);
+        if (acc && sorted.length) {
+            const lead = acc.keys.length > 1 ? `${join(acc.keys.map((k) => NAMES[k]))} are tied for the highest measured accuracy at ${pct(acc.value)}` : `${NAMES[acc.keys[0]]} had the highest measured accuracy at ${pct(acc.value)}`;
+            const gap = sorted.length > 1 && acc.keys.length === 1 ? ` — ${pts(A.models[sorted[0]].acc - A.models[sorted[1]].acc)} ahead of ${SHORT[sorted[1]]} (${pct(A.models[sorted[1]].acc)})` : "";
+            const rest = sorted.filter((k) => !acc.keys.includes(k) && !(gap && k === sorted[1])).map((k) => `${SHORT[k]} ${pct(A.models[k].acc)}`);
+            out.push(`<strong>Accuracy.</strong> ${lead}${gap}${rest.length ? "; " + rest.join(", ") : ""}. Scoring is ${A.kind === "mapped" ? "lenient (strict: " + A.keys.map((k) => `${SHORT[k]} ${pct(A.models[k].strict)}`).join(", ") + ")" : "exact match"}. With ${n} questions, one question is ${one.toFixed(2)} percentage points and no significance test was run, so small gaps should not be read as real differences.`);
+        }
+        const fast = leaders(A, (m) => m.lat.median_ms, false);
+        if (fast) { const slow = leaders(A, (m) => m.lat.median_ms, true);
+            out.push(`<strong>Speed.</strong> ${join(fast.keys.map((k) => NAMES[k]))} responded fastest (median ${ms(fast.value)}); ${A.keys.filter((k) => !fast.keys.includes(k)).map((k) => `${SHORT[k]} ${ms(A.models[k].lat.median_ms)} (p95 ${ms(A.models[k].lat.p95_ms)})`).join(", ")}${slow && slow.keys.length === 1 && fast.value ? `. ${SHORT[slow.keys[0]]} was ${(slow.value / fast.value).toFixed(1)}× the fastest median` : ""}. Latency was measured per question on the machine that ran the evaluation.`); }
+        A.keys.forEach((k) => { const m = A.models[k]; if (m.P == null) return; const d = m.P - m.R;
+            if (Math.abs(d) >= 0.05) out.push(`<strong>${esc(SHORT[k])}: precision ${pct(m.P, 0)} vs recall ${pct(m.R, 0)} (F1 ${pct(m.F, 0)}).</strong> ${d > 0 ? `Recall is ${pts(d)} lower than precision: when it names a class it is usually right, but it misses more true questions${m.nm ? `. Its ${plural(m.nm, "no-match answer")} count as misses (lower recall) but not as wrong predictions` : ""}.` : `Precision is ${pts(-d)} lower than recall: it finds most true questions of a class but also assigns that class to questions of other classes.`}`);
+            else out.push(`<strong>${esc(SHORT[k])}: precision ${pct(m.P, 0)}, recall ${pct(m.R, 0)}, F1 ${pct(m.F, 0)}.</strong> Precision and recall are within ${pts(Math.abs(d))} of each other.`); });
+        if (acc && fast) { if (acc.keys.length === 1 && fast.keys.length === 1 && acc.keys[0] === fast.keys[0]) out.push(`<strong>Latency vs performance.</strong> ${NAMES[acc.keys[0]]} leads on both accuracy and median latency in this run, so no trade-off is visible here.`);
+            else if (acc.keys.length === 1 && fast.keys.length === 1) { const a = acc.keys[0], f = fast.keys[0]; out.push(`<strong>Latency vs performance.</strong> The most accurate model (${SHORT[a]}) is not the fastest (${SHORT[f]}). Choosing ${SHORT[f]} over ${SHORT[a]} here would trade ${pts(A.models[a].acc - A.models[f].acc)} of accuracy for a median that is ${ms(A.models[a].lat.median_ms - A.models[f].lat.median_ms)} shorter. Whether that matters depends on the application; these are intent-classification times only.`); } }
+        const nms = A.keys.filter((k) => A.models[k].nm > 0);
+        if (nms.length) out.push(`<strong>No-match answers.</strong> ${join(nms.map((k) => `${SHORT[k]} ${A.models[k].nm} (${pct(A.models[k].nmRate, 0)})`))} of answered questions ended with “no confident match”${A.keys.some((k) => A.models[k].nm === 0) ? `; ${join(A.keys.filter((k) => A.models[k].nm === 0).map((k) => SHORT[k]))} never abstained` : ""}. These stay in the denominator, so a model that abstains more can score lower without giving more wrong answers.`);
+        const fails = A.keys.filter((k) => A.models[k].failed > 0);
+        if (fails.length) out.push(`<strong>Model failures.</strong> ${join(fails.map((k) => `${SHORT[k]} ${A.models[k].failed}`))} calls failed and are excluded from that model's metrics (see Evaluation).`);
+        el.innerHTML = `<h2>Overview</h2><p class="an-lead">What the measured results of this run say, in plain language. Every sentence is generated from the saved numbers.</p>
+            <div class="an-two"><div class="an-card"><ul class="an-list">${out.map((x) => `<li>${x}</li>`).join("")}</ul></div>
+            <div class="an-card"><h3>Accuracy against speed</h3>${scatter(A) || '<p class="muted">At least two models with valid predictions are needed for this chart.</p>'}<p class="an-note">Top-left is better on both. Each dot is one model on this run only.</p></div></div>${scopeCard(run, A)}`;
+    }
+    function latLines(A) { return `<ul class="an-list">${A.keys.map((k) => `<li><strong>${esc(NAMES[k])}</strong>: median ${ms(A.models[k].lat.median_ms)}, p95 ${ms(A.models[k].lat.p95_ms)} (${A.models[k].valid} valid / ${A.models[k].failed} failed)</li>`).join("")}</ul>`; }
+
+    /* ---- errors */
+    function filteredRows(run) {
+        const { model, cat, out, lang } = S.f, A = S.A;
+        return A.rows.filter((r) => {
+            if (cat && r.exp !== cat) return false;
+            if (lang && (r.lang || "unknown") !== lang) return false;
+            const ks = model ? [model] : A.keys, xs = ks.map((k) => r.m[k]).filter((x) => x && !x.failed);
+            if (!xs.length) return false;
+            if (out === "wrong") return xs.some((x) => !x.ok);
+            if (out === "right") return xs.every((x) => x.ok);
+            if (out === "nomatch") return xs.some((x) => x.nm);
+            if (out === "split") return !model && r.cls === "split";
+            if (out === "allwrong") return !model && r.cls === "allwrong";
+            return true;
+        });
+    }
+    function errors(run, A) {
+        const el = $("#sec-errors");
+        if (A.safety) { el.innerHTML = `<h2>Error and misclassification analysis</h2><p class="an-lead">Not applicable to a safety run: those records are not intent-classification predictions. Use the Safety section.</p>`; return; }
+        const cats = [...new Set(A.rows.map((r) => r.exp))].sort(), langs = [...new Set(A.rows.map((r) => r.lang || "unknown"))].sort();
+        const confBlocks = A.keys.map((k) => { const m = A.models[k], top = m.confusions.slice(0, 5);
+            return `<div class="an-card"><h3>${esc(SHORT[k])}: most frequent confusions</h3>${top.length ? `<div class="scroll"><table class="data"><thead><tr><th>Expected</th><th>Predicted</th><th>Count</th></tr></thead><tbody>${top.map((c) => `<tr><td>${esc(nice(c.exp))}</td><td>${esc(nice(c.pred))}</td><td class="num">${c.n}</td></tr>`).join("")}</tbody></table></div>` : '<p class="muted">No wrong-category predictions.</p>'}
+                <p class="an-note">${m.wrongClass} wrong-category answer${m.wrongClass === 1 ? "" : "s"} and ${plural(m.nm, "no-match answer")} out of ${m.valid}. A pair that appears once is an isolated error, not a pattern.</p></div>`; }).join("");
+        const weak = A.keys.map((k) => { const m = A.models[k], pc = m.c ? m.c.per_class : {};
+            const rows = Object.entries(m.byCat).filter(([, v]) => v.n >= 3).map(([c, v]) => ({ c, n: v.n, rec: v.ok / v.n, prec: pc[c] ? pc[c].precision : null, nm: v.nm })).sort((a, b) => a.rec - b.rec).slice(0, 5);
+            return `<div class="an-card"><h3>${esc(SHORT[k])}: weakest categories</h3>${rows.length ? `<div class="scroll"><table class="data"><thead><tr><th>Category</th><th>Recall</th><th>Precision</th><th>n</th><th>No match</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${esc(nice(r.c))}</td><td class="num">${pct(r.rec, 0)}</td><td class="num">${pct(r.prec, 0)}</td><td class="num">${r.n}</td><td class="num">${r.nm}</td></tr>`).join("")}</tbody></table></div>` : '<p class="muted">No category has at least 3 questions, so per-category rates would be unreliable.</p>'}
+                <p class="an-note">Only categories with at least 3 questions are ranked. Precision comes from the saved per-class metrics.</p></div>`; }).join("");
+        const g = A.agree; const dis = g && g.n ? `<div class="an-card"><h3>Agreement between models</h3><div class="an-kpis">
+            <div class="an-kpi"><b>${g.allOk}</b><small>all models correct</small></div><div class="an-kpi"><b>${g.split}</b><small>models disagree (some right, some wrong)</small></div><div class="an-kpi"><b>${g.allWrong}</b><small>all models wrong</small></div></div>
+            <p style="margin:0;font-size:14px">Out of ${g.n} questions answered by every model. ${A.keys.length >= 3 ? `Only one model was right on ${A.keys.map((k) => `${g.only[k]} (${SHORT[k]})`).join(", ")}; only one model was wrong on ${A.keys.map((k) => `${g.missedOnly[k]} (${SHORT[k]})`).join(", ")}.` : ""}
+            ${g.allWrong ? ` Questions that every model gets wrong are the clearest candidates for a labelling, mapping or coverage problem; check them before blaming a model.` : ""}</p></div>` : "";
+        const nmCard = A.keys.some((k) => A.models[k].nm) ? `<div class="an-card"><h3>No-match patterns</h3><ul class="an-list">${A.keys.filter((k) => A.models[k].nm).map((k) => { const m = A.models[k];
+            const byc = Object.entries(m.byCat).filter(([, v]) => v.nm > 0).sort((a, b) => b[1].nm - a[1].nm).slice(0, 3);
+            const cm = median(m.conf.nm), co = median(m.conf.ok);
+            return `<li><strong>${esc(SHORT[k])}</strong>: ${m.nm} no-match (${pct(m.nmRate, 0)}). Most affected: ${byc.length ? byc.map(([c, v]) => `${esc(nice(c))} (${v.nm}/${v.n})`).join(", ") : "n/a"}.${cm != null && co != null ? ` Median confidence on no-match answers ${cm.toFixed(2)} vs ${co.toFixed(2)} on correct answers (the model's own score; not comparable between models).` : ""}</li>`; }).join("")}</ul></div>` : "";
+        el.innerHTML = `<h2>Error and misclassification analysis</h2><p class="an-lead"><span class="an-tag">Observed</span>Counts below come from the saved predictions. Explanations are given separately in the architecture section and are labelled as hypotheses.</p>
+            <div class="an-three">${confBlocks}</div><div class="an-three" style="margin-top:16px">${weak}</div>
+            <div class="an-two" style="margin-top:16px">${dis}${nmCard}</div>
+            <div class="panel" style="margin-top:16px"><h3 style="margin:0 0 4px;font:800 16px Manrope">Browse individual predictions</h3><p class="muted" style="margin:0 0 12px;font-size:13.5px">Outcomes follow the run's scoring rule (${A.kind === "mapped" ? "lenient" : "exact match"}).</p>
+            <div class="an-filters">
+              <div class="field"><label for="fModel">Model</label><select id="fModel"><option value="">All models</option>${A.keys.map((k) => `<option value="${k}">${esc(SHORT[k])}</option>`).join("")}</select></div>
+              <div class="field"><label for="fOut">Outcome</label><select id="fOut"><option value="">Any</option><option value="wrong">Incorrect (any selected model)</option><option value="right">Correct (all selected)</option><option value="nomatch">No match</option><option value="split">Models disagree</option><option value="allwrong">All models wrong</option></select></div>
+              <div class="field"><label for="fCat">Expected category</label><select id="fCat"><option value="">All</option>${cats.map((c) => `<option value="${esc(c)}">${esc(nice(c))}</option>`).join("")}</select></div>
+              ${langs.length > 1 ? `<div class="field"><label for="fLang">Language</label><select id="fLang"><option value="">All</option>${langs.map((c) => `<option value="${esc(c)}">${esc(LANG[c] || c)}</option>`).join("")}</select></div>` : ""}
+            </div><div id="exBox"></div></div>`;
+        [["fModel", "model"], ["fOut", "out"], ["fCat", "cat"], ["fLang", "lang"]].forEach(([id, key]) => { const e = $("#" + id); if (!e) return; e.value = S.f[key] || ""; e.addEventListener("change", () => { S.f[key] = e.value; S.shown = 10; examples(); }); });
+        examples();
+    }
+    function examples() {
+        const A = S.A, rows = filteredRows(S.run), ks = S.f.model ? [S.f.model] : A.keys, box = $("#exBox"); if (!box) return;
+        const show = rows.slice(0, S.shown);
+        box.innerHTML = `<p class="hint" style="margin:0 0 8px">${rows.length} question${rows.length === 1 ? "" : "s"} match the filters.</p>
+            ${rows.length ? `<div class="scroll"><table class="data an-ex"><thead><tr><th>Question</th><th>Expected</th>${ks.map((k) => `<th>${esc(SHORT[k])}</th>`).join("")}</tr></thead><tbody>${show.map((r) => `<tr><td class="q">${esc(r.q)}<br><span class="hint">${esc(r.id)}${r.lang ? " · " + esc(LANG[r.lang] || r.lang) : ""}${r.cls === "split" ? " · models disagree" : r.cls === "allwrong" ? " · all models wrong" : ""}</span></td><td>${esc(nice(r.exp))}</td>${ks.map((k) => { const x = r.m[k];
+                if (x.failed) return `<td><span class="bad">failed</span><br><span class="hint">${esc(trunc(x.rec && x.rec.error || "", 60))}</span></td>`;
+                const rec = x.rec; return `<td><span class="${x.ok ? "ok" : "bad"}">${x.ok ? "✓ correct" : "✗ incorrect"}</span><br>${esc(x.nm ? "no match" : nice(x.pred))}<br><span class="hint">${rec.inference_ms == null ? "" : ms(rec.inference_ms)}${rec.confidence != null ? " · conf " + rec.confidence.toFixed(2) : ""}</span>
+                  <details><summary>Response</summary><div class="an-resp">${esc(trunc(String(rec.response || "").replace(/[#*_`]/g, ""), 320))}</div></details></td>`; }).join("")}</tr>`).join("")}</tbody></table></div>
+            ${rows.length > S.shown ? `<p style="margin:10px 0 0"><button class="btn secondary small" id="moreBtn" type="button">Show 10 more</button></p>` : ""}` : '<p class="muted">Nothing matches. Relax a filter.</p>'}`;
+        const mb = $("#moreBtn"); if (mb) mb.addEventListener("click", () => { S.shown += 10; examples(); });
+    }
+
+    /* ---- architectures */
+    function archSection(run, A) {
+        const el = $("#sec-arch");
+        if (A.safety) { el.innerHTML = `<h2>Architecture-specific analysis</h2><p class="an-lead">Select a classification run (question bank, held-out split or Hinglish + Hindi) to analyse each architecture's intent-classification behaviour.</p>`; return; }
+        const cards = A.keys.map((k) => {
+            const m = A.models[k], obs = [], hyp = [];
+            obs.push(`Accuracy ${pct(m.acc)}${A.kind === "mapped" ? ` (strict ${pct(m.strict)})` : ""}; precision ${pct(m.P, 0)}, recall ${pct(m.R, 0)}, F1 ${pct(m.F, 0)}; median ${ms(m.lat.median_ms)}.`);
+            obs.push(`${m.wrongClass} wrong-category answer${m.wrongClass === 1 ? "" : "s"} and ${plural(m.nm, "no-match answer")} out of ${m.valid}${m.nm ? ` (${pct(m.nmRate, 0)} abstained)` : "; it never abstained"}.`);
+            if (A.agree && A.keys.length >= 3) obs.push(`Correct alone on ${A.agree.only[k]} question${A.agree.only[k] === 1 ? "" : "s"} (the other two wrong); wrong alone on ${A.agree.missedOnly[k]}.`);
+            const lowCat = Object.entries(m.byCat).filter(([, v]) => v.n >= 3).map(([c, v]) => [c, v.ok / v.n, v.n]).sort((a, b) => a[1] - b[1]).slice(0, 3);
+            if (lowCat.length) obs.push(`Lowest recall (categories with ≥3 questions): ${lowCat.map(([c, r, n]) => `${esc(nice(c))} ${pct(r, 0)} (n=${n})`).join(", ")}.`);
+            const langs = Object.entries(m.byLang).filter(([, v]) => v.n >= 5); if (langs.length > 1) obs.push(`By language: ${langs.map(([l, v]) => `${esc(LANG[l] || l)} ${pct(v.ok / v.n, 0)} (n=${v.n})`).join(", ")}.`);
+            const cw = median(m.conf.wrong), co = median(m.conf.ok);
+            if (cw != null && co != null) obs.push(`Median own-confidence: ${co.toFixed(2)} on correct answers vs ${cw.toFixed(2)} on wrong-category answers${Math.abs(co - cw) < 0.05 ? " — nearly the same, so this score did not separate right from wrong here" : ""}. (Confidence is the model's own score, not accuracy, and is not comparable between models.)`);
+            if (k === "rule") {
+                obs.push(`The rule engine returned a topic for ${m.valid - m.nm} of ${m.valid} questions (${pct(1 - m.nmRate, 0)}); ${m.nm} fell through. This is the match rate on this question set; the size of the rule base itself is not measured here, so rule coverage in general is unknown.`);
+                const un = Object.entries(m.byCat).filter(([, v]) => v.n >= 3 && v.nm > 0).sort((a, b) => b[1].nm / b[1].n - a[1].nm / a[1].n).slice(0, 3);
+                if (un.length) obs.push(`Highest share of unmatched questions: ${un.map(([c, v]) => `${esc(nice(c))} ${v.nm}/${v.n}`).join(", ")}.`);
+                if (A.agree) { const rescued = A.rows.filter((r) => !r.m.rule.failed && !r.m.rule.ok && A.keys.some((o) => o !== "rule" && !r.m[o].failed && r.m[o].ok)).length; obs.push(`${rescued} question${rescued === 1 ? "" : "s"} the rules missed were answered correctly by at least one learned model.`); }
+                hyp.push("Keyword rules only fire when a question contains terms the rule author anticipated, so differently worded questions may fall through. Check the unmatched questions above for paraphrases before concluding this.");
+                if (m.nm) hyp.push("Unmatched questions may belong to topics with no rule, or use wording the spelling-repair step does not normalise.");
+            } else if (k === "ml") {
+                const nmc = median(m.conf.nm); if (m.nm && nmc != null) obs.push(`Its ${m.nm} no-match answers had a median confidence of ${nmc.toFixed(2)}, i.e. they were abstentions on low-confidence predictions rather than wrong-category answers.`);
+                hyp.push("TF-IDF features only see words that appeared in the training questions, so reworded or unseen vocabulary may give low-confidence predictions; this run shows the symptom (low confidence, no-match) but did not test that cause.");
+                hyp.push("Categories with few training examples or overlapping vocabulary may be separated less cleanly by a linear SVM. Compare the weakest categories with their training-set size before concluding this.");
+                if (A.kind === "mapped") hyp.push("A low score on the question bank may partly reflect the author-defined category mapping rather than the classifier.");
+            } else {
+                obs.push(m.nm === 0 ? "It returned a topic for every question (no abstentions), so every error is a wrong-category answer; there is no built-in way to decline in this evaluation." : `It abstained on ${m.nm} question${m.nm === 1 ? "" : "s"}.`);
+                const ml = A.models.ml; if (ml && m.lat.median_ms && ml.lat.median_ms) obs.push(`Median latency is ${(m.lat.median_ms / ml.lat.median_ms).toFixed(1)}× that of ML (${ms(m.lat.median_ms)} vs ${ms(ml.lat.median_ms)}), measured on CPU/GPU of the evaluation machine as configured.`);
+                hyp.push("A fine-tuned encoder may generalise better to reworded questions than bag-of-words features, but this run does not show why; the classification score does not mean it understands medical content.");
+                hyp.push("Always answering means confident-looking wrong topics are possible on questions outside its training topics; check the safety run for out-of-scope handling.");
+            }
+            return `<div class="an-card"><h3>${esc(NAMES[k])}</h3><h4><span class="an-tag">Observed</span></h4><ul class="an-list">${obs.map((x) => `<li>${x}</li>`).join("")}</ul>
+                <h4><span class="an-tag hyp">Hypotheses</span> not tested here</h4><ul class="an-list hyp">${hyp.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>`; }).join("");
+        el.innerHTML = `<h2>Architecture-specific analysis</h2><p class="an-lead">Observed figures are computed from this run. Hypotheses are possible reasons suggested by the architecture; they are not established by this data.</p><div class="an-three">${cards}</div>`;
+    }
+
+    /* ---- dataset & language */
+    function dataSection(run, A) {
+        const el = $("#sec-data"); let h = `<h2>Dataset and language analysis</h2>`;
+        if (A.safety) { el.innerHTML = h + `<p class="an-lead">Language results for this safety run are in the Safety section.</p>`; return; }
+        h += `<p class="an-lead">Comparisons are made only where this run's data supports them. Results from different datasets use different labels, sample sizes and scoring, so they are not directly equivalent.</p>`;
+        const langs = [...new Set(A.rows.map((r) => r.lang || "unknown"))].sort();
+        let lang;
+        if (langs.length > 1) lang = `<div class="an-card"><h3>Accuracy by language (within this run)</h3><div class="scroll"><table class="data"><thead><tr><th>Language</th><th>n</th>${A.keys.map((k) => `<th>${esc(SHORT[k])}</th>`).join("")}</tr></thead><tbody>${langs.map((l) => { const n = A.rows.filter((r) => (r.lang || "unknown") === l).length;
+            return `<tr><td>${esc(LANG[l] || l)}</td><td class="num">${n}</td>${A.keys.map((k) => { const v = A.models[k].byLang[l]; return `<td class="num">${v ? pct(v.ok / v.n, 0) : "n/a"}</td>`; }).join("")}</tr>`; }).join("")}</tbody></table></div>
+            <p class="an-note">${langs.some((l) => A.rows.filter((r) => (r.lang || "unknown") === l).length < 10) ? "Some languages have fewer than 10 questions here; their percentages are unstable. " : ""}Hindi/Hinglish text is converted to English by a shared front-end before every model; the models themselves were trained on English.</p></div>`;
+        else lang = `<div class="an-card"><h3>English vs Hindi / Hinglish</h3><p style="margin:0">This run contains only ${esc(LANG[langs[0]] || langs[0] || "one language")} questions, so no language comparison is possible from it. To compare, open a run on the “Hinglish + Hindi” dataset and a run on an English dataset, bearing in mind that their labels and sizes differ.</p></div>`;
+        const cats = [...new Set(A.rows.map((r) => r.exp))];
+        const catRows = cats.map((c) => ({ c, n: A.rows.filter((r) => r.exp === c).length, v: A.keys.map((k) => { const x = A.models[k].byCat[c]; return x ? x.ok / x.n : null; }) }))
+            .map((r) => Object.assign(r, { spread: Math.max(...r.v.filter((x) => x != null)) - Math.min(...r.v.filter((x) => x != null)) })).filter((r) => r.n >= 3).sort((a, b) => b.spread - a.spread).slice(0, 8);
+        const catCard = `<div class="an-card"><h3>Categories where models differ most</h3>${catRows.length ? `<div class="scroll"><table class="data"><thead><tr><th>Category</th><th>n</th>${A.keys.map((k) => `<th>${esc(SHORT[k])}</th>`).join("")}</tr></thead><tbody>${catRows.map((r) => `<tr><td>${esc(nice(r.c))}</td><td class="num">${r.n}</td>${r.v.map((v) => `<td class="num">${v == null ? "n/a" : pct(v, 0)}</td>`).join("")}</tr>`).join("")}</tbody></table></div><p class="an-note">Recall per category (correct ÷ questions), categories with ≥3 questions, largest gap between best and worst model first.</p>` : '<p class="muted" style="margin:0">No category has at least 3 questions in this run, so category comparison would be unreliable.</p>'}</div>`;
+        const done = S.runs.filter((r) => r.status === "completed" && r.dataset !== "safety"), seen = new Set(), latest = [];
+        done.forEach((r) => { if (!seen.has(r.dataset)) { seen.add(r.dataset); latest.push(r); } });
+        const cross = latest.length > 1 ? `<div class="an-card" style="margin-top:16px"><h3>Latest saved run per dataset</h3><div class="scroll"><table class="data"><thead><tr><th>Dataset</th><th>Selection</th><th>Questions</th>${ARCH.map((k) => `<th>${esc(SHORT[k])}</th>`).join("")}<th>Leader</th></tr></thead><tbody>${latest.map((r) => { const v = ARCH.map((k) => (r.models && r.models[k] != null ? r.models[k] : null)), best = Math.max(...v.filter((x) => x != null)), ld = ARCH.filter((k, i) => v[i] != null && Math.abs(v[i] - best) < 1e-9);
+            return `<tr><td>${esc(r.dataset_title || r.dataset)}${r.run_id === run.run_id ? ' <span class="pill">selected</span>' : ""}</td><td>${esc(r.mode)}${r.category ? " · " + esc(nice(r.category)) : ""}</td><td class="num">${r.progress.completed}</td>${v.map((x) => `<td class="num">${x == null ? "n/a" : pct(x)}</td>`).join("")}<td>${esc(ld.map((k) => SHORT[k]).join(" / "))}</td></tr>`; }).join("")}</tbody></table></div>
+            <p class="an-note"><strong>Not directly comparable:</strong> the question bank is scored on 19 coarse categories through an author-defined mapping (lenient), the other datasets on exact 91-intent labels; sample sizes and selections differ. The leader can change between datasets, and that is a pattern to report, not a ranking.</p></div>` : `<div class="an-card" style="margin-top:16px"><h3>Across datasets</h3><p style="margin:0">Only one dataset has a completed saved run, so models cannot be compared across datasets yet. Run another dataset from the Evaluation tab.</p></div>`;
+        el.innerHTML = h + `<div class="an-two">${lang}${catCard}</div>${cross}`;
+    }
+
+    /* ---- safety */
+    function safetySection(run, A) {
+        const el = $("#sec-safety"); let h = `<h2>Healthcare safety analysis</h2>`;
+        if (!A.safety) {
+            const other = S.runs.find((r) => r.status === "completed" && r.dataset === "safety");
+            el.innerHTML = h + `<div class="an-card"><p style="margin:0 0 10px">The selected run is not a safety run, so it contains no emergency, safety-probe or out-of-scope records. Safety is analysed separately from classification accuracy; a correct predicted topic says nothing about whether a response was safe.</p>
+              ${other ? `<button class="btn secondary" id="gotoSafety" type="button">Open latest safety run (${esc(when(other.created_at))})</button>` : `<p class="muted" style="margin:0">No completed safety run exists yet. Run “Safety + out-of-scope probes” from the Evaluation tab.</p>`}</div>`;
+            const b = $("#gotoSafety"); if (b) b.addEventListener("click", () => { $("#runSelect").value = other.run_id; select(other.run_id); window.scrollTo({ top: 0, behavior: "smooth" }); });
+            return;
+        }
+        const s = run.safety, e = s.emergency_detection;
+        const per = A.keys.map((k) => { const rows = A.rows; const em = rows.filter((r) => r.exp === "1"), oos = rows.filter((r) => r.exp === "0" && r.extra.kind === "out_of_scope"), non = rows.filter((r) => r.exp === "0" && r.extra.kind !== "out_of_scope");
+            const miss = em.filter((r) => !r.m[k].failed && !r.m[k].rec.safety_override), fa = non.filter((r) => !r.m[k].failed && r.m[k].rec.safety_override), ans = oos.filter((r) => !r.m[k].failed && r.m[k].rec.status !== "no_match");
+            return { k, em, miss, non, fa, oos, ans, failed: rows.filter((r) => r.m[k].failed).length }; });
+        const lst = (rows, k, f) => rows.slice(0, 6).map((r) => `<li>${esc(r.q)} <span class="hint">(${esc(LANG[r.lang] || r.lang || "")}${f ? " · " + f(r.m[k].rec) : ""})</span></li>`).join("");
+        h += `<p class="an-lead"><span class="an-tag">Criteria</span>Defined in the evaluation code: (1) an emergency question must produce emergency guidance; (2) a non-emergency question must not trigger an emergency override; (3) an out-of-scope question should be declined (“no confident match”) rather than answered with a health topic. These are narrow, author-written checks, not a clinical safety assessment.</p>
+            <div class="an-two"><div class="an-card"><h3>Emergency detection (model-independent safety module)</h3><div class="an-kpis"><div class="an-kpi"><b>${pct(e.recall, 0)}</b><small>recall (${e.n} probes)</small></div><div class="an-kpi"><b>${pct(e.precision, 0)}</b><small>precision</small></div><div class="an-kpi"><b>${s.missed_emergencies.length} / ${s.false_alarms.length}</b><small>missed / false alarms</small></div></div>
+              <h4>By language</h4><ul class="an-list">${Object.entries(s.by_language_recall).map(([l, v]) => `<li>${esc(LANG[l] || l)}: ${v.detected}/${v.emergencies} emergencies caught (${pct(v.recall, 0)})</li>`).join("")}</ul>
+              ${s.missed_emergencies.length ? `<h4>Missed emergencies</h4><ul class="an-list">${s.missed_emergencies.slice(0, 8).map((x) => `<li class="bad">${esc(x)}</li>`).join("")}</ul>` : '<p class="an-note">No emergency probe was missed by the safety module in this run.</p>'}
+              <p class="an-note">The probe set is small and partly used while the Hindi/Hinglish rules were developed, so this is a regression check, not proof of coverage.</p></div>
+            <div class="an-card"><h3>Per-model safety requirements</h3><div class="scroll"><table class="data"><thead><tr><th>Model</th><th>Emergency guidance shown</th><th>False alarms</th><th>Out-of-scope declined</th></tr></thead><tbody>${per.map((p) => `<tr><td>${esc(SHORT[p.k])}</td><td class="num ${p.miss.length ? "bad" : ""}">${p.em.length - p.miss.length - p.em.filter((r) => r.m[p.k].failed).length}/${p.em.length}</td><td class="num ${p.fa.length ? "bad" : ""}">${p.fa.length}/${p.non.length}</td><td class="num ${p.ans.length ? "bad" : ""}">${p.oos.length - p.ans.length - p.oos.filter((r) => r.m[p.k].failed).length}/${p.oos.length}</td></tr>`).join("")}</tbody></table></div>
+              <p class="an-note">Safety results are kept apart from classification accuracy. Showing emergency guidance on every model also reflects the shared safety layer, not the model's own understanding.</p></div></div>
+            ${per.some((p) => p.miss.length || p.fa.length || p.ans.length) ? `<div class="an-three" style="margin-top:16px">${per.map((p) => `<div class="an-card"><h3>${esc(SHORT[p.k])}: requirements not met</h3>
+                ${p.miss.length ? `<h4>Emergency guidance not shown (${p.miss.length})</h4><ul class="an-list">${lst(p.miss, p.k)}</ul>` : ""}${p.fa.length ? `<h4>False alarms (${p.fa.length})</h4><ul class="an-list">${lst(p.fa, p.k)}</ul>` : ""}
+                ${p.ans.length ? `<h4>Out-of-scope questions answered instead of declined (${p.ans.length})</h4><ul class="an-list">${lst(p.ans, p.k, (r) => "answered as " + nice(r.intent || "a health topic"))}</ul><p class="an-note">Showing up to 6.</p>` : ""}
+                ${p.miss.length || p.fa.length || p.ans.length ? "" : '<p class="muted" style="margin:0">All three requirements were met on every probe for this model.</p>'}${p.failed ? `<p class="an-note">${p.failed} probe call(s) failed and are not counted.</p>` : ""}</div>`).join("")}</div>` : `<div class="an-card" style="margin-top:16px"><p style="margin:0">Every model met all three requirements on every probe in this run. That is a statement about these ${A.n} author-written probes only.</p></div>`}
+            <div class="banner" style="margin-top:16px"><span aria-hidden="true">⚠</span><div>Meeting these checks does not make a response medically safe or appropriate. If you think you may be having an emergency, call 112 (India) or your local emergency number.</div></div>`;
+        el.innerHTML = h;
+    }
+
+    /* ---- findings */
+    function findings(run, A) {
+        const el = $("#sec-findings"); const str = [], weak = [], trade = [], cross = [], lim = [], sug = [];
+        if (!A.safety) {
+            const acc = leaders(A, (m) => m.acc), fast = leaders(A, (m) => m.lat.median_ms, false), rec = leaders(A, (m) => m.R), nm0 = A.keys.filter((k) => A.models[k].nm === 0);
+            A.keys.forEach((k) => { const m = A.models[k], s = [];
+                if (acc && acc.keys.includes(k)) s.push(`highest accuracy (${pct(m.acc)})`);
+                if (fast && fast.keys.includes(k)) s.push(`fastest median (${ms(m.lat.median_ms)})`);
+                if (rec && rec.keys.includes(k) && !(acc && acc.keys.includes(k))) s.push(`highest macro recall (${pct(m.R, 0)})`);
+                if (nm0.includes(k) && A.keys.some((o) => A.models[o].nm > 0)) s.push("never abstained");
+                str.push(`<strong>${esc(NAMES[k])}</strong>: ${s.length ? s.join(", ") : "no measured strength stands out on this run"}.`); });
+            const low = leaders(A, (m) => m.acc, false), slow = leaders(A, (m) => m.lat.p95_ms, true), nmx = leaders(A, (m) => m.nm, true);
+            if (low && low.keys.length < A.keys.length) weak.push(`Lowest accuracy: ${join(low.keys.map((k) => NAMES[k]))} (${pct(low.value)}).`);
+            if (nmx && nmx.value > 0 && nmx.keys.length < A.keys.length) weak.push(`Most no-match answers: ${join(nmx.keys.map((k) => NAMES[k]))} (${nmx.value}, ${pct(A.models[nmx.keys[0]].nmRate, 0)} of its questions).`);
+            if (slow && slow.keys.length < A.keys.length) weak.push(`Slowest tail (p95): ${join(slow.keys.map((k) => NAMES[k]))} (${ms(slow.value)}).`);
+            const top = A.keys.flatMap((k) => A.models[k].confusions.slice(0, 1).map((c) => ({ k, c }))).sort((a, b) => b.c.n - a.c.n)[0];
+            if (top && top.c.n > 1) weak.push(`Most repeated confusion: ${esc(nice(top.c.exp))} → ${esc(nice(top.c.pred))} by ${esc(SHORT[top.k])} (${top.c.n} questions).`);
+            if (A.agree && A.agree.allWrong) weak.push(`${A.agree.allWrong} question${A.agree.allWrong === 1 ? "" : "s"} were wrong for every model, which points at the dataset, label mapping or topic coverage as much as at any one model.`);
+            if (acc && fast && acc.keys.length === 1 && fast.keys.length === 1 && acc.keys[0] !== fast.keys[0]) trade.push(`${SHORT[acc.keys[0]]} was the most accurate but ${SHORT[fast.keys[0]]} was the fastest (${pts(A.models[acc.keys[0]].acc - A.models[fast.keys[0]].acc)} accuracy difference; ${ms(A.models[acc.keys[0]].lat.median_ms)} vs ${ms(A.models[fast.keys[0]].lat.median_ms)} median).`);
+            else if (acc && fast) trade.push("No accuracy-versus-speed trade-off is visible in this run.");
+            const done = S.runs.filter((r) => r.status === "completed" && r.dataset !== "safety"), seen = new Set(), latest = []; done.forEach((r) => { if (!seen.has(r.dataset)) { seen.add(r.dataset); latest.push(r); } });
+            if (latest.length > 1) { const lead = latest.map((r) => { const v = ARCH.filter((k) => r.models && r.models[k] != null), b = Math.max(...v.map((k) => r.models[k])); return `${esc(r.dataset_title || r.dataset)}: ${join(v.filter((k) => Math.abs(r.models[k] - b) < 1e-9).map((k) => SHORT[k]))} (${pct(b)}, n=${r.progress.completed})`; });
+                const set = new Set(latest.map((r) => ARCH.filter((k) => r.models && r.models[k] != null).sort((a, b) => r.models[b] - r.models[a])[0])); cross.push(`Accuracy leader per dataset (latest saved run each): ${lead.join("; ")}. ${set.size > 1 ? "The leading architecture differs between datasets, so no single model is best across all of them." : "The same architecture leads on every dataset with a saved run, though datasets and scoring are not equivalent."}`); }
+            else cross.push("Only one dataset has a completed run, so there is no cross-dataset finding yet.");
+            const sm = A.n < 100; lim.push(`Sample size: ${A.n} question${A.n === 1 ? "" : "s"}${run.sampled ? " (a sample, not all eligible questions)" : ""}; ${sm ? "this is small, so " : ""}no confidence intervals or significance tests were computed, and none should be inferred.`);
+            if (A.kind === "mapped") lim.push("The question bank's 19 categories are mapped to 91 intents by an author-defined file; every score depends on it, and strict and lenient scoring can differ.");
+            if (A.kind === "exact") lim.push("Labels are exact intents; test questions were written by the project team about the same topics as the training data, so scores reflect generalisation to new wording, not to real patient language.");
+            lim.push("Scores measure intent classification only. They do not measure whether the reply text is medically correct, complete or safe; the only automatic reply measure is a keyword-coverage estimate.");
+            lim.push("Latency is one run on one machine and depends on hardware and load.");
+            (run.limitations || []).forEach((l) => lim.push(esc(l)));
+            A.keys.filter((k) => A.models[k].nmRate > 0.2).forEach((k) => sug.push(`Review why ${SHORT[k]} abstained on ${pct(A.models[k].nmRate, 0)} of questions (threshold, coverage or wording); the no-match questions are listed above.`));
+            if (A.agree && A.agree.allWrong) sug.push("Re-check the labels and category mapping of the questions every model got wrong.");
+            if (A.kind === "mapped") sug.push("Have independent reviewers validate the category mapping before reporting question-bank scores.");
+            if (run.sampled || A.n < 100) sug.push("Run all eligible questions before quoting numbers in the report.");
+            sug.push("Add human-rated answer quality (correctness, completeness, safety) if claims about the replies are needed; this evaluation cannot support them.");
+        } else {
+            const e = run.safety.emergency_detection; str.push(`Emergency-detection recall ${pct(e.recall, 0)} and precision ${pct(e.precision, 0)} on ${e.n} probes (${run.safety.missed_emergencies.length} missed, ${run.safety.false_alarms.length} false alarms).`);
+            A.keys.forEach((k) => { const p = run.safety.per_model[k]; if (!p) return; const bad = []; if (p.emergency_total && p.emergency_surfaced < p.emergency_total) bad.push(`${p.emergency_total - p.emergency_surfaced} emergency probe(s) without guidance`); if (p.false_alarms) bad.push(`${p.false_alarms} false alarm(s)`); if (p.oos_total && p.oos_declined < p.oos_total) bad.push(`${p.oos_total - p.oos_declined} of ${p.oos_total} out-of-scope question(s) answered instead of declined`);
+                (bad.length ? weak : str).push(`<strong>${esc(NAMES[k])}</strong>: ${bad.length ? bad.join("; ") : "met all three defined requirements on every probe"}.`); });
+            lim.push(`${A.n} author-written probes; the Hindi/Hinglish set was used while fixing rules, so it is a regression set rather than unseen data.`);
+            lim.push("Passing these checks does not make any response medically safe; they test narrow, explicitly defined behaviours only.");
+            lim.push("Safety results cannot be combined with classification accuracy.");
+            sug.push("Extend the probe set with clinician-reviewed, independently written cases before making any safety claim.");
+        }
+        const sec = (t, a, cls) => (a.length ? `<h3>${t}</h3><ul class="an-list ${cls || ""}">${a.map((x) => `<li>${x}</li>`).join("")}</ul>` : "");
+        el.innerHTML = `<h2>Research findings and limitations</h2><p class="an-lead">Generated from the selected run's saved results (and the run list for the cross-dataset line). Nothing here is fixed text about which model is better.</p>
+            <div class="an-two"><div class="an-card an-find">${sec("Observed strengths", str)}${sec("Observed weaknesses and error patterns", weak)}${sec("Performance and latency trade-offs", trade)}${sec("Across datasets", cross)}</div>
+            <div class="an-card an-find">${sec("Limitations of the data and method", lim)}<h3><span class="an-tag sug">Suggestions</span> derived from the observations, not tested</h3><ul class="an-list">${sug.map((x) => `<li>${x}</li>`).join("")}</ul></div></div>`;
+    }
+
+    /* ------------------------------------------------------------------------------- flow */
+    function chips(run) {
+        const sel = run.selection || {}, A = S.A, inc = (S.runs.find((r) => r.run_id === run.run_id) || {}).models_included || run.models_requested || A.keys;
+        $("#runChips").innerHTML = [["Run", run.run_id], ["Started", when(run.created_at)], ["Dataset", run.dataset.title], ["Evaluated", `${A.n} question${A.n === 1 ? "" : "s"}${sel.category_eligible ? " of " + sel.category_eligible + " eligible" : ""}`], ["Selection", `${(sel.mode || run.mode)}${sel.category ? " · " + nice(sel.category) : ""}${run.sampled ? " (sample)" : ""}`], ["Status", run.status], ["Models", inc.map((k) => SHORT[k] || k).join(", ")]]
+            .map(([a, b]) => `<span class="an-chip"><b>${esc(a)}:</b> ${esc(b)}</span>`).join("");
+    }
+    function render(run) {
+        S.run = run; S.A = analyse(run); S.f = { model: "", cat: "", out: "", lang: "" }; S.shown = 10;
+        chips(run); overview(run, S.A); errors(run, S.A); archSection(run, S.A); dataSection(run, S.A); safetySection(run, S.A); findings(run, S.A);
+        $("#an-loading").classList.add("hidden"); $("#an-body").classList.remove("hidden");
+    }
+    async function select(id) {
+        say(""); $("#an-body").classList.add("hidden"); $("#an-loading").classList.remove("hidden");
+        try {
+            let run = S.cache.get(id); if (!run) { run = (await api(`/api/comparison/evaluation/runs/${encodeURIComponent(id)}`)).run; S.cache.set(id, run); }
+            if (run.status !== "completed" || !run.metrics || !Object.keys(run.metrics).length) throw new Error("This run did not complete, so there is nothing to analyse.");
+            render(run); history.replaceState(null, "", "?run=" + encodeURIComponent(id));
+        } catch (err) { $("#an-loading").classList.add("hidden"); say(err.message || "Could not load the run.", "error"); }
+    }
+    async function boot() {
+        say(""); $("#runSelect").disabled = true;
+        let runs = [];
+        try { runs = (await api("/api/comparison/evaluation/runs")).runs; } catch (err) { say(err.message, "error"); $("#runSelect").innerHTML = "<option>Could not load runs</option>"; return; }
+        S.runs = runs; const done = runs.filter((r) => r.status === "completed" && r.progress && r.progress.completed > 0);
+        $("#an-empty").classList.toggle("hidden", done.length > 0);
+        if (!done.length) { $("#runSelect").innerHTML = "<option>No completed runs</option>"; $("#runChips").innerHTML = ""; $("#an-body").classList.add("hidden"); if (runs.length) say(`${runs.length} saved run(s) exist but none completed successfully.`, "error"); return; }
+        const sel = $("#runSelect"); sel.innerHTML = done.map((r) => `<option value="${esc(r.run_id)}">${esc(when(r.created_at))} · ${esc(r.dataset_title || r.dataset)} · ${esc(r.mode)}${r.category ? " · " + esc(nice(r.category)) : ""} · ${r.progress.completed} questions · ${esc((r.models_included || []).map((k) => SHORT[k] || k).join("/"))}</option>`).join("");
+        sel.disabled = false;
+        const want = new URLSearchParams(location.search).get("run"); const id = done.some((r) => r.run_id === want) ? want : done[0].run_id; sel.value = id; await select(id);
+    }
+    $("#runSelect").addEventListener("change", (e) => select(e.target.value));
+    $("#reloadBtn").addEventListener("click", () => { S.cache.clear(); boot(); });
+    boot();
+})();
+</script>
+</body>
+</html>

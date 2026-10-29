@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens (HSL triplets) - "Clinical Navy": cool slate surfaces (no pure white), navy-blue
+   primary, teal secondary, ink-navy text. Primary #1D4A8F gives ~8.5:1 with its foreground (WCAG AAA).
+   Status: success #15803D, warning #B45309, critical #C81E1E. */
+@layer base {
+  :root {
+    --background: 216 30% 92%;
+    --foreground: 222 40% 13%;
+    --card: 216 33% 96%;
+    --card-foreground: 222 40% 13%;
+    --muted: 216 28% 89%;
+    --muted-foreground: 218 16% 36%;
+    --border: 216 22% 82%;
+    --input: 216 22% 78%;
+    --ring: 216 66% 40%;
+    --primary: 216 66% 34%;
+    --primary-foreground: 214 40% 97%;
+    --secondary: 186 70% 28%;
+    --secondary-foreground: 214 40% 97%;
+    --accent: 214 56% 87%;
+    --accent-foreground: 216 66% 26%;
+    --success: 142 72% 29%;
+    --success-soft: 140 40% 88%;
+    --warning: 26 90% 37%;
+    --warning-soft: 40 70% 88%;
+    --critical: 0 74% 45%;
+    --critical-soft: 0 60% 92%;
+    --sidebar: 216 34% 95%;
+    --sidebar-foreground: 222 40% 13%;
+    --sidebar-muted: 218 16% 36%;
+    /* Categorical chart slots - validated palette (dataviz validate_palette.js, light, surface #fff;
+       the slate card surface is within dE 3 of that):
+       adjacent CVD dE >= 9.1, normal-vision dE >= 19.6. Slots 3-5 are < 3:1 on white, so every chart
+       ships a table view. Fixed order; one slot per architecture; never reused for status. */
+    --chart-1: 213 68% 50%;   /* #2a78d6 blue */
+    --chart-2: 17 82% 56%;    /* #eb6834 orange */
+    --chart-3: 159 73% 40%;   /* #1baf7a aqua */
+    --chart-4: 41 100% 46%;   /* #eda100 yellow */
+    --chart-5: 337 70% 70%;   /* #e87ba4 magenta */
+    --chart-6: 120 100% 26%;  /* #008300 green */
+    --chart-grid: 214 32% 91%;
+    color-scheme: light;
+  }
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 214 32% 93%;
+    --card: 221 39% 11%;
+    --card-foreground: 214 32% 93%;
+    --muted: 220 30% 16%;
+    --muted-foreground: 215 18% 66%;
+    --border: 219 28% 20%;
+    --input: 219 26% 25%;
+    --ring: 213 90% 66%;
+    --primary: 213 90% 66%;
+    --primary-foreground: 222 47% 9%;
+    --secondary: 186 64% 52%;
+    --secondary-foreground: 222 47% 9%;
+    --accent: 217 48% 19%;
+    --accent-foreground: 213 94% 80%;
+    --success: 142 60% 48%;
+    --success-soft: 145 45% 13%;
+    --warning: 38 92% 56%;
+    --warning-soft: 32 55% 14%;
+    --critical: 0 84% 64%;
+    --critical-soft: 0 50% 15%;
+    --sidebar: 223 50% 6%;
+    --sidebar-foreground: 214 32% 93%;
+    --sidebar-muted: 215 18% 62%;
+    /* Same hues stepped for the dark surface: all >= 3:1, adjacent CVD dE >= 8.4. */
+    --chart-1: 213 77% 56%;   /* #3987e5 */
+    --chart-2: 17 70% 50%;    /* #d95926 */
+    --chart-3: 159 73% 36%;   /* #199e70 */
+    --chart-4: 40 100% 39%;   /* #c98500 */
+    --chart-5: 338 61% 58%;   /* #d55181 */
+    --chart-6: 120 100% 26%;  /* #008300 */
+    --chart-grid: 217 33% 20%;
+    color-scheme: dark;
+  }
+  * { @apply border-border; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-background text-foreground antialiased; font-feature-settings: "cv11", "ss01"; }
+  :focus-visible { @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background; }
+  h1, h2, h3 { @apply tracking-tight; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+@layer utilities {
+  .scrollbar-thin { scrollbar-width: thin; }
+  .text-balance { text-wrap: balance; }
+  .tabular { font-variant-numeric: tabular-nums; }
+}

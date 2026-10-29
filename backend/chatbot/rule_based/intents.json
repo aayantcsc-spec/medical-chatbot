@@ -1,0 +1,455 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hi",
+        "hello",
+        "hey",
+        "namaste",
+        "good morning",
+        "good afternoon",
+        "good evening"
+      ],
+      "responses": [
+        "Hello! I'm MediChat. How can I help you with your health question today?",
+        "Hi! I'm here to provide general health information and guidance.",
+        "Hello! What health-related question can I help you with?"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "thanks",
+        "thank you",
+        "thank you so much",
+        "thanks a lot",
+        "thx"
+      ],
+      "responses": [
+        "You're welcome!",
+        "Glad I could help.",
+        "You're welcome. Take care!"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "bye",
+        "goodbye",
+        "see you",
+        "see you later",
+        "good night"
+      ],
+      "responses": [
+        "Goodbye! Take care.",
+        "Take care and stay healthy!",
+        "Goodbye! Feel free to come back if you have another health question."
+      ]
+    },
+    {
+      "tag": "fever",
+      "patterns": [
+        "i have fever",
+        "i have a fever",
+        "my temperature is high",
+        "i have high temperature",
+        "feeling feverish",
+        "what should i do for fever",
+        "how to care for fever",
+        "fever symptoms"
+      ],
+      "responses": [
+        "Fever can occur when your body is responding to an infection or illness. Rest, drink enough fluids, and monitor your temperature. If the fever is very high, persistent, or accompanied by serious symptoms, seek medical care.",
+        "For a mild fever, rest and stay hydrated. Monitor your temperature and seek medical advice if it persists or becomes severe."
+      ]
+    },
+    {
+      "tag": "headache",
+      "patterns": [
+        "i have headache",
+        "i have a headache",
+        "my head hurts",
+        "my head is hurting",
+        "pain in my head",
+        "why does my head hurt",
+        "what causes headache",
+        "what causes headaches",
+        "tell me about headache",
+        "headache symptoms",
+        "i am having headache",
+        "can lack of sleep contribute to headaches",
+        "can lack of sleep cause headaches",
+        "does lack of sleep cause headache",
+        "can stress cause headaches",
+        "can dehydration cause headaches"
+      ],
+      "responses": [
+        "Headaches can have several causes, including stress, dehydration, lack of sleep, illness, eye strain, or other factors. Rest, hydration, and adequate sleep may help with mild headaches. If a headache is sudden and severe, follows an injury, or keeps occurring, seek medical advice.",
+        "Lack of sleep, stress, and dehydration can contribute to headaches in some people. Try to get enough rest, drink fluids, and monitor your symptoms. Seek medical care if the headache is severe, unusual, or persistent."
+      ]
+    },
+    {
+      "tag": "cough",
+      "patterns": [
+        "i have cough",
+        "i am coughing",
+        "my throat is coughing",
+        "what should i do for cough",
+        "cough symptoms",
+        "how to treat cough"
+      ],
+      "responses": [
+        "A cough can occur with infections, allergies, irritation, or other conditions. Staying hydrated and resting may help with a mild cough. If you have difficulty breathing, chest pain, or a persistent severe cough, seek medical care."
+      ]
+    },
+    {
+      "tag": "cold",
+      "patterns": [
+        "i have a cold",
+        "i have cold",
+        "common cold",
+        "cold symptoms",
+        "what should i do for cold"
+      ],
+      "responses": [
+        "A common cold may cause a runny nose, cough, sore throat, and congestion. Rest, fluids, and general supportive care may help. Seek medical advice if symptoms are severe or persistent."
+      ]
+    },
+    {
+      "tag": "sore_throat",
+      "patterns": [
+        "i have sore throat",
+        "my throat hurts",
+        "pain in my throat",
+        "sore throat symptoms",
+        "what should i do for sore throat"
+      ],
+      "responses": [
+        "A sore throat can occur with infections, allergies, or irritation. Drinking fluids and resting may help. Seek medical care if you have severe difficulty swallowing, breathing problems, or persistent symptoms."
+      ]
+    },
+    {
+      "tag": "runny_nose",
+      "patterns": [
+        "i have a runny nose",
+        "my nose is running",
+        "runny nose",
+        "nose keeps running"
+      ],
+      "responses": [
+        "A runny nose can occur with colds, allergies, or irritation. Rest, fluids, and avoiding known irritants may help."
+      ]
+    },
+    {
+      "tag": "blocked_nose",
+      "patterns": [
+        "blocked nose",
+        "stuffy nose",
+        "my nose is blocked",
+        "nasal congestion",
+        "cannot breathe through nose"
+      ],
+      "responses": [
+        "Nasal congestion can happen with colds, allergies, or sinus irritation. Fluids, rest, and gentle supportive care may help."
+      ]
+    },
+    {
+      "tag": "stomach_pain",
+      "patterns": [
+        "i have stomach pain",
+        "my stomach hurts",
+        "pain in my stomach",
+        "stomach ache",
+        "abdominal pain"
+      ],
+      "responses": [
+        "Stomach pain can have many possible causes. Mild discomfort may sometimes improve with rest and hydration, but severe, persistent, or worsening abdominal pain should be evaluated by a healthcare professional."
+      ]
+    },
+    {
+      "tag": "chest_pain",
+      "patterns": [
+        "i have chest pain",
+        "pain in my chest",
+        "my chest hurts",
+        "chest discomfort"
+      ],
+      "responses": [
+        "Chest pain can have many causes, some of which can be serious. If the pain is severe, sudden, associated with difficulty breathing, sweating, fainting, or pain spreading to the arm, jaw, or back, seek emergency medical care immediately."
+      ]
+    },
+    {
+      "tag": "back_pain",
+      "patterns": [
+        "i have back pain",
+        "my back hurts",
+        "pain in my back",
+        "backache"
+      ],
+      "responses": [
+        "Back pain can have different causes, including muscle strain and posture-related problems. Gentle movement and appropriate rest may help mild discomfort. Persistent or severe pain should be evaluated by a healthcare professional."
+      ]
+    },
+    {
+      "tag": "body_pain",
+      "patterns": [
+        "my body hurts",
+        "body pain",
+        "i have body pain",
+        "muscle pain",
+        "aches all over my body"
+      ],
+      "responses": [
+        "Body aches can occur with infections, physical activity, stress, or other conditions. Rest and hydration may help, but persistent or severe symptoms should be assessed by a healthcare professional."
+      ]
+    },
+    {
+      "tag": "fatigue",
+      "patterns": [
+        "i feel tired",
+        "i am tired",
+        "fatigue",
+        "feeling exhausted",
+        "i feel exhausted"
+      ],
+      "responses": [
+        "Fatigue can have many possible causes, including lack of sleep, stress, illness, nutrition, or other health factors. Adequate sleep, hydration, and balanced meals may help."
+      ]
+    },
+    {
+      "tag": "weakness",
+      "patterns": [
+        "i feel weak",
+        "weakness",
+        "i am feeling weak",
+        "my body feels weak"
+      ],
+      "responses": [
+        "Weakness can have different causes. Rest, hydration, and regular meals may help in some situations. If weakness is sudden, severe, or accompanied by other concerning symptoms, seek medical care."
+      ]
+    },
+    {
+      "tag": "nausea",
+      "patterns": [
+        "i feel nauseous",
+        "nausea",
+        "feeling sick",
+        "i feel like vomiting"
+      ],
+      "responses": [
+        "Nausea can have several causes. Try small amounts of fluids and rest. If vomiting is persistent, you cannot keep fluids down, or you have severe pain or other concerning symptoms, seek medical care."
+      ]
+    },
+    {
+      "tag": "vomiting",
+      "patterns": [
+        "i am vomiting",
+        "vomiting",
+        "i keep vomiting",
+        "throwing up",
+        "i threw up"
+      ],
+      "responses": [
+        "Vomiting can lead to dehydration. Try taking small sips of fluids if you can tolerate them. Seek medical care if vomiting is persistent, contains blood, causes severe pain, or you cannot keep fluids down."
+      ]
+    },
+    {
+      "tag": "diarrhea",
+      "patterns": [
+        "i have diarrhea",
+        "diarrhea",
+        "loose motions",
+        "loose stools",
+        "frequent loose stools"
+      ],
+      "responses": [
+        "Diarrhea can cause dehydration. Drink fluids and consider oral rehydration solutions when appropriate. Seek medical care if it is severe, persistent, bloody, or accompanied by signs of dehydration."
+      ]
+    },
+    {
+      "tag": "dizziness",
+      "patterns": [
+        "i feel dizzy",
+        "dizziness",
+        "feeling dizzy",
+        "the room is spinning",
+        "i feel lightheaded"
+      ],
+      "responses": [
+        "Dizziness can have many possible causes. Sit or lie down safely, stay hydrated, and avoid driving while dizzy. Seek medical care if dizziness is severe, sudden, persistent, or associated with fainting or other serious symptoms."
+      ]
+    },
+    {
+      "tag": "rash",
+      "patterns": [
+        "i have a rash",
+        "skin rash",
+        "red rash",
+        "rash on my skin",
+        "my skin is red"
+      ],
+      "responses": [
+        "Skin rashes can have many causes, including irritation, allergies, infections, or other conditions. Avoid known irritants and monitor the rash. Seek medical care if it spreads rapidly, becomes severe, or occurs with breathing difficulty or swelling."
+      ]
+    },
+    {
+      "tag": "itching",
+      "patterns": [
+        "my skin is itching",
+        "i have itching",
+        "itchy skin",
+        "skin itching",
+        "i feel itchy"
+      ],
+      "responses": [
+        "Itching can occur due to dry skin, irritation, allergies, or other conditions. Avoid scratching and possible irritants. Seek medical advice if the itching is severe, persistent, or associated with swelling or breathing difficulty."
+      ]
+    },
+    {
+      "tag": "shortness_of_breath",
+      "patterns": [
+        "i have difficulty breathing",
+        "i cannot breathe properly",
+        "shortness of breath",
+        "breathing difficulty",
+        "i am having trouble breathing"
+      ],
+      "responses": [
+        "Difficulty breathing can sometimes be an emergency. If breathing difficulty is severe, sudden, or associated with chest pain, blue lips, fainting, or confusion, seek emergency medical care immediately."
+      ]
+    },
+    {
+      "tag": "health_question",
+      "patterns": [
+        "i have a health question",
+        "i have a medical question",
+        "can you help with health",
+        "i want health information",
+        "tell me about health"
+      ],
+      "responses": [
+        "Sure. Ask me your health-related question and I will provide general information. I cannot replace a qualified healthcare professional."
+      ]
+    },
+    {
+      "tag": "emergency",
+      "patterns": [
+        "this is an emergency",
+        "medical emergency",
+        "i need emergency help",
+        "urgent medical help",
+        "what should i do in an emergency"
+      ],
+      "responses": [
+        "If you believe you are experiencing a medical emergency, contact your local emergency service or go to the nearest emergency department immediately."
+      ]
+    },
+    {
+      "tag": "medication",
+      "patterns": [
+        "medicine",
+        "medication",
+        "can i take medicine",
+        "what medicine should i take",
+        "medication information",
+        "medicine information"
+      ],
+      "responses": [
+        "Medication choices depend on the person's condition, other medicines, allergies, and medical history. A qualified healthcare professional or pharmacist can provide personalized medication advice."
+      ]
+    },
+    {
+      "tag": "diagnosis",
+      "patterns": [
+        "what disease do i have",
+        "diagnose me",
+        "what is my diagnosis",
+        "do i have a disease",
+        "can you diagnose me"
+      ],
+      "responses": [
+        "I cannot provide a medical diagnosis. I can provide general health information and explain symptoms, but a qualified healthcare professional should evaluate your condition."
+      ]
+    },
+    {
+      "tag": "doctor",
+      "patterns": [
+        "should i see a doctor",
+        "when should i see a doctor",
+        "do i need a doctor",
+        "which doctor should i see",
+        "should i consult a doctor"
+      ],
+      "responses": [
+        "If symptoms are severe, persistent, worsening, or concerning, it is appropriate to consult a healthcare professional. The appropriate specialist depends on the symptoms."
+      ]
+    },
+    {
+      "tag": "safety",
+      "patterns": [
+        "is this safe",
+        "health safety",
+        "is it safe",
+        "medical safety",
+        "is this medically safe"
+      ],
+      "responses": [
+        "Health information should be considered general guidance rather than a diagnosis or personalized treatment plan. When in doubt, consult a qualified healthcare professional."
+      ]
+    },
+    {
+      "tag": "water",
+      "patterns": [
+        "how much water should i drink",
+        "how much water should i drink daily",
+        "water intake",
+        "daily water",
+        "drinking enough water"
+      ],
+      "responses": [
+        "Daily fluid needs vary depending on factors such as activity, climate, diet, and health. Drink regularly and pay attention to thirst and signs of dehydration."
+      ]
+    },
+    {
+      "tag": "sleep",
+      "patterns": [
+        "how much sleep do i need",
+        "sleep requirements",
+        "healthy sleep",
+        "how to sleep better",
+        "sleep problems"
+      ],
+      "responses": [
+        "Most adults generally need around 7 to 9 hours of sleep per night. A consistent sleep schedule and a comfortable sleep environment can support healthy sleep."
+      ]
+    },
+    {
+      "tag": "exercise",
+      "patterns": [
+        "how much exercise should i do",
+        "exercise",
+        "physical activity",
+        "healthy exercise",
+        "how often should i exercise"
+      ],
+      "responses": [
+        "Regular physical activity can support overall health. The appropriate amount depends on your age, health, fitness level, and goals. Start gradually if you are not currently active."
+      ]
+    },
+    {
+      "tag": "nutrition",
+      "patterns": [
+        "healthy diet",
+        "what should i eat",
+        "healthy food",
+        "nutrition",
+        "balanced diet",
+        "how to eat healthy"
+      ],
+      "responses": [
+        "A balanced diet generally includes vegetables, fruits, whole grains, protein sources, and healthy fats. Individual nutritional needs vary, so personalized advice can be obtained from a qualified healthcare professional or dietitian."
+      ]
+    }
+  ]
+}

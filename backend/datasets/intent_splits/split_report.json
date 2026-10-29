@@ -1,0 +1,101 @@
+{
+  "source": "chatbot/health_qa/knowledge.py + knowledge_extra.py (author-written topics; 46-category taxonomy in taxonomy.py)",
+  "seed": 42,
+  "target_split": [
+    0.7,
+    0.15,
+    0.15
+  ],
+  "near_duplicate_jaccard": 0.6,
+  "raw_examples": 961,
+  "usable_examples": 951,
+  "excluded": 10,
+  "excluded_detail": [
+    {
+      "text": "What should I do if I have severe chest pain?",
+      "label": "chest_pain_emergency",
+      "category": "Emergency",
+      "category46": "medical_emergency",
+      "reason": "exact duplicate"
+    },
+    {
+      "text": "I have lost interest in everything",
+      "label": "depression_signs",
+      "category": "Mental Health",
+      "category46": "depression_low_mood",
+      "reason": "same text under conflicting labels"
+    },
+    {
+      "text": "How do I know if I am depressed?",
+      "label": "depression_signs",
+      "category": "Mental Health",
+      "category46": "depression_low_mood",
+      "reason": "exact duplicate"
+    },
+    {
+      "text": "How can I eat healthier?",
+      "label": "healthy_diet",
+      "category": "Nutrition",
+      "category46": "diet_nutrition",
+      "reason": "exact duplicate"
+    },
+    {
+      "text": "tips for better sleep",
+      "label": "insomnia",
+      "category": "Sleep Health",
+      "category46": "sleep_problems",
+      "reason": "exact duplicate"
+    },
+    {
+      "text": "What should I eat during pregnancy?",
+      "label": "pregnancy_signs",
+      "category": "Women's Health",
+      "category46": "pregnancy_maternal",
+      "reason": "same text under conflicting labels"
+    },
+    {
+      "text": "Are vaccines safe?",
+      "label": "preventive_checkups",
+      "category": "Prevention",
+      "category46": "disease_prevention",
+      "reason": "same text under conflicting labels"
+    },
+    {
+      "text": "I have lost interest in everything",
+      "label": "low_mood_support",
+      "category": "Depression and Low Mood",
+      "category46": "depression_low_mood",
+      "reason": "same text under conflicting labels"
+    },
+    {
+      "text": "Are vaccines safe?",
+      "label": "vaccination_info",
+      "category": "Vaccination and Immunization",
+      "category46": "vaccination_immunization",
+      "reason": "same text under conflicting labels"
+    },
+    {
+      "text": "What should I eat during pregnancy?",
+      "label": "pregnancy_care",
+      "category": "Pregnancy and Maternal Health",
+      "category46": "pregnancy_maternal",
+      "reason": "same text under conflicting labels"
+    }
+  ],
+  "classes": 91,
+  "split_sizes": {
+    "train": 648,
+    "val": 148,
+    "test": 155
+  },
+  "classes_in_split": {
+    "train": 91,
+    "val": 91,
+    "test": 91
+  },
+  "limitations": [
+    "Examples are hand-written by the project team, so the held-out test set measures generalisation to new wording of the SAME topics, not to real patient language.",
+    "With ~10 questions per topic the validation and test sets contain only 1-2 groups per class; metrics have wide uncertainty.",
+    "Labels are topic ids, not clinically validated diagnoses."
+  ]
+}

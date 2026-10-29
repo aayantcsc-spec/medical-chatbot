@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}MediChat — Settings{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="dash-main">
+
+    <header class="dash-header">
+        <div>
+            <h1>Settings</h1>
+            <p>Manage your account, appearance and preferences.</p>
+        </div>
+    </header>
+
+    {% if saved %}
+    <div class="settings-banner">Your account details were updated.</div>
+    {% endif %}
+
+    <!-- ACCOUNT -->
+    <div class="dash-card settings-card">
+        <h3 class="settings-heading"><i class="ti ti-id-badge-2"></i> Account</h3>
+        <p class="settings-sub">Your name and email as they appear across MediChat.</p>
+
+        <form method="POST" action="{{ url_for('settings') }}" class="settings-form">
+            {% set first, last = (user_name.split(' ', 1) + [''])[:2] if user_name else ('', '') %}
+            <div class="settings-row">
+                <label>
+                    First name
+                    <input type="text" name="first_name" value="{{ first }}" required>
+                </label>
+                <label>
+                    Last name
+                    <input type="text" name="last_name" value="{{ last }}" required>
+                </label>
+            </div>
+            <label>
+                Email
+                <input type="email" value="{{ user_email }}" disabled>
+            </label>
+            <p class="settings-hint">Email changes aren't supported yet — contact support if this needs to change.</p>
+
+            <button type="submit" class="dash-button">Save changes</button>
+        </form>
+    </div>
+
+    <!-- APPEARANCE -->
+    <div class="dash-card settings-card">
+        <h3 class="settings-heading"><i class="ti ti-palette"></i> Appearance</h3>
+        <p class="settings-sub">Theme options are on the roadmap — MediChat currently uses the light theme everywhere.</p>
+    </div>
+
+    <!-- PREFERENCES -->
+    <div class="dash-card settings-card">
+        <h3 class="settings-heading"><i class="ti ti-adjustments"></i> Preferences</h3>
+        <p class="settings-sub">Notification and chatbot-behavior preferences are on the roadmap and aren't saved yet.</p>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,3205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MediChat | User Study</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        /* ============================================================
+           MEDICHAT USER STUDY
+           Dashboard-matched design
+        ============================================================ */
+
+        :root {
+
+            --dark: #132a13;
+            --dark-green: #3a5a40;
+            --green: #588157;
+            --olive: #a3b18a;
+            --light-olive: #dad7cd;
+
+            --cream: #f4f2e6;
+            --cream-dark: #ebe8d8;
+
+            --white: #ffffff;
+
+            --text: #263326;
+            --muted: #6b705c;
+
+            --border: #dedcca;
+
+            --shadow:
+                0 8px 25px rgba(19, 42, 19, 0.08);
+
+            --shadow-hover:
+                0 14px 32px rgba(19, 42, 19, 0.12);
+
+            --danger: #a94442;
+
+        }
+
+
+        /* ============================================================
+           RESET
+        ============================================================ */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4f2e6 0%,
+                    #efede1 50%,
+                    #e7e5d7 100%
+                );
+
+            color: var(--text);
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+        }
+
+
+        button,
+        textarea {
+
+            font-family: inherit;
+        }
+
+
+        /* ============================================================
+           PAGE
+        ============================================================ */
+
+        .study-page {
+
+            width: 100%;
+            min-height: 100vh;
+
+            padding: 34px 5%;
+        }
+
+
+        .study-container {
+
+            width: 100%;
+            max-width: 1280px;
+
+            margin: 0 auto;
+        }
+
+
+        /* ============================================================
+           HEADER
+        ============================================================ */
+
+        .study-header {
+
+            margin-bottom: 30px;
+        }
+
+
+        .study-header-top {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+
+        .study-label {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 9px;
+
+            color: var(--green);
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.6px;
+
+            text-transform: uppercase;
+        }
+
+
+        .study-label::before {
+
+            content: "";
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+        }
+
+
+        .study-header h1 {
+
+            color: var(--dark);
+
+            font-size: 36px;
+
+            font-weight: 800;
+
+            letter-spacing: -0.8px;
+
+            line-height: 1.15;
+        }
+
+
+        .study-header p {
+
+            max-width: 720px;
+
+            margin-top: 10px;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        /* ============================================================
+           BACK TO DASHBOARD
+        ============================================================ */
+
+        .back-dashboard {
+
+            flex-shrink: 0;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 12px 18px;
+
+            background: var(--dark);
+
+            color: #f4f1e6;
+
+            border: 1px solid var(--dark);
+
+            border-radius: 11px;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+            box-shadow:
+                0 5px 14px rgba(19, 42, 19, 0.12);
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .back-dashboard i {
+
+            font-size: 12px;
+        }
+
+
+        .back-dashboard:hover {
+
+            background: var(--dark-green);
+
+            border-color: var(--dark-green);
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 9px 20px rgba(19, 42, 19, 0.18);
+        }
+
+
+        /* ============================================================
+           SUMMARY CARDS
+        ============================================================ */
+
+        .summary-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 26px;
+        }
+
+
+        .summary-card {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 17px;
+
+            padding: 22px;
+
+            background: rgba(255, 255, 255, 0.86);
+
+            border: 1px solid var(--border);
+
+            border-radius: 17px;
+
+            box-shadow: var(--shadow);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .summary-card:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow: var(--shadow-hover);
+        }
+
+
+        .summary-icon {
+
+            width: 48px;
+            height: 48px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #e7eadc;
+
+            color: var(--dark-green);
+
+            border-radius: 13px;
+
+            font-size: 19px;
+        }
+
+
+        .summary-content strong {
+
+            display: block;
+
+            color: var(--dark);
+
+            font-size: 25px;
+
+            line-height: 1;
+        }
+
+
+        .summary-content span {
+
+            display: block;
+
+            margin-top: 6px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        /* ============================================================
+           INFORMATION CARD
+        ============================================================ */
+
+        .info-card {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 15px;
+
+            margin-bottom: 26px;
+
+            padding: 20px 22px;
+
+            background: #edf0e4;
+
+            border: 1px solid #d9dfcc;
+
+            border-radius: 15px;
+        }
+
+
+        .info-icon {
+
+            width: 40px;
+            height: 40px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: var(--dark-green);
+
+            color: white;
+        }
+
+
+        .info-card h3 {
+
+            color: var(--dark);
+
+            font-size: 14px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .info-card p {
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.65;
+        }
+
+
+        /* ============================================================
+           PROGRESS
+        ============================================================ */
+
+        .progress-card {
+
+            margin-bottom: 25px;
+
+            padding: 20px 22px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 17px;
+
+            box-shadow: var(--shadow);
+        }
+
+
+        .progress-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+        }
+
+
+        .progress-question {
+
+            color: var(--dark);
+
+            font-size: 14px;
+
+            font-weight: 800;
+        }
+
+
+        .progress-percent {
+
+            color: var(--green);
+
+            font-size: 13px;
+
+            font-weight: 800;
+        }
+
+
+        .progress-track {
+
+            width: 100%;
+
+            height: 8px;
+
+            overflow: hidden;
+
+            background: #e4e2d7;
+
+            border-radius: 50px;
+        }
+
+
+        .progress-bar {
+
+            width: 0%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--dark-green),
+                    var(--green)
+                );
+
+            border-radius: 50px;
+
+            transition: width 0.35s ease;
+        }
+
+
+        /* ============================================================
+           LOADING
+        ============================================================ */
+
+        .loading-card {
+
+            display: none;
+
+            padding: 50px 20px;
+
+            text-align: center;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            box-shadow: var(--shadow);
+        }
+
+
+        .loading-card.active {
+
+            display: block;
+        }
+
+
+        .loading-spinner {
+
+            width: 38px;
+            height: 38px;
+
+            margin: 0 auto 15px;
+
+            border: 4px solid #dfe3d7;
+
+            border-top-color: var(--dark-green);
+
+            border-radius: 50%;
+
+            animation: spin 0.8s linear infinite;
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        .loading-card strong {
+
+            display: block;
+
+            color: var(--dark);
+
+            font-size: 15px;
+        }
+
+
+        .loading-card span {
+
+            display: block;
+
+            margin-top: 6px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        /* ============================================================
+           QUESTION CARD
+        ============================================================ */
+
+        .question-card {
+
+            margin-bottom: 25px;
+
+            padding: 27px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            box-shadow: var(--shadow);
+        }
+
+
+        .question-meta {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 16px;
+        }
+
+
+        .question-number {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: var(--green);
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.5px;
+
+            text-transform: uppercase;
+        }
+
+
+        .question-category {
+
+            padding: 6px 10px;
+
+            background: #e9ecdf;
+
+            color: var(--dark-green);
+
+            border-radius: 7px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.7px;
+        }
+
+
+        .question-card h2 {
+
+            color: var(--dark);
+
+            font-size: 21px;
+
+            line-height: 1.5;
+
+            font-weight: 750;
+        }
+
+
+        /* ============================================================
+           RESPONSES
+        ============================================================ */
+
+        .section-title {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin: 0 0 15px;
+        }
+
+
+        .section-title h2 {
+
+            color: var(--dark);
+
+            font-size: 18px;
+
+            font-weight: 800;
+        }
+
+
+        .section-title span {
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        .response-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .response-card {
+
+            display: flex;
+
+            flex-direction: column;
+
+            min-height: 270px;
+
+            padding: 21px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 17px;
+
+            box-shadow: var(--shadow);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .response-card:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow: var(--shadow-hover);
+        }
+
+
+        .response-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .response-icon {
+
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: #e8ebdf;
+
+            color: var(--dark-green);
+        }
+
+
+        .response-header h3 {
+
+            color: var(--dark);
+
+            font-size: 14px;
+
+            font-weight: 800;
+        }
+
+
+        .response-header span {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+
+        .response-text {
+
+            flex: 1;
+
+            color: #4c5549;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            white-space: pre-wrap;
+        }
+
+
+        .response-footer {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-top: 17px;
+
+            padding-top: 13px;
+
+            border-top: 1px solid #ecebe3;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        .response-footer i {
+
+            color: var(--green);
+        }
+
+
+        /* ============================================================
+           EVALUATION
+        ============================================================ */
+
+        .evaluation-card {
+
+            margin-bottom: 25px;
+
+            padding: 25px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            box-shadow: var(--shadow);
+
+            overflow-x: auto;
+        }
+
+
+        .evaluation-heading {
+
+            margin-bottom: 20px;
+        }
+
+
+        .evaluation-heading h2 {
+
+            color: var(--dark);
+
+            font-size: 18px;
+
+            font-weight: 800;
+        }
+
+
+        .evaluation-heading p {
+
+            margin-top: 5px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        .rating-table {
+
+            width: 100%;
+
+            min-width: 720px;
+
+            border-collapse: collapse;
+        }
+
+
+        .rating-table th {
+
+            padding: 13px 10px;
+
+            background: #f0efe6;
+
+            color: var(--dark);
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            text-align: center;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+
+        .rating-table th:first-child {
+
+            text-align: left;
+        }
+
+
+        .rating-table td {
+
+            padding: 15px 10px;
+
+            border-bottom: 1px solid #ecebe3;
+
+            vertical-align: middle;
+
+            text-align: center;
+        }
+
+
+        .rating-table td:first-child {
+
+            color: var(--dark);
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            text-align: left;
+        }
+
+
+        .rating-buttons {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+        }
+
+
+        .rating-btn {
+
+            width: 31px;
+            height: 31px;
+
+            border: 1px solid #d8d9ce;
+
+            border-radius: 8px;
+
+            background: #f7f6ef;
+
+            color: #6b705c;
+
+            cursor: pointer;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            transition: all 0.18s ease;
+        }
+
+
+        .rating-btn:hover {
+
+            border-color: var(--green);
+
+            color: var(--dark-green);
+
+            transform: translateY(-1px);
+        }
+
+
+        .rating-btn.selected {
+
+            background: var(--dark-green);
+
+            border-color: var(--dark-green);
+
+            color: white;
+
+            box-shadow:
+                0 4px 10px rgba(58, 90, 64, 0.18);
+        }
+
+
+        /* ============================================================
+           FEEDBACK
+        ============================================================ */
+
+        .feedback-card {
+
+            margin-bottom: 25px;
+
+            padding: 24px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            box-shadow: var(--shadow);
+        }
+
+
+        .feedback-card h2 {
+
+            color: var(--dark);
+
+            font-size: 17px;
+
+            font-weight: 800;
+        }
+
+
+        .feedback-card p {
+
+            margin-top: 5px;
+
+            margin-bottom: 13px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        .feedback-card textarea {
+
+            width: 100%;
+
+            min-height: 115px;
+
+            resize: vertical;
+
+            padding: 14px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: #faf9f3;
+
+            color: var(--text);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            transition: border 0.2s ease;
+        }
+
+
+        .feedback-card textarea:focus {
+
+            border-color: var(--green);
+
+            box-shadow:
+                0 0 0 3px rgba(88, 129, 87, 0.08);
+        }
+
+
+        /* ============================================================
+           NAVIGATION
+        ============================================================ */
+
+        .study-navigation {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 20px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 17px;
+
+            box-shadow: var(--shadow);
+        }
+
+
+        .save-status {
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .save-status.success {
+
+            color: var(--green);
+        }
+
+
+        .save-status.error {
+
+            color: var(--danger);
+        }
+
+
+        .navigation-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .nav-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            min-width: 145px;
+
+            padding: 12px 18px;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: all 0.2s ease;
+        }
+
+
+        .btn-secondary {
+
+            background: #f1f0e7;
+
+            color: var(--dark-green);
+
+            border: 1px solid var(--border);
+        }
+
+
+        .btn-secondary:hover:not(:disabled) {
+
+            background: #e6e5d9;
+
+            transform: translateY(-2px);
+        }
+
+
+        .btn-primary {
+
+            background: var(--dark);
+
+            color: white;
+
+            border: 1px solid var(--dark);
+
+            box-shadow:
+                0 5px 14px rgba(19, 42, 19, 0.12);
+        }
+
+
+        .btn-primary:hover:not(:disabled) {
+
+            background: var(--dark-green);
+
+            border-color: var(--dark-green);
+
+            transform: translateY(-2px);
+        }
+
+
+        .nav-btn:disabled {
+
+            opacity: 0.45;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* ============================================================
+           ERROR
+        ============================================================ */
+
+        .error-card {
+
+            display: none;
+
+            margin-bottom: 25px;
+
+            padding: 22px;
+
+            background: #fff5f4;
+
+            border: 1px solid #ebceca;
+
+            border-radius: 15px;
+
+            color: var(--danger);
+        }
+
+
+        .error-card.active {
+
+            display: block;
+        }
+
+
+        .error-card strong {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            font-size: 14px;
+        }
+
+
+        .error-card p {
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ============================================================
+           COMPLETION
+        ============================================================ */
+
+        .completion-card {
+
+            display: none;
+
+            margin-bottom: 25px;
+
+            padding: 40px 25px;
+
+            text-align: center;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            box-shadow: var(--shadow);
+        }
+
+
+        .completion-card.active {
+
+            display: block;
+        }
+
+
+        .completion-icon {
+
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #e5ebdf;
+
+            color: var(--dark-green);
+
+            font-size: 27px;
+        }
+
+
+        .completion-card h2 {
+
+            color: var(--dark);
+
+            font-size: 23px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .completion-card p {
+
+            max-width: 600px;
+
+            margin: 0 auto;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* ============================================================
+           FOOTER
+        ============================================================ */
+
+        .study-footer {
+
+            margin-top: 35px;
+
+            padding: 22px 0;
+
+            border-top: 1px solid #d9d7ca;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+
+        .footer-brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: var(--dark);
+
+            font-weight: 800;
+        }
+
+
+        .footer-brand i {
+
+            color: var(--green);
+        }
+
+
+        /* ============================================================
+           RESPONSIVE
+        ============================================================ */
+
+        @media (max-width: 1000px) {
+
+            .response-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 760px) {
+
+            .study-page {
+
+                padding: 25px 18px;
+            }
+
+
+            .study-header-top {
+
+                flex-direction: column;
+            }
+
+
+            .back-dashboard {
+
+                align-self: flex-start;
+            }
+
+
+            .summary-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .study-header h1 {
+
+                font-size: 29px;
+            }
+
+
+            .question-card {
+
+                padding: 21px;
+            }
+
+
+            .study-navigation {
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .navigation-actions {
+
+                width: 100%;
+            }
+
+
+            .nav-btn {
+
+                flex: 1;
+            }
+
+
+            .study-footer {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="study-page">
+
+    <div class="study-container">
+
+
+        <!-- ========================================================
+             HEADER
+        ========================================================= -->
+
+        <header class="study-header">
+
+            <div class="study-header-top">
+
+                <div>
+
+                    <span class="study-label">
+                        MEDICHAT RESEARCH
+                    </span>
+
+                    <h1>
+                        Chatbot User Study
+                    </h1>
+
+                    <p>
+                        Compare three healthcare chatbot architectures
+                        using the same set of questions and evaluation
+                        criteria.
+                    </p>
+
+                </div>
+
+
+                <!-- BACK TO DASHBOARD -->
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="back-dashboard"
+                >
+
+                    <i class="fas fa-arrow-left"></i>
+
+                    <span>
+                        Back to Dashboard
+                    </span>
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ========================================================
+             SUMMARY
+        ========================================================= -->
+
+        <section class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+
+                    <i class="fas fa-list-check"></i>
+
+                </div>
+
+                <div class="summary-content">
+
+                    <strong id="totalQuestionsSummary">
+                        300
+                    </strong>
+
+                    <span>
+                        Questions
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+
+                    <i class="fas fa-robot"></i>
+
+                </div>
+
+                <div class="summary-content">
+
+                    <strong>
+                        3
+                    </strong>
+
+                    <span>
+                        Chatbots
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+
+                    <i class="fas fa-star"></i>
+
+                </div>
+
+                <div class="summary-content">
+
+                    <strong>
+                        5
+                    </strong>
+
+                    <span>
+                        Evaluation Metrics
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ========================================================
+             INFORMATION
+        ========================================================= -->
+
+        <section class="info-card">
+
+            <div class="info-icon">
+
+                <i class="fas fa-circle-info"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    How the study works
+                </h3>
+
+                <p>
+                    Each healthcare question is answered by the
+                    Rule-Based, Machine Learning, and Deep Learning
+                    architectures. Rate every response using the same
+                    five criteria so the architectures can be compared
+                    consistently.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ========================================================
+             PROGRESS
+        ========================================================= -->
+
+        <section class="progress-card">
+
+            <div class="progress-top">
+
+                <span
+                    class="progress-question"
+                    id="progressQuestion"
+                >
+                    Question 1 of 300
+                </span>
+
+
+                <span
+                    class="progress-percent"
+                    id="progressPercent"
+                >
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-track">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ========================================================
+             ERROR
+        ========================================================= -->
+
+        <section
+            class="error-card"
+            id="errorCard"
+        >
+
+            <strong>
+                Unable to load the user study
+            </strong>
+
+            <p id="errorMessage">
+                Please check your Flask server and try again.
+            </p>
+
+        </section>
+
+
+
+        <!-- ========================================================
+             LOADING
+        ========================================================= -->
+
+        <section
+            class="loading-card"
+            id="loadingCard"
+        >
+
+            <div class="loading-spinner"></div>
+
+            <strong>
+                Loading healthcare question...
+            </strong>
+
+            <span>
+                Generating responses from all three architectures.
+            </span>
+
+        </section>
+
+
+
+        <!-- ========================================================
+             QUESTION
+        ========================================================= -->
+
+        <section
+            class="question-card"
+            id="questionCard"
+        >
+
+            <div class="question-meta">
+
+                <span
+                    class="question-number"
+                    id="questionNumber"
+                >
+                    <i class="fas fa-hashtag"></i>
+                    Question 1
+                </span>
+
+
+                <span
+                    class="question-category"
+                    id="questionCategory"
+                >
+                    GENERAL HEALTH
+                </span>
+
+            </div>
+
+
+            <h2 id="questionText">
+                Loading question...
+            </h2>
+
+        </section>
+
+
+
+        <!-- ========================================================
+             RESPONSES
+        ========================================================= -->
+
+        <div class="section-title">
+
+            <h2>
+                Chatbot Responses
+            </h2>
+
+            <span>
+                Compare before rating
+            </span>
+
+        </div>
+
+
+        <section
+            class="response-grid"
+            id="responsesContainer"
+        >
+
+            <!-- Generated dynamically -->
+
+        </section>
+
+
+
+        <!-- ========================================================
+             EVALUATION
+        ========================================================= -->
+
+        <section class="evaluation-card">
+
+            <div class="evaluation-heading">
+
+                <h2>
+                    Evaluate the Responses
+                </h2>
+
+                <p>
+                    Give each chatbot a rating from 1 to 5 for every
+                    evaluation criterion.
+                </p>
+
+            </div>
+
+
+            <table class="rating-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Evaluation Metric
+                        </th>
+
+                        <th>
+                            Rule-Based
+                        </th>
+
+                        <th>
+                            Machine Learning
+                        </th>
+
+                        <th>
+                            Deep Learning
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <!-- CORRECTNESS -->
+
+                    <tr>
+
+                        <td>
+                            Correctness
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="correctness"
+                                data-bot="rule"
+                            ></div>
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="correctness"
+                                data-bot="ml"
+                            ></div>
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="correctness"
+                                data-bot="dl"
+                            ></div>
+                        </td>
+
+                    </tr>
+
+
+                    <!-- RELEVANCE -->
+
+                    <tr>
+
+                        <td>
+                            Relevance
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="relevance"
+                                data-bot="rule"
+                            ></div>
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="relevance"
+                                data-bot="ml"
+                            ></div>
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="relevance"
+                                data-bot="dl"
+                            ></div>
+                        </td>
+
+                    </tr>
+
+
+                    <!-- CLARITY -->
+
+                    <tr>
+
+                        <td>
+                            Clarity
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="clarity"
+                                data-bot="rule"
+                            ></div>
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="clarity"
+                                data-bot="ml"
+                            ></div>
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="clarity"
+                                data-bot="dl"
+                            ></div>
+                        </td>
+
+                    </tr>
+
+
+                    <!-- SAFETY -->
+
+                    <tr>
+
+                        <td>
+                            Safety
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="safety"
+                                data-bot="rule"
+                            ></div>
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="safety"
+                                data-bot="ml"
+                            ></div>
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="safety"
+                                data-bot="dl"
+                            ></div>
+                        </td>
+
+                    </tr>
+
+
+                    <!-- TRUSTWORTHINESS -->
+
+                    <tr>
+
+                        <td>
+                            Trustworthiness
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="trustworthiness"
+                                data-bot="rule"
+                            ></div>
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="trustworthiness"
+                                data-bot="ml"
+                            ></div>
+                        </td>
+
+                        <td>
+                            <div
+                                class="rating-buttons"
+                                data-metric="trustworthiness"
+                                data-bot="dl"
+                            ></div>
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+
+        <!-- ========================================================
+             FEEDBACK
+        ========================================================= -->
+
+        <section class="feedback-card">
+
+            <h2>
+                Additional Feedback
+            </h2>
+
+            <p>
+                Optional: share any comments about the responses.
+            </p>
+
+
+            <textarea
+                id="feedbackInput"
+                placeholder="Write your feedback here..."
+                maxlength="2000"
+            ></textarea>
+
+        </section>
+
+
+
+        <!-- ========================================================
+             NAVIGATION
+        ========================================================= -->
+
+        <section class="study-navigation">
+
+            <span
+                class="save-status"
+                id="saveStatus"
+            >
+                Evaluation not submitted
+            </span>
+
+
+            <div class="navigation-actions">
+
+                <button
+                    type="button"
+                    class="nav-btn btn-secondary"
+                    id="previousBtn"
+                    onclick="previousQuestion()"
+                    disabled
+                >
+
+                    <i class="fas fa-arrow-left"></i>
+
+                    Previous
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="nav-btn btn-primary"
+                    id="saveContinueBtn"
+                    onclick="nextQuestion()"
+                >
+
+                    Save & Continue
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ========================================================
+             COMPLETION
+        ========================================================= -->
+
+        <section
+            class="completion-card"
+            id="completionCard"
+        >
+
+            <div class="completion-icon">
+
+                <i class="fas fa-check"></i>
+
+            </div>
+
+
+            <h2>
+                User Study Completed
+            </h2>
+
+
+            <p>
+                Thank you for evaluating the MediChat chatbot
+                architectures. Your ratings have been saved and can
+                now be used for the comparative analysis.
+            </p>
+
+        </section>
+
+
+
+        <!-- ========================================================
+             FOOTER
+        ========================================================= -->
+
+        <footer class="study-footer">
+
+            <div class="footer-brand">
+
+                <i class="fas fa-plus"></i>
+
+                <span>
+                    MediChat
+                </span>
+
+            </div>
+
+
+            <span>
+                Comparative Analysis of Health Chatbots Based on
+                Framework and Architecture
+            </span>
+
+        </footer>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    /* ============================================================
+       MEDICHAT USER STUDY JAVASCRIPT
+    ============================================================ */
+
+
+    const metrics = [
+        "correctness",
+        "relevance",
+        "clarity",
+        "safety",
+        "trustworthiness"
+    ];
+
+
+    const bots = [
+        "rule",
+        "ml",
+        "dl"
+    ];
+
+
+    let currentQuestion = 1;
+
+    let totalQuestions = 300;
+
+    let currentQuestionId = null;
+
+    let loading = false;
+
+
+    /* ============================================================
+       ELEMENTS
+    ============================================================ */
+
+    const questionCard =
+        document.getElementById("questionCard");
+
+    const responsesContainer =
+        document.getElementById("responsesContainer");
+
+    const loadingCard =
+        document.getElementById("loadingCard");
+
+    const errorCard =
+        document.getElementById("errorCard");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const completionCard =
+        document.getElementById("completionCard");
+
+    const saveStatus =
+        document.getElementById("saveStatus");
+
+    const saveContinueBtn =
+        document.getElementById("saveContinueBtn");
+
+    const previousBtn =
+        document.getElementById("previousBtn");
+
+    const feedbackInput =
+        document.getElementById("feedbackInput");
+
+
+    /* ============================================================
+       API HELPER
+    ============================================================ */
+
+    async function apiRequest(url, options = {}) {
+
+        const response = await fetch(
+            url,
+            options
+        );
+
+
+        let data = {};
+
+        try {
+
+            data = await response.json();
+
+        } catch (error) {
+
+            data = {};
+
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                `Server error: ${response.status}`
+            );
+
+        }
+
+
+        if (data.success === false) {
+
+            throw new Error(
+                data.error ||
+                "Request failed."
+            );
+
+        }
+
+
+        return data;
+
+    }
+
+
+    /* ============================================================
+       ESCAPE HTML
+    ============================================================ */
+
+    function escapeHtml(value) {
+
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* ============================================================
+       SHOW ERROR
+    ============================================================ */
+
+    function showError(message) {
+
+        errorMessage.textContent = message;
+
+        errorCard.classList.add("active");
+
+        loadingCard.classList.remove("active");
+
+    }
+
+
+    /* ============================================================
+       HIDE ERROR
+    ============================================================ */
+
+    function hideError() {
+
+        errorCard.classList.remove("active");
+
+    }
+
+
+    /* ============================================================
+       LOADING STATE
+    ============================================================ */
+
+    function setLoading(active) {
+
+        loading = active;
+
+        if (active) {
+
+            loadingCard.classList.add("active");
+
+            questionCard.style.display = "none";
+
+            responsesContainer.style.display = "none";
+
+            document
+                .querySelector(".evaluation-card")
+                .style.display = "none";
+
+            document
+                .querySelector(".feedback-card")
+                .style.display = "none";
+
+            document
+                .querySelector(".study-navigation")
+                .style.display = "none";
+
+        } else {
+
+            loadingCard.classList.remove("active");
+
+            questionCard.style.display = "";
+
+            responsesContainer.style.display = "";
+
+            document
+                .querySelector(".evaluation-card")
+                .style.display = "";
+
+            document
+                .querySelector(".feedback-card")
+                .style.display = "";
+
+            document
+                .querySelector(".study-navigation")
+                .style.display = "";
+
+        }
+
+    }
+
+
+    /* ============================================================
+       PROGRESS
+    ============================================================ */
+
+    function updateProgress() {
+
+        document.getElementById(
+            "progressQuestion"
+        ).textContent =
+            `Question ${currentQuestion} of ${totalQuestions}`;
+
+
+        document.getElementById(
+            "questionNumber"
+        ).innerHTML =
+            `<i class="fas fa-hashtag"></i>
+             Question ${currentQuestion}`;
+
+
+        let percent = 0;
+
+
+        if (totalQuestions > 1) {
+
+            percent =
+                Math.round(
+                    ((currentQuestion - 1) /
+                    (totalQuestions - 1)) * 100
+                );
+
+        }
+
+
+        if (currentQuestion === totalQuestions) {
+
+            percent = 100;
+
+        }
+
+
+        document.getElementById(
+            "progressPercent"
+        ).textContent =
+            `${percent}%`;
+
+
+        document.getElementById(
+            "progressBar"
+        ).style.width =
+            `${percent}%`;
+
+
+        document.getElementById(
+            "totalQuestionsSummary"
+        ).textContent =
+            totalQuestions;
+
+
+        previousBtn.disabled =
+            currentQuestion <= 1;
+
+    }
+
+
+    /* ============================================================
+       CREATE RATINGS
+    ============================================================ */
+
+    function createRatingButtons() {
+
+        document
+            .querySelectorAll(".rating-buttons")
+            .forEach(container => {
+
+                container.innerHTML = "";
+
+
+                for (let rating = 1; rating <= 5; rating++) {
+
+                    const button =
+                        document.createElement("button");
+
+
+                    button.type = "button";
+
+                    button.className = "rating-btn";
+
+                    button.textContent = rating;
+
+                    button.dataset.rating = rating;
+
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            container
+                                .querySelectorAll(".rating-btn")
+                                .forEach(btn => {
+
+                                    btn.classList.remove(
+                                        "selected"
+                                    );
+
+                                });
+
+
+                            this.classList.add(
+                                "selected"
+                            );
+
+
+                            saveStatus.textContent =
+                                "Evaluation in progress";
+
+
+                            saveStatus.className =
+                                "save-status";
+
+                        }
+                    );
+
+
+                    container.appendChild(button);
+
+                }
+
+            });
+
+    }
+
+
+    /* ============================================================
+       CLEAR RATINGS
+    ============================================================ */
+
+    function clearRatings() {
+
+        document
+            .querySelectorAll(".rating-btn")
+            .forEach(button => {
+
+                button.classList.remove("selected");
+
+            });
+
+    }
+
+
+    /* ============================================================
+       APPLY SAVED RATINGS
+    ============================================================ */
+
+    function applySavedRatings(ratings) {
+
+        clearRatings();
+
+
+        if (!ratings) {
+
+            return;
+
+        }
+
+
+        bots.forEach(bot => {
+
+            metrics.forEach(metric => {
+
+                const value =
+                    ratings?.[bot]?.[metric];
+
+
+                if (!value) {
+
+                    return;
+
+                }
+
+
+                const container =
+                    document.querySelector(
+                        `.rating-buttons[data-bot="${bot}"][data-metric="${metric}"]`
+                    );
+
+
+                if (!container) {
+
+                    return;
+
+                }
+
+
+                const button =
+                    container.querySelector(
+                        `.rating-btn[data-rating="${value}"]`
+                    );
+
+
+                if (button) {
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+                }
+
+            });
+
+        });
+
+    }
+
+
+    /* ============================================================
+       COLLECT RATINGS
+    ============================================================ */
+
+    function collectRatings() {
+
+        const ratings = {
+
+            rule: {},
+
+            ml: {},
+
+            dl: {}
+
+        };
+
+
+        bots.forEach(bot => {
+
+            metrics.forEach(metric => {
+
+                const container =
+                    document.querySelector(
+                        `.rating-buttons[data-bot="${bot}"][data-metric="${metric}"]`
+                    );
+
+
+                const selected =
+                    container?.querySelector(
+                        ".rating-btn.selected"
+                    );
+
+
+                ratings[bot][metric] =
+                    selected
+                        ? Number(selected.dataset.rating)
+                        : null;
+
+            });
+
+        });
+
+
+        return ratings;
+
+    }
+
+
+    /* ============================================================
+       VALIDATE RATINGS
+    ============================================================ */
+
+    function validateRatings(ratings) {
+
+        for (const bot of bots) {
+
+            for (const metric of metrics) {
+
+                if (
+                    !ratings[bot] ||
+                    !ratings[bot][metric]
+                ) {
+
+                    return false;
+
+                }
+
+            }
+
+        }
+
+
+        return true;
+
+    }
+
+
+    /* ============================================================
+       RENDER RESPONSES
+    ============================================================ */
+
+    function renderResponses(responses) {
+
+        const responseInfo = {
+
+            rule: {
+                title: "Rule-Based",
+                subtitle: "Architecture 01",
+                icon: "fa-diagram-project"
+            },
+
+            ml: {
+                title: "Machine Learning",
+                subtitle: "Architecture 02",
+                icon: "fa-brain"
+            },
+
+            dl: {
+                title: "Deep Learning",
+                subtitle: "Architecture 03",
+                icon: "fa-network-wired"
+            }
+
+        };
+
+
+        responsesContainer.innerHTML = "";
+
+
+        bots.forEach(bot => {
+
+            const info =
+                responseInfo[bot];
+
+
+            const data =
+                responses?.[bot] || {};
+
+
+            const response =
+                data.response ||
+                "No response was returned.";
+
+
+            const time =
+                Number(data.response_time || 0);
+
+
+            const card =
+                document.createElement("article");
+
+
+            card.className =
+                "response-card";
+
+
+            card.innerHTML = `
+
+                <div class="response-header">
+
+                    <div class="response-icon">
+
+                        <i class="fas ${info.icon}"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            ${info.title}
+                        </h3>
+
+                        <span>
+                            ${info.subtitle}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="response-text">
+                    ${escapeHtml(response)}
+                </div>
+
+
+                <div class="response-footer">
+
+                    <i class="far fa-clock"></i>
+
+                    <span>
+                        Response time:
+                        ${time.toFixed(2)}s
+                    </span>
+
+                </div>
+
+            `;
+
+
+            responsesContainer.appendChild(card);
+
+        });
+
+    }
+
+
+    /* ============================================================
+       LOAD QUESTION
+    ============================================================ */
+
+    async function loadQuestion(questionIndex) {
+
+        if (loading) {
+
+            return;
+
+        }
+
+
+        setLoading(true);
+
+        hideError();
+
+
+        try {
+
+            const data =
+                await apiRequest(
+                    `/api/user-study/question/${questionIndex}`
+                );
+
+
+            currentQuestion =
+                Number(data.question_index);
+
+
+            totalQuestions =
+                Number(data.total);
+
+
+            currentQuestionId =
+                data.question_id;
+
+
+            document.getElementById(
+                "questionText"
+            ).textContent =
+                data.question;
+
+
+            document.getElementById(
+                "questionCategory"
+            ).textContent =
+                (
+                    data.category ||
+                    "GENERAL HEALTH"
+                ).toUpperCase();
+
+
+            renderResponses(
+                data.responses
+            );
+
+
+            createRatingButtons();
+
+
+            applySavedRatings(
+                data.saved?.ratings
+            );
+
+
+            feedbackInput.value =
+                data.saved?.feedback || "";
+
+
+            if (data.saved?.submitted) {
+
+                saveStatus.textContent =
+                    "✓ Evaluation already saved";
+
+                saveStatus.className =
+                    "save-status success";
+
+            } else {
+
+                saveStatus.textContent =
+                    "Evaluation not submitted";
+
+                saveStatus.className =
+                    "save-status";
+
+            }
+
+
+            updateProgress();
+
+
+            saveContinueBtn.innerHTML =
+                currentQuestion >= totalQuestions
+
+                    ? `Complete Study
+                       <i class="fas fa-check"></i>`
+
+                    : `Save & Continue
+                       <i class="fas fa-arrow-right"></i>`;
+
+
+        } catch (error) {
+
+            showError(
+                error.message
+            );
+
+        } finally {
+
+            setLoading(false);
+
+        }
+
+    }
+
+
+    /* ============================================================
+       LOAD STUDY STATUS
+    ============================================================ */
+
+    async function initializeStudy() {
+
+        createRatingButtons();
+
+
+        try {
+
+            const status =
+                await apiRequest(
+                    "/api/user-study/status"
+                );
+
+
+            totalQuestions =
+                Number(
+                    status.total ||
+                    300
+                );
+
+
+            currentQuestion =
+                Number(
+                    status.current_question ||
+                    1
+                );
+
+
+            updateProgress();
+
+
+            await loadQuestion(
+                currentQuestion
+            );
+
+
+        } catch (error) {
+
+            showError(
+                error.message
+            );
+
+            setLoading(false);
+
+        }
+
+    }
+
+
+    /* ============================================================
+       SAVE CURRENT QUESTION
+    ============================================================ */
+
+    async function saveCurrentQuestion() {
+
+        const ratings =
+            collectRatings();
+
+
+        if (!validateRatings(ratings)) {
+
+            saveStatus.textContent =
+                "Please rate all 15 criteria before continuing.";
+
+            saveStatus.className =
+                "save-status error";
+
+            return false;
+
+        }
+
+
+        saveStatus.textContent =
+            "Saving evaluation...";
+
+        saveStatus.className =
+            "save-status";
+
+
+        saveContinueBtn.disabled = true;
+
+        previousBtn.disabled = true;
+
+
+        try {
+
+            const data =
+                await apiRequest(
+                    "/api/user-study/save",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            question_index:
+                                currentQuestion,
+
+                            question_id:
+                                currentQuestionId,
+
+                            ratings:
+                                ratings,
+
+                            feedback:
+                                feedbackInput.value.trim()
+
+                        })
+
+                    }
+                );
+
+
+            saveStatus.textContent =
+                "✓ Evaluation saved";
+
+            saveStatus.className =
+                "save-status success";
+
+
+            return data;
+
+
+        } catch (error) {
+
+            saveStatus.textContent =
+                error.message;
+
+            saveStatus.className =
+                "save-status error";
+
+
+            return false;
+
+        } finally {
+
+            saveContinueBtn.disabled =
+                false;
+
+            previousBtn.disabled =
+                currentQuestion <= 1;
+
+        }
+
+    }
+
+
+    /* ============================================================
+       NEXT QUESTION
+    ============================================================ */
+
+    async function nextQuestion() {
+
+        if (loading) {
+
+            return;
+
+        }
+
+
+        const saved =
+            await saveCurrentQuestion();
+
+
+        if (!saved) {
+
+            return;
+
+        }
+
+
+        if (
+            currentQuestion >=
+            totalQuestions
+        ) {
+
+            showCompletion();
+
+            return;
+
+        }
+
+
+        currentQuestion += 1;
+
+
+        await loadQuestion(
+            currentQuestion
+        );
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* ============================================================
+       PREVIOUS QUESTION
+    ============================================================ */
+
+    async function previousQuestion() {
+
+        if (
+            loading ||
+            currentQuestion <= 1
+        ) {
+
+            return;
+
+        }
+
+
+        currentQuestion -= 1;
+
+
+        await loadQuestion(
+            currentQuestion
+        );
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* ============================================================
+       COMPLETION
+    ============================================================ */
+
+    function showCompletion() {
+
+        questionCard.style.display =
+            "none";
+
+        responsesContainer.style.display =
+            "none";
+
+        document
+            .querySelector(".evaluation-card")
+            .style.display = "none";
+
+        document
+            .querySelector(".feedback-card")
+            .style.display = "none";
+
+        document
+            .querySelector(".study-navigation")
+            .style.display = "none";
+
+
+        completionCard.classList.add(
+            "active"
+        );
+
+
+        document.getElementById(
+            "progressPercent"
+        ).textContent =
+            "100%";
+
+
+        document.getElementById(
+            "progressBar"
+        ).style.width =
+            "100%";
+
+
+        saveStatus.textContent =
+            "✓ User study completed";
+
+    }
+
+
+    /* ============================================================
+       START
+    ============================================================ */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            initializeStudy();
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

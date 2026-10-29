@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediChat | Dashboard</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body class="dashboard-page">
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <a class="sidebar-brand" href="{{ url_for('dashboard') }}">
+            <span class="brand-mark"><i class="fas fa-plus"></i></span>
+            <span class="brand-text">
+                MediChat
+                <small>Your health companion</small>
+            </span>
+        </a>
+
+        <div class="nav-label">WORKSPACE</div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}" class="nav-item active">
+                <i class="fas fa-house"></i><span>Dashboard</span>
+            </a>
+            <a href="{{ url_for('chat_page') }}" class="nav-item">
+                <i class="far fa-comments"></i><span>Chat</span>
+            </a>
+            <a href="{{ url_for('comparison') }}" class="nav-item">
+                <i class="fas fa-scale-balanced"></i><span>Comparison</span>
+            </a>
+            <a href="{{ url_for('analysis') }}" class="nav-item">
+                <i class="fas fa-chart-simple"></i><span>Analysis</span>
+            </a>
+            <a href="{{ url_for('user_study_page') }}" class="nav-item">
+                <i class="fas fa-users"></i><span>User Study</span>
+            </a>
+        </nav>
+
+        <div class="nav-label secondary-label">PREFERENCES</div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('settings') }}" class="nav-item">
+                <i class="fas fa-sliders"></i><span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-user">
+                <div class="user-avatar">
+                    {{ session.get('user_name', 'User')[:2].upper() }}
+                </div>
+                <div class="user-info">
+                    <strong>{{ session.get('user_name', 'User') }}</strong>
+                    <span>MediChat member</span>
+                </div>
+            </div>
+            <a href="{{ url_for('logout') }}" class="logout-btn">
+                <i class="fas fa-arrow-right-from-bracket"></i>
+                <span>Log out</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="dashboard-main">
+
+        <header class="topbar">
+            <div>
+                <div class="breadcrumb">Workspace <span>/</span> Dashboard</div>
+                <h1>Your dashboard</h1>
+            </div>
+            <a href="{{ url_for('settings') }}" class="profile-shortcut">
+                <span class="online-dot"></span>
+                <span>Personal workspace</span>
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </header>
+
+        <section class="hero-card">
+            <div class="hero-content">
+                <span class="hero-label">
+                    <span class="label-dot"></span>
+                    YOUR AI HEALTH ASSISTANT
+                </span>
+                <h2>Better understanding.<br><span>More informed decisions.</span></h2>
+                <p>
+                    Explore healthcare questions, compare AI approaches,
+                    and understand how different models respond.
+                </p>
+                <a href="{{ url_for('chat_page') }}" class="primary-button">
+                    <i class="far fa-comments"></i>
+                    Start a conversation
+                    <i class="fas fa-arrow-right button-arrow"></i>
+                </a>
+            </div>
+
+            <div class="hero-art" aria-hidden="true">
+                <div class="art-orbit orbit-one"></div>
+                <div class="art-orbit orbit-two"></div>
+                <div class="art-circle">
+                    <div class="art-cross"><span></span><i></i></div>
+                </div>
+                <div class="art-card art-card-one">
+                    <i class="fas fa-heart-pulse"></i>
+                    <span>Health insights</span>
+                </div>
+                <div class="art-card art-card-two">
+                    <i class="fas fa-check"></i>
+                    <span>AI comparison</span>
+                </div>
+                <span class="art-spark spark-one">✳</span>
+                <span class="art-spark spark-two">✦</span>
+            </div>
+            <div class="hero-decoration"></div>
+        </section>
+
+        <section class="dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-overline">EXPLORE</span>
+                    <h2>AI architectures</h2>
+                    <p>Three approaches. One comparative study.</p>
+                </div>
+                <a href="{{ url_for('comparison') }}" class="text-link">
+                    Compare approaches <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="architecture-grid">
+                <article class="architecture-card">
+                    <div class="card-topline">
+                        <div class="architecture-icon sage-icon">
+                            <i class="fas fa-diagram-project"></i>
+                        </div>
+                        <span class="card-index">01</span>
+                    </div>
+                    <h3>Rule-Based</h3>
+                    <p>Uses predefined rules and conditions to produce structured responses.</p>
+                    <a href="{{ url_for('comparison') }}" class="card-link">
+                        Explore approach <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+
+                <article class="architecture-card">
+                    <div class="card-topline">
+                        <div class="architecture-icon mint-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <span class="card-index">02</span>
+                    </div>
+                    <h3>Machine Learning</h3>
+                    <p>Learns patterns from data to classify questions and generate responses.</p>
+                    <a href="{{ url_for('comparison') }}" class="card-link">
+                        Explore approach <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+
+                <article class="architecture-card">
+                    <div class="card-topline">
+                        <div class="architecture-icon cream-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <span class="card-index">03</span>
+                    </div>
+                    <h3>Deep Learning</h3>
+                    <p>Uses neural network representations to process complex language patterns.</p>
+                    <a href="{{ url_for('comparison') }}" class="card-link">
+                        Explore approach <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <section class="dashboard-section workflow-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-overline">YOUR WORKFLOW</span>
+                    <h2>How MediChat works</h2>
+                    <p>A simple path from your question to comparative insights.</p>
+                </div>
+            </div>
+
+            <div class="workflow-grid">
+                <article class="workflow-step">
+                    <div class="workflow-icon"><i class="far fa-comment-dots"></i></div>
+                    <span class="step-number">STEP 01</span>
+                    <h3>Ask</h3>
+                    <p>Enter a healthcare question.</p>
+                </article>
+                <article class="workflow-step">
+                    <div class="workflow-icon"><i class="fas fa-gears"></i></div>
+                    <span class="step-number">STEP 02</span>
+                    <h3>Process</h3>
+                    <p>Explore AI-generated responses.</p>
+                </article>
+                <article class="workflow-step">
+                    <div class="workflow-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <span class="step-number">STEP 03</span>
+                    <h3>Compare</h3>
+                    <p>Review different AI approaches.</p>
+                </article>
+                <article class="workflow-step">
+                    <div class="workflow-icon"><i class="fas fa-chart-line"></i></div>
+                    <span class="step-number">STEP 04</span>
+                    <h3>Analyze</h3>
+                    <p>Understand evaluation results.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="dashboard-section feature-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-overline">YOUR TOOLKIT</span>
+                    <h2>Explore MediChat</h2>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <a href="{{ url_for('chat_page') }}" class="feature-card">
+                    <div class="feature-icon"><i class="far fa-comments"></i></div>
+                    <div class="feature-copy">
+                        <h3>Health Chat</h3>
+                        <p>Ask questions and explore health information.</p>
+                    </div>
+                    <i class="fas fa-arrow-up-right-from-square feature-arrow"></i>
+                </a>
+                <a href="{{ url_for('comparison') }}" class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <div class="feature-copy">
+                        <h3>Comparison</h3>
+                        <p>Review the different AI approaches.</p>
+                    </div>
+                    <i class="fas fa-arrow-up-right-from-square feature-arrow"></i>
+                </a>
+                <a href="{{ url_for('analysis') }}" class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chart-column"></i></div>
+                    <div class="feature-copy">
+                        <h3>Analysis</h3>
+                        <p>Explore performance and evaluation metrics.</p>
+                    </div>
+                    <i class="fas fa-arrow-up-right-from-square feature-arrow"></i>
+                </a>
+                <a href="{{ url_for('user_study_page') }}" class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <div class="feature-copy">
+                        <h3>User Study</h3>
+                        <p>Participate in or review user evaluations.</p>
+                    </div>
+                    <i class="fas fa-arrow-up-right-from-square feature-arrow"></i>
+                </a>
+            </div>
+        </section>
+
+        <section class="lower-grid">
+            <div class="dashboard-panel journey-panel">
+                <div class="panel-heading">
+                    <div>
+                        <span class="section-overline">YOUR PROGRESS</span>
+                        <h2>Your MediChat journey</h2>
+                    </div>
+                    <span class="panel-badge"><i class="fas fa-leaf"></i> Activity overview</span>
+                </div>
+
+                <div class="journey-stats">
+                    <div class="journey-stat">
+                        <div class="stat-icon"><i class="far fa-comments"></i></div>
+                        <div>
+                            <strong>{{ chat_count|default(total_chats|default(0, true), true) }}</strong>
+                            <span>Chats started</span>
+                        </div>
+                    </div>
+                    <div class="journey-stat">
+                        <div class="stat-icon"><i class="fas fa-scale-balanced"></i></div>
+                        <div>
+                            <strong>{{ comparison_count|default(total_comparisons|default(0, true), true) }}</strong>
+                            <span>Comparisons done</span>
+                        </div>
+                    </div>
+                    <div class="journey-stat">
+                        <div class="stat-icon"><i class="fas fa-chart-simple"></i></div>
+                        <div>
+                            <strong>{{ analysis_count|default(total_analyses|default(0, true), true) }}</strong>
+                            <span>Analyses completed</span>
+                        </div>
+                    </div>
+                    <div class="journey-stat">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div>
+                            <strong>{{ user_study_count|default(total_user_studies|default(0, true), true) }}</strong>
+                            <span>User studies joined</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-heading">
+                    <div>
+                        <h3>Recent activity</h3>
+                        <p>Your recent conversations and work</p>
+                    </div>
+                    <a href="{{ url_for('chat_page') }}" class="text-link">
+                        Open chat <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="activity-empty">
+                    <div class="activity-symbol"><i class="far fa-message"></i></div>
+                    <div>
+                        <strong>Ready to get started?</strong>
+                        <p>Your recent activity will appear here when available.</p>
+                    </div>
+                    <a href="{{ url_for('chat_page') }}" class="secondary-button">Start a chat</a>
+                </div>
+            </div>
+
+            <div class="right-panels">
+                <section class="dashboard-panel benefits-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <span class="section-overline">DESIGNED FOR CLARITY</span>
+                            <h2>Why MediChat?</h2>
+                        </div>
+                        <div class="small-shield"><i class="fas fa-shield-heart"></i></div>
+                    </div>
+                    <ul class="benefit-list">
+                        <li><i class="fas fa-check"></i><span>Structured health information</span></li>
+                        <li><i class="fas fa-check"></i><span>Multiple AI approaches</span></li>
+                        <li><i class="fas fa-check"></i><span>Comparative performance insights</span></li>
+                        <li><i class="fas fa-check"></i><span>Clear, accessible interface</span></li>
+                    </ul>
+                </section>
+
+                <section class="disclaimer-panel">
+                    <div class="disclaimer-heading">
+                        <i class="fas fa-heart-pulse"></i>
+                        <h3>A note about your health</h3>
+                    </div>
+                    <p>
+                        MediChat is for educational and informational purposes only.
+                        It does not replace professional medical advice, diagnosis,
+                        or treatment. For medical concerns, consult a qualified
+                        healthcare professional. Seek urgent care for emergencies.
+                    </p>
+                </section>
+            </div>
+        </section>
+
+        <footer class="dashboard-footer">
+            <a href="{{ url_for('dashboard') }}" class="footer-brand">
+                <span class="footer-mark"><i class="fas fa-plus"></i></span>
+                MediChat
+            </a>
+            <p>Comparative Analysis of Health Chatbots Based on Framework and Architecture</p>
+            <span>Made for better understanding <i class="fas fa-leaf"></i></span>
+        </footer>
+
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,1008 @@
+/* =====================================================
+   MEDICHAT ONBOARDING PAGE
+   Premium Dark Emerald + Mint Green + Cream
+   ===================================================== */
+
+/* ---------- ROOT VARIABLES ---------- */
+
+:root {
+    --onboard-bg: #060b08;
+    --onboard-panel: #0b120d;
+    --onboard-panel-light: #102018;
+    --onboard-input: #0b1911;
+
+    --onboard-mint: #68e4ae;
+    --onboard-mint-light: #a1f3ca;
+    --onboard-cream: #f2f5ec;
+    --onboard-muted: #a1b3a6;
+
+    --onboard-border: #263d2e;
+    --onboard-border-light: #356349;
+
+    --onboard-font: "Inter", sans-serif;
+}
+
+
+/* ---------- RESET ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    padding: 14px;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 20%,
+            rgba(27, 90, 57, 0.18),
+            transparent 40%
+        ),
+        var(--onboard-bg);
+
+    color: var(--onboard-cream);
+    font-family: var(--onboard-font);
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* ---------- MAIN LAYOUT ---------- */
+
+.page {
+    width: 100%;
+    max-width: 1500px;
+    min-height: calc(100vh - 28px);
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 0.94fr 1.06fr;
+
+    background: var(--onboard-panel);
+
+    border: 1px solid rgba(111, 185, 139, 0.14);
+    border-radius: 25px;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   LEFT WELCOME PANEL
+   ===================================================== */
+
+.welcome-panel {
+    position: relative;
+    isolation: isolate;
+
+    padding: 42px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 45% 75%,
+            rgba(48, 145, 91, 0.19),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #102018,
+            #09120d 80%
+        );
+
+    border-right: 1px solid var(--onboard-border);
+}
+
+.welcome-panel::before,
+.welcome-panel::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    border: 1px solid rgba(104, 228, 174, 0.08);
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.welcome-panel::before {
+    width: 360px;
+    height: 360px;
+
+    bottom: 80px;
+    left: 15%;
+}
+
+.welcome-panel::after {
+    width: 220px;
+    height: 220px;
+
+    bottom: 150px;
+    left: 27%;
+}
+
+
+/* ---------- BRAND ---------- */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    position: relative;
+    z-index: 1;
+}
+
+.brand-icon {
+    width: 47px;
+    height: 47px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--onboard-mint);
+
+    background: #193526;
+    border: 1px solid var(--onboard-border-light);
+    border-radius: 14px;
+
+    font-size: 20px;
+}
+
+.brand-name {
+    color: var(--onboard-cream);
+
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+.brand-tagline {
+    margin-top: 5px;
+
+    color: var(--onboard-muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* ---------- WELCOME CONTENT ---------- */
+
+.welcome-content {
+    position: relative;
+    z-index: 1;
+
+    margin: 65px 0 35px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 26px;
+    padding: 11px 15px;
+
+    color: var(--onboard-mint-light);
+
+    background: rgba(30, 84, 54, 0.3);
+    border: 1px solid #326548;
+    border-radius: 50px;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.eyebrow-dot {
+    width: 8px;
+    height: 8px;
+
+    background: var(--onboard-mint);
+    border-radius: 50%;
+
+    box-shadow: 0 0 12px rgba(104, 228, 174, 0.5);
+}
+
+.welcome-content h1 {
+    max-width: 520px;
+
+    color: var(--onboard-cream);
+
+    font-size: clamp(32px, 3.2vw, 49px);
+    font-weight: 800;
+    line-height: 1.16;
+    letter-spacing: -2px;
+}
+
+.welcome-content h1 span {
+    display: block;
+    color: var(--onboard-mint);
+}
+
+.welcome-description {
+    max-width: 470px;
+
+    margin-top: 22px;
+
+    color: #b7c8bb;
+
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* ---------- BENEFITS ---------- */
+
+.benefits {
+    display: grid;
+    gap: 18px;
+
+    margin-top: 32px;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    color: #dce9de;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.benefit-icon {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--onboard-mint);
+
+    background: rgba(58, 118, 79, 0.18);
+    border: 1px solid #315740;
+    border-radius: 11px;
+}
+
+
+/* =====================================================
+   HEALTHCARE ILLUSTRATION
+   ===================================================== */
+
+.illustration {
+    position: relative;
+
+    width: 310px;
+    height: 245px;
+
+    margin: 15px auto 0;
+
+    display: grid;
+    place-items: center;
+}
+
+.orbit {
+    position: absolute;
+
+    border: 1px solid rgba(104, 228, 174, 0.22);
+    border-radius: 50%;
+}
+
+.orbit-one {
+    width: 230px;
+    height: 230px;
+}
+
+.orbit-two {
+    width: 175px;
+    height: 175px;
+}
+
+.orbit-three {
+    width: 125px;
+    height: 125px;
+}
+
+.heart-card {
+    position: relative;
+    z-index: 2;
+
+    width: 110px;
+    height: 110px;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--onboard-mint);
+    background: linear-gradient(145deg, #16452e, #0c2116);
+
+    border: 1px solid #438b65;
+    border-radius: 29px;
+
+    box-shadow: 0 0 45px rgba(72, 202, 134, 0.13);
+
+    font-size: 43px;
+}
+
+.float-icon {
+    position: absolute;
+    z-index: 3;
+
+    width: 43px;
+    height: 43px;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--onboard-mint);
+    background: #10291b;
+
+    border: 1px solid #326c4b;
+    border-radius: 13px;
+
+    font-size: 17px;
+}
+
+.float-top {
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.float-left {
+    top: 100px;
+    left: 17px;
+}
+
+.float-right {
+    top: 100px;
+    right: 17px;
+}
+
+.float-bottom {
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+/* ---------- PRIVACY NOTE ---------- */
+
+.privacy-note {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--onboard-muted);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.privacy-note i {
+    color: var(--onboard-mint);
+}
+
+
+/* =====================================================
+   RIGHT FORM PANEL
+   ===================================================== */
+
+.form-panel {
+    min-width: 0;
+
+    padding: 48px clamp(28px, 4.3vw, 68px);
+
+    background:
+        radial-gradient(
+            ellipse at 100% 0%,
+            rgba(36, 100, 62, 0.10),
+            transparent 45%
+        ),
+        var(--onboard-panel);
+}
+
+
+/* ---------- FORM HEADER ---------- */
+
+.form-header {
+    margin-bottom: 29px;
+}
+
+.form-header .brand-icon {
+    margin-bottom: 21px;
+}
+
+.section-label {
+    display: inline-block;
+
+    margin-bottom: 13px;
+
+    color: var(--onboard-mint);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+.form-header h2 {
+    color: var(--onboard-cream);
+
+    font-size: clamp(26px, 2.5vw, 35px);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -1.3px;
+}
+
+.form-header p {
+    margin-top: 12px;
+
+    color: var(--onboard-muted);
+
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+
+/* ---------- PROGRESS BAR ---------- */
+
+.progress-track {
+    width: 100%;
+    height: 4px;
+
+    margin-top: 23px;
+
+    overflow: hidden;
+
+    background: #1a2c20;
+    border-radius: 10px;
+}
+
+.progress-fill {
+    width: 25%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #3cbd82,
+        #9bf0c2
+    );
+
+    border-radius: 10px;
+
+    transition: width 0.25s ease;
+}
+
+.progress-caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-top: 9px;
+
+    color: #83998a;
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   FORM FIELDS
+   ===================================================== */
+
+#onboardingForm {
+    width: 100%;
+}
+
+.field {
+    min-width: 0;
+    margin-bottom: 19px;
+}
+
+.field label,
+.field-label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #e5eee6;
+
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.field-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.field-heading label {
+    margin-bottom: 0;
+}
+
+.field-number {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--onboard-mint);
+
+    background: #1b3021;
+    border: 1px solid #34543b;
+    border-radius: 50%;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.required {
+    color: var(--onboard-mint);
+}
+
+.optional {
+    margin-left: 4px;
+
+    color: #829587;
+
+    font-size: 10px;
+    font-weight: 400;
+}
+
+
+/* ---------- INPUTS, SELECTS, TEXTAREAS ---------- */
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    min-height: 49px;
+
+    padding: 14px 15px;
+
+    color: var(--onboard-cream);
+    background: var(--onboard-input);
+
+    border: 1px solid #2a3b2c;
+    border-radius: 11px;
+
+    outline: none;
+
+    font-family: var(--onboard-font);
+    font-size: 12px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.field textarea {
+    min-height: 80px;
+    resize: vertical;
+    line-height: 1.7;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #738777;
+    opacity: 1;
+}
+
+.field select {
+    cursor: pointer;
+}
+
+.field select option {
+    color: var(--onboard-cream);
+    background: #102018;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    background: #0d1d13;
+
+    border-color: var(--onboard-mint);
+
+    box-shadow: 0 0 0 3px rgba(104, 228, 174, 0.08);
+}
+
+.field input:disabled,
+.field select:disabled,
+.field textarea:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+
+/* ---------- TWO-COLUMN FIELDS ---------- */
+
+.two-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+
+/* =====================================================
+   HEALTH GOALS
+   ===================================================== */
+
+.goal-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.goal-option {
+    position: relative;
+    cursor: pointer;
+}
+
+.goal-option input {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+    overflow: hidden;
+}
+
+.goal-option span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 11px 13px;
+
+    color: #a9bcae;
+    background: #0d1a11;
+
+    border: 1px solid #2a4030;
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 10px;
+    line-height: 1.5;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.goal-option span i {
+    color: var(--onboard-mint);
+}
+
+.goal-option input:checked + span {
+    color: var(--onboard-mint-light);
+
+    background: #173524;
+    border-color: #4c9b6d;
+}
+
+.goal-option:hover span {
+    border-color: #4c7658;
+}
+
+.goal-option input:focus-visible + span {
+    outline: 2px solid var(--onboard-mint);
+    outline-offset: 3px;
+}
+
+
+/* =====================================================
+   CONSENT CHECKBOX
+   ===================================================== */
+
+.consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    margin: 22px 0;
+
+    color: #9bad9e;
+
+    font-size: 10px;
+    line-height: 1.8;
+
+    cursor: pointer;
+}
+
+.consent input {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+
+    margin-top: 3px;
+
+    accent-color: #58d99d;
+    cursor: pointer;
+}
+
+.consent a {
+    color: var(--onboard-mint);
+    text-decoration: none;
+}
+
+.consent a:hover {
+    text-decoration: underline;
+}
+
+
+/* =====================================================
+   SUBMIT BUTTON
+   ===================================================== */
+
+.submit-button {
+    width: 100%;
+    min-height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 15px 20px;
+
+    color: #06150c;
+
+    background: linear-gradient(
+        100deg,
+        #43c891,
+        #7ce0a8
+    );
+
+    border: 1px solid rgba(167, 255, 208, 0.4);
+    border-radius: 13px;
+
+    font-family: var(--onboard-font);
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 25px rgba(58, 200, 135, 0.10);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.submit-button i {
+    font-size: 14px;
+    transition: transform 0.2s ease;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 30px rgba(58, 200, 135, 0.2);
+
+    filter: brightness(1.04);
+}
+
+.submit-button:hover i {
+    transform: translateX(4px);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+.submit-button:focus-visible {
+    outline: 2px solid var(--onboard-mint-light);
+    outline-offset: 4px;
+}
+
+.submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* ---------- FORM FOOTER ---------- */
+
+.form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 19px;
+
+    color: #849889;
+
+    font-size: 10px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.form-footer i {
+    color: var(--onboard-mint);
+}
+
+
+/* =====================================================
+   RESPONSIVE: TABLETS
+   ===================================================== */
+
+@media (max-width: 1000px) {
+
+    .page {
+        grid-template-columns: 0.85fr 1.15fr;
+    }
+
+    .welcome-panel {
+        padding: 30px;
+    }
+
+    .illustration {
+        transform: scale(0.85);
+        transform-origin: center;
+        margin-left: -10px;
+    }
+
+    .form-panel {
+        padding: 35px 28px;
+    }
+
+    .welcome-content h1 {
+        font-size: clamp(30px, 3.5vw, 40px);
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE: MOBILE
+   ===================================================== */
+
+@media (max-width: 720px) {
+
+    body {
+        padding: 8px;
+    }
+
+    .page {
+        min-height: calc(100vh - 16px);
+
+        grid-template-columns: 1fr;
+
+        border-radius: 18px;
+    }
+
+    .welcome-panel {
+        min-height: auto;
+
+        padding: 25px;
+
+        border-right: none;
+        border-bottom: 1px solid var(--onboard-border);
+    }
+
+    .welcome-content {
+        margin: 38px 0 12px;
+    }
+
+    .welcome-content h1 {
+        font-size: 34px;
+        letter-spacing: -1.5px;
+    }
+
+    .welcome-description {
+        font-size: 12px;
+    }
+
+    .benefits {
+        gap: 12px;
+    }
+
+    .illustration {
+        height: 190px;
+
+        margin: 5px auto 0;
+
+        transform: scale(0.8);
+        transform-origin: center;
+    }
+
+    .welcome-panel > .privacy-note {
+        margin-top: 10px;
+    }
+
+    .form-panel {
+        padding: 30px 22px;
+    }
+
+    .form-header h2 {
+        font-size: 27px;
+    }
+
+    .form-header p {
+        font-size: 12px;
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE: SMALL MOBILE
+   ===================================================== */
+
+@media (max-width: 390px) {
+
+    .welcome-panel {
+        padding: 20px;
+    }
+
+    .form-panel {
+        padding: 25px 17px;
+    }
+
+    .welcome-content h1 {
+        font-size: 30px;
+    }
+
+    .two-columns {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .goal-options {
+        gap: 7px;
+    }
+
+    .goal-option span {
+        padding: 10px;
+    }
+
+    .submit-button {
+        font-size: 12px;
+    }
+}
+
+
+/* =====================================================
+   ACCESSIBILITY: REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

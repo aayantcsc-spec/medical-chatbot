@@ -1,0 +1,23 @@
+# HealthBot Research - backend (Python 3.11+; developed on 3.13)
+# Versions are pinned: the pickled scikit-learn models in models/ were trained with exactly these.
+# Changing scikit-learn means retraining (see README "Training").
+
+Flask==3.1.3
+flask-cors==6.0.5
+Flask-Limiter==4.1.1
+python-dotenv==1.2.4
+pandas==3.1.0
+numpy==2.5.4
+scikit-learn==1.9.1
+psutil==7.2.2
+requests==2.34.2
+pytest==9.2.0
+
+# Needed only by legacy_app.py (Google sign-in in the original UI)
+Authlib==1.9.1
+
+# DistilBERT Health Q&A bot (optional: without these the 'dl' bot reports "unavailable" with
+# setup instructions and every other bot keeps working). CPU wheel:
+#   pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
+torch==2.15.0
+transformers==5.21.0

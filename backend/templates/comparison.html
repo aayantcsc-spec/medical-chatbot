@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediChat | Model Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/research.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/comparison.css') }}">
+</head>
+<body class="research">
+<div class="rs-wrap">
+
+    <header class="rs-top">
+        <div class="rs-brand">
+            <div class="rs-logo" aria-hidden="true">M</div>
+            <div>
+                <p class="rs-brand-name">MediChat</p>
+                <p class="rs-brand-sub">Healthcare AI research</p>
+            </div>
+        </div>
+        <nav class="rs-nav" aria-label="Site">
+            <a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+        </nav>
+    </header>
+
+    <section>
+        <span class="rs-eyebrow">✦ Research workspace</span>
+        <h1 class="rs-title">Compare AI architectures</h1>
+        <p class="rs-sub">
+            Ask one healthcare question in English, Hindi or Hinglish and compare the actual responses of the
+            Rule-Based, Machine Learning (TF-IDF + SVM) and Deep Learning (DistilBERT) systems. Evaluate them on real
+            datasets and collect participant feedback in one place.
+        </p>
+    </section>
+
+    <div class="tabs" role="tablist" aria-label="Comparison sections">
+        <button class="tab" role="tab" type="button" id="tab-compare" data-tab="compare" aria-selected="true" aria-controls="section-compare">Chatbot Comparison</button>
+        <button class="tab" role="tab" type="button" id="tab-eval" data-tab="eval" aria-selected="false" aria-controls="section-eval">Model Evaluation</button>
+        <button class="tab" role="tab" type="button" id="tab-study" data-tab="study" aria-selected="false" aria-controls="section-study">User Study Results</button>
+    </div>
+
+    <!-- ================= COMPARISON ================= -->
+    <section id="section-compare" class="rs-section active" role="tabpanel" aria-labelledby="tab-compare">
+        <div class="banner">
+            <span aria-hidden="true">ⓘ</span>
+            <div><strong>Healthcare information disclaimer.</strong>
+                MediChat is a research and educational application, not a substitute for professional medical advice, diagnosis or
+                treatment. In an emergency call 112 (India) or your local emergency number.</div>
+        </div>
+
+        <div class="panel">
+            <h2>Three approaches, one question</h2>
+            <p>Every architecture receives the same original question and the same language preprocessing, and answers independently.
+               No answer is ever substituted for another model's.</p>
+            <div class="architecture-grid">
+                <article class="architecture-card"><div class="architecture-icon" aria-hidden="true">⌘</div><h3>Rule-Based</h3>
+                    <p>Keyword and symptom rules over the curated knowledge base. Nothing is learned.</p></article>
+                <article class="architecture-card"><div class="architecture-icon" aria-hidden="true">⌁</div><h3>Machine Learning</h3>
+                    <p>TF-IDF features with a linear SVM classifier, trained on the intent dataset.</p></article>
+                <article class="architecture-card"><div class="architecture-icon" aria-hidden="true">✳</div><h3>Deep Learning</h3>
+                    <p>A fine-tuned DistilBERT classifier. It selects a topic; it does not write free text.</p></article>
+            </div>
+        </div>
+
+        {% set w = scoring.weights %}
+        <div class="panel mc-howto">
+            <h2>How the best response is chosen</h2>
+            <p>Each reply gets four scores out of 100. Safety and correctness carry the most weight, and a reply that fails the safety check can never win.</p>
+            <ul class="mc-weights" aria-label="Scoring weights">
+                <li><b>{{ (w.get('correctness', 0) * 100)|round|int }}%</b> Correctness<small>topic matches the dataset label (labelled questions only)</small></li>
+                <li><b>{{ (w.get('safety', 0) * 100)|round|int }}%</b> Safety<small>doctor advice, disclaimer, no doses or diagnosis</small></li>
+                <li><b>{{ (w.get('quality', 0) * 100)|round|int }}%</b> Response quality<small>relevance, completeness, clarity</small></li>
+                <li><b>{{ (w.get('speed', 0) * 100)|round|int }}%</b> Response time<small>measured inference time vs the fastest reply</small></li>
+            </ul>
+            <p class="hint">Scores within {{ scoring.tie_margin }} points are shown as a tie, and if fewer than {{ scoring.min_candidates }} replies can be compared no winner is named. Scoring rules v{{ scoring.version }}.</p>
+        </div>
+
+        <div class="section-heading"><div><h2>Try a question</h2><p>Pick an example or type your own below.</p></div></div>
+        <div id="chips" class="chips"></div>
+
+        <div class="section-heading">
+            <div><h2>Comparison history</h2><p>This session's comparisons. Each is saved so it can be rated in the User Study tab.</p></div>
+            <button id="newBtn" class="btn secondary" type="button">+ New comparison</button>
+        </div>
+        <div id="compare-status" class="status-message hidden" role="status" aria-live="polite"></div>
+        <div id="history"></div>
+        <div id="empty" class="empty-state">
+            <div aria-hidden="true" style="font-size:30px">💬</div>
+            <h3>Your comparison starts here</h3>
+            <p>Type a question in the box at the bottom of the page. MediChat sends it to all three architectures and shows each real response,
+               its predicted topic, confidence type and measured inference time.</p>
+        </div>
+    </section>
+
+    <!-- ================= EVALUATION ================= -->
+    <section id="section-eval" class="rs-section" role="tabpanel" aria-labelledby="tab-eval">
+        <div class="banner info">
+            <span aria-hidden="true">ⓘ</span>
+            <div><strong>These scores are measured proxies, not medical verification.</strong>
+                Correctness is how often an architecture picked the label the dataset authors expected; safety and quality are automatic rule checks on the replies.
+                None of them shows that an answer is medically correct or clinically safe. For interpretation of a finished run, open the <a href="{{ url_for('analysis') }}">Analysis</a> page.</div>
+        </div>
+
+        <div class="section-heading mc-perf-head">
+            <div><h2>Model performance overview</h2><p>Measured correctness, safety, response quality and response time for each architecture, calculated from the saved evaluation runs.</p></div>
+            <div class="field mc-perf-controls hidden" id="perfControls"><label for="perfView">Results for</label><select id="perfView"></select></div>
+        </div>
+        <div id="perfBody"><p class="muted">Loading measured results…</p></div>
+        <details class="fold"><summary>What these scores do not show</summary><ul id="perfLimits"></ul></details>
+
+        <div class="panel ev-select" aria-labelledby="evSelectTitle">
+            <div class="ev-head">
+                <div>
+                    <h2 id="evSelectTitle">Question selection</h2>
+                    <p class="muted">Choose which questions to test. The same selected questions are sent to Rule-Based, ML and DL; chat stays usable while it runs.</p>
+                </div>
+            </div>
+            <div class="ev-controls">
+                <div class="field"><label for="evalDataset">Dataset</label><select id="evalDataset"></select></div>
+                <div class="field">
+                    <span class="label" id="evalModeLabel">Selection mode</span>
+                    <div class="seg" role="radiogroup" aria-labelledby="evalModeLabel">
+                        <label><input type="radio" name="evalMode" value="quick" checked><span id="quickLabel">Quick test (30)</span></label>
+                        <label><input type="radio" name="evalMode" value="full"><span id="fullLabel">All eligible</span></label>
+                        <label><input type="radio" name="evalMode" value="custom"><span id="customLabel">Custom count</span></label>
+                    </div>
+                </div>
+                <div class="field"><label for="evalCategory" id="evalCategoryLabel">Category</label><select id="evalCategory"><option value="">All categories</option></select></div>
+                <div class="field ev-count hidden" id="evalCountField">
+                    <label for="evalCount">Number of questions</label>
+                    <input type="number" id="evalCount" min="1" step="1" value="30" inputmode="numeric" aria-describedby="evalCountMsg">
+                    <span class="ev-field-msg" id="evalCountMsg" role="alert"></span>
+                </div>
+            </div>
+
+            <dl class="ev-summary" aria-label="Selection summary">
+                <div><dt>Dataset rows</dt><dd id="sumTotal">–</dd></div>
+                <div><dt>Eligible <span class="tip" tabindex="0" data-tip="Rows that passed validation: not empty, label known to the models, not a duplicate, not conflicting and not overlapping the training data.">ⓘ</span></dt><dd id="sumEligible">–</dd></div>
+                <div><dt>Excluded <span class="tip" tabindex="0" data-tip="Rows removed for every model alike (before any model runs). Reasons are listed in the run results.">ⓘ</span></dt><dd id="sumExcluded">–</dd></div>
+                <div class="ev-sum-main"><dt>Selected for this run</dt><dd id="sumSelected">–</dd></div>
+                <div class="ev-sum-wide"><dt>Dataset · category</dt><dd id="sumScope">–</dd></div>
+            </dl>
+            <p id="evalDatasetInfo" class="hint ev-info"></p>
+
+            <div class="ev-run">
+                <button id="runEvalBtn" class="btn" type="button">Run evaluation</button>
+                <span class="hint" id="evalRunHint">Quick test samples 30 eligible questions (stratified, fixed seed 42, so repeatable).</span>
+            </div>
+            <div id="eval-status" class="status-message hidden" role="status" aria-live="polite"></div>
+
+            <div id="evalProgress" class="progress hidden" aria-live="polite">
+                <div class="progress-track" role="progressbar" aria-label="Evaluation progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="evalBar"><div class="progress-fill" id="evalFill"></div></div>
+                <div class="progress-stats">
+                    <span><strong id="evalDone">0</strong> / <strong id="evalTotal">0</strong> questions</span>
+                    <span>Model failures: <strong id="evalErrors">0</strong></span>
+                    <span>Excluded by validation: <strong id="evalSkipped">0</strong></span>
+                    <span id="evalState" class="pill">pending</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="evalEmpty" class="empty-state hidden">
+            <div aria-hidden="true" style="font-size:30px">📊</div>
+            <h3>No evaluation has been run yet</h3>
+            <p>Choose a dataset and selection above and press <strong>Run evaluation</strong>. A quick test evaluates 30 eligible questions;
+               <em>All eligible</em> gives the numbers to report. Results are saved, so they are still here after a refresh and available to the Analysis page.</p>
+        </div>
+
+        <div class="section-heading"><div><h2>Single-question evaluation (latest comparison)</h2><p>Scores for the one question you most recently compared. This is not the aggregate evaluation below, and a single-question winner is not the best model across the dataset.</p></div></div>
+        <div class="panel" style="padding:4px 16px 14px"><div id="latestComparison"></div></div>
+
+        <div class="section-heading"><div><h2>Your comparison history</h2><p>Every comparison you ran, re-scored from the exact replies that were shown. Only you can see your questions.</p></div></div>
+        <div class="panel"><div id="liveHistory"><p class="muted">Loading your comparisons…</p></div></div>
+
+        <div class="section-heading"><div><h2>Aggregate evaluation (existing dataset)</h2><p>Metrics over many labelled questions from the selected dataset, from real model predictions. Unchanged by single-question comparisons.</p></div></div>
+        <div id="evalResults" class="hidden"></div>
+
+        <details class="fold ev-guide" id="evalGuide">
+            <summary>What do these metrics mean?</summary>
+            <dl class="ev-defs">
+                <dt>Lenient accuracy</dt><dd>Question bank only: a prediction is correct if the expected category is <em>any</em> acceptable category of the predicted intent. On the exact-label datasets (held-out split, Hinglish + Hindi) there is only one acceptable label, so lenient and strict are identical.</dd>
+                <dt>Strict accuracy</dt><dd>Only the predicted intent's <em>primary</em> category counts as correct.</dd>
+                <dt>Precision</dt><dd>Of the answers a model gave for a class, the share that were right (macro average over classes present in the data). A "no confident match" is not a wrong class, so it does not lower precision.</dd>
+                <dt>Recall</dt><dd>Of the questions that truly belong to a class, the share the model found. A "no confident match" counts as a miss, so it lowers recall.</dd>
+                <dt>F1-score</dt><dd>The harmonic mean of precision and recall (macro average).</dd>
+                <dt>Median and P95 latency</dt><dd>Half of the answers were faster than the median; 95% were faster than P95. Measured per question inside the pipeline on this machine, so it depends on hardware and load.</dd>
+                <dt>No-match count</dt><dd>Questions where the model declined to pick a topic (below its confidence rule). These are kept in the denominator; they are not removed.</dd>
+                <dt>Excluded questions</dt><dd>Dataset rows removed for <em>all</em> models before running (empty, unknown label, duplicate, conflicting duplicate, overlap with training data). Model failures are different: they are counted per model.</dd>
+            </dl>
+            <p class="hint" id="evalMapNote">The question bank uses 19 coarse categories while the models predict 91 intents; they are compared through the author-defined mapping in <code>datasets/evaluation_label_map.json</code>, so reported question-bank scores depend on that mapping.</p>
+        </details>
+
+        <div class="section-heading"><div><h2>Previous runs</h2><p>Saved on the server. Open one to review its full results.</p></div></div>
+        <div class="panel"><div class="scroll" id="evalRuns"></div></div>
+    </section>
+
+    <!-- ================= USER STUDY ================= -->
+    <section id="section-study" class="rs-section" role="tabpanel" aria-labelledby="tab-study">
+        <div class="banner info">
+            <span aria-hidden="true">ⓘ</span>
+            <div><strong>These are participant opinions, not verified medical correctness.</strong>
+                Ratings describe how helpful, clear, trustworthy and safe a response <em>felt</em>. They do not show that a response is medically
+                correct. Do not enter your name or personal health details in questions you plan to rate. Using this tool for research with
+                participants may require informed consent and ethics-committee approval from your institution; this software does not provide either.</div>
+        </div>
+
+        <div class="panel">
+            <h2>Rate responses</h2>
+            <p class="muted">Open one of your comparison runs. The three responses are shown as A, B and C in random order, with the model hidden until you save.</p>
+            <div class="form-row">
+                <div class="field"><label for="studyRun">Comparison run</label><select id="studyRun"></select></div>
+                <button id="studyReload" class="btn secondary" type="button">Refresh list</button>
+            </div>
+        </div>
+        <div id="study-status" class="status-message hidden" role="status" aria-live="polite"></div>
+        <div id="studyForm"></div>
+
+        <div class="section-heading">
+            <div><h2>Aggregate results</h2><p id="studyAggNote">Computed from stored participant ratings only.</p></div>
+            <a class="btn secondary" href="/api/comparison/study/export.csv">Download CSV</a>
+        </div>
+        <div id="studySummary"></div>
+    </section>
+</div>
+
+<!-- composer (comparison tab only) -->
+<div class="composer" id="composer">
+    <form class="composer-inner" id="questionForm" autocomplete="off">
+        <label for="q" class="sr-only">Healthcare question</label>
+        <textarea id="q" rows="1" maxlength="1000" placeholder="Ask a healthcare question - English, हिन्दी or Hinglish…"></textarea>
+        <div class="composer-tools">
+            <span class="hint">Enter to send · Shift+Enter for a new line · <span id="counter">0 / 1000</span></span>
+            <button id="sendBtn" class="btn" type="submit">Compare</button>
+        </div>
+    </form>
+</div>
+
+<script>window.MC_EXAMPLES = {{ examples|tojson }};</script>
+<script src="{{ url_for('static', filename='js/comparison.js') }}"></script>
+<script src="{{ url_for('static', filename='js/research.js') }}"></script>
+</body>
+</html>

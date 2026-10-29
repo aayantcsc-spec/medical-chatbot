@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MediChat | Health Profile</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root {
+    --bg: #060b08;
+    --panel: #0b1711;
+    --panel-light: #10251a;
+    --border: #233d2e;
+    --mint: #68e4ae;
+    --mint-light: #a1f3ca;
+    --cream: #f2f5ec;
+    --muted: #a1b3a6;
+    --input: #0b1911;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    padding: 14px;
+    background:
+        radial-gradient(ellipse at 15% 20%,
+        rgba(27, 90, 57, .18), transparent 40%),
+        var(--bg);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+}
+
+.page {
+    width: 100%;
+    max-width: 1500px;
+    min-height: calc(100vh - 28px);
+    margin: auto;
+    display: grid;
+    grid-template-columns: .94fr 1.06fr;
+    border: 1px solid rgba(111, 185, 139, .14);
+    border-radius: 25px;
+    overflow: hidden;
+    background: var(--panel);
+}
+
+/* LEFT PANEL */
+
+.welcome-panel {
+    position: relative;
+    padding: 42px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 45% 75%,
+        rgba(48, 145, 91, .19), transparent 42%),
+        linear-gradient(145deg, #102018, #09120d 80%);
+    border-right: 1px solid var(--border);
+}
+
+.welcome-panel::before {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border: 1px solid rgba(104, 228, 174, .09);
+    border-radius: 50%;
+    bottom: 80px;
+    left: 15%;
+    pointer-events: none;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    position: relative;
+    z-index: 1;
+}
+
+.brand-icon {
+    width: 47px;
+    height: 47px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    color: var(--mint);
+    background: #193526;
+    border: 1px solid #356349;
+    font-size: 20px;
+}
+
+.brand-name {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -.6px;
+}
+
+.brand-tagline {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 1;
+    margin: 65px 0 35px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid #326548;
+    background: rgba(30, 84, 54, .3);
+    color: var(--mint-light);
+    border-radius: 50px;
+    padding: 11px 15px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 26px;
+}
+
+.eyebrow-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--mint);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(104, 228, 174, .5);
+}
+
+.welcome-content h1 {
+    font-size: clamp(32px, 3.2vw, 49px);
+    line-height: 1.16;
+    font-weight: 800;
+    letter-spacing: -2px;
+    max-width: 520px;
+}
+
+.welcome-content h1 span {
+    display: block;
+    color: var(--mint);
+}
+
+.welcome-description {
+    max-width: 470px;
+    margin-top: 22px;
+    color: #b7c8bb;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.benefits {
+    display: grid;
+    gap: 18px;
+    margin-top: 32px;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: #dce9de;
+    font-size: 12px;
+}
+
+.benefit-icon {
+    width: 35px;
+    height: 35px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    color: var(--mint);
+    background: rgba(58, 118, 79, .18);
+    border: 1px solid #315740;
+    border-radius: 11px;
+}
+
+.illustration {
+    position: relative;
+    width: 310px;
+    height: 245px;
+    margin: 15px auto 0;
+    display: grid;
+    place-items: center;
+}
+
+.orbit {
+    position: absolute;
+    border: 1px solid rgba(104, 228, 174, .22);
+    border-radius: 50%;
+}
+
+.orbit-one {
+    width: 230px;
+    height: 230px;
+}
+
+.orbit-two {
+    width: 175px;
+    height: 175px;
+}
+
+.orbit-three {
+    width: 125px;
+    height: 125px;
+}
+
+.heart-card {
+    width: 110px;
+    height: 110px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #438b65;
+    border-radius: 29px;
+    background: linear-gradient(145deg, #16452e, #0c2116);
+    box-shadow: 0 0 45px rgba(72, 202, 134, .13);
+    color: var(--mint);
+    font-size: 43px;
+    z-index: 2;
+}
+
+.float-icon {
+    position: absolute;
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #326c4b;
+    border-radius: 13px;
+    background: #10291b;
+    color: var(--mint);
+    font-size: 17px;
+}
+
+.float-top {
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.float-left {
+    left: 17px;
+    top: 100px;
+}
+
+.float-right {
+    right: 17px;
+    top: 100px;
+}
+
+.float-bottom {
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.privacy-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 11px;
+    position: relative;
+    z-index: 1;
+}
+
+/* RIGHT PANEL */
+
+.form-panel {
+    padding: 48px clamp(28px, 4.3vw, 68px);
+    background:
+        radial-gradient(ellipse at 100% 0%,
+        rgba(36, 100, 62, .10), transparent 45%),
+        #0b120d;
+}
+
+.form-header {
+    margin-bottom: 29px;
+}
+
+.form-header .brand-icon {
+    margin-bottom: 21px;
+}
+
+.section-label {
+    display: inline-block;
+    color: var(--mint);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    margin-bottom: 13px;
+}
+
+.form-header h2 {
+    font-size: clamp(26px, 2.5vw, 35px);
+    font-weight: 800;
+    letter-spacing: -1.3px;
+    line-height: 1.25;
+}
+
+.form-header p {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.progress-track {
+    height: 4px;
+    width: 100%;
+    background: #1a2c20;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 23px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 25%;
+    background: linear-gradient(90deg, #3cbd82, #9bf0c2);
+    border-radius: 10px;
+    transition: width .25s ease;
+}
+
+.progress-caption {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 9px;
+    color: #83998a;
+    font-size: 10px;
+}
+
+form {
+    width: 100%;
+}
+
+.field {
+    margin-bottom: 19px;
+}
+
+.field label,
+.field-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #e5eee6;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.required {
+    color: var(--mint);
+}
+
+.field-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.field-heading label {
+    margin-bottom: 0;
+}
+
+.field-number {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    color: var(--mint);
+    background: #1b3021;
+    border: 1px solid #34543b;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    min-height: 49px;
+    padding: 14px 15px;
+    outline: none;
+    color: var(--cream);
+    background: var(--input);
+    border: 1px solid #2a3b2c;
+    border-radius: 11px;
+    font-family: inherit;
+    font-size: 12px;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #738777;
+}
+
+.field select {
+    cursor: pointer;
+}
+
+.field select option {
+    background: #102018;
+    color: var(--cream);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: var(--mint);
+    box-shadow: 0 0 0 3px rgba(104, 228, 174, .08);
+}
+
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.optional {
+    color: #829587;
+    font-size: 10px;
+    font-weight: 400;
+    margin-left: 4px;
+}
+
+.goal-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.goal-option {
+    position: relative;
+}
+
+.goal-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.goal-option span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 13px;
+    border-radius: 9px;
+    border: 1px solid #2a4030;
+    background: #0d1a11;
+    color: #a9bcae;
+    cursor: pointer;
+    font-size: 10px;
+    transition: .2s;
+}
+
+.goal-option input:checked + span {
+    color: var(--mint-light);
+    border-color: #4c9b6d;
+    background: #173524;
+}
+
+.goal-option input:focus-visible + span {
+    outline: 2px solid var(--mint);
+    outline-offset: 3px;
+}
+
+.consent {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin: 22px 0;
+    color: #9bad9e;
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.consent input {
+    accent-color: #58d99d;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.consent a {
+    color: var(--mint);
+    text-decoration: none;
+}
+
+.submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 55px;
+    border: none;
+    border-radius: 13px;
+    background: linear-gradient(100deg, #43c891, #7ce0a8);
+    color: #06150c;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(58, 200, 135, .10);
+    transition: transform .2s, box-shadow .2s;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(58, 200, 135, .2);
+}
+
+.submit-button:focus-visible {
+    outline: 2px solid var(--mint-light);
+    outline-offset: 4px;
+}
+
+.form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 19px;
+    color: #849889;
+    font-size: 10px;
+    text-align: center;
+}
+
+.form-footer i {
+    color: var(--mint);
+}
+
+@media (max-width: 1000px) {
+    .page {
+        grid-template-columns: .85fr 1.15fr;
+    }
+
+    .welcome-panel {
+        padding: 30px;
+    }
+
+    .illustration {
+        transform: scale(.85);
+        margin-left: -10px;
+    }
+
+    .form-panel {
+        padding: 35px 28px;
+    }
+}
+
+@media (max-width: 720px) {
+    body {
+        padding: 8px;
+    }
+
+    .page {
+        grid-template-columns: 1fr;
+        border-radius: 18px;
+    }
+
+    .welcome-panel {
+        padding: 25px;
+        min-height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .welcome-content {
+        margin: 38px 0 12px;
+    }
+
+    .welcome-content h1 {
+        font-size: 34px;
+    }
+
+    .welcome-description {
+        font-size: 12px;
+    }
+
+    .benefits {
+        gap: 12px;
+    }
+
+    .illustration {
+        height: 190px;
+        margin: 5px auto 0;
+        transform: scale(.8);
+        transform-origin: center;
+    }
+
+    .welcome-panel > .privacy-note {
+        margin-top: 10px;
+    }
+
+    .form-panel {
+        padding: 30px 22px;
+    }
+
+    .form-header h2 {
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 390px) {
+    .two-columns {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .welcome-content h1 {
+        font-size: 30px;
+    }
+
+    .goal-options {
+        gap: 7px;
+    }
+
+    .goal-option span {
+        padding: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+    <!-- LEFT: WELCOME SECTION -->
+    <section class="welcome-panel">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fa-regular fa-heart"></i>
+            </div>
+
+            <div>
+                <div class="brand-name">MediChat</div>
+                <div class="brand-tagline">
+                    Your Health. Our AI Support.
+                </div>
+            </div>
+        </div>
+
+        <div class="welcome-content">
+
+            <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                YOUR PERSONAL HEALTH PROFILE
+            </div>
+
+            <h1>
+                A little about you.
+                <span>Better support for you.</span>
+            </h1>
+
+            <p class="welcome-description">
+                Help MediChat understand your preferences so you can
+                explore more relevant health information, understand
+                symptoms, and discover the right next steps.
+            </p>
+
+            <div class="benefits">
+
+                <div class="benefit">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-user-check"></i>
+                    </div>
+                    <span>More relevant health information</span>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+                    <span>Guidance on healthcare next steps</span>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <span>Your details, handled with care</span>
+                </div>
+
+            </div>
+
+            <div class="illustration">
+
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="orbit orbit-three"></div>
+
+                <div class="heart-card">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+
+                <div class="float-icon float-top">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+
+                <div class="float-icon float-left">
+                    <i class="fa-solid fa-notes-medical"></i>
+                </div>
+
+                <div class="float-icon float-right">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div class="float-icon float-bottom">
+                    <i class="fa-solid fa-user-doctor"></i>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="privacy-note">
+            <i class="fa-solid fa-lock"></i>
+            <span>Your health profile helps personalize your experience.</span>
+        </div>
+
+    </section>
+
+
+    <!-- RIGHT: ONBOARDING FORM -->
+    <section class="form-panel">
+
+        <header class="form-header">
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+
+            <div class="section-label">HEALTH PROFILE</div>
+
+            <h2>Let's personalize your experience</h2>
+
+            <p>
+                A few quick details help MediChat provide more relevant
+                general health information.
+            </p>
+
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="progress-caption">
+                <span>Profile setup</span>
+                <span id="progressText">Step 1 of 4</span>
+            </div>
+
+        </header>
+
+
+        <!-- Connect this form to your existing backend -->
+        <form id="onboardingForm" method="POST">
+
+            <div class="field">
+
+                <div class="field-heading">
+                    <span class="field-number">1</span>
+                    <label for="age">
+                        Age <span class="required">*</span>
+                    </label>
+                </div>
+
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    placeholder="Enter your age"
+                    min="1"
+                    max="120"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <div class="field-heading">
+                    <span class="field-number">2</span>
+                    <label for="sex">
+                        Sex <span class="required">*</span>
+                    </label>
+                </div>
+
+                <select id="sex" name="sex" required>
+                    <option value="">Select an option</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="intersex">Intersex</option>
+                    <option value="prefer_not_to_say">
+                        Prefer not to say
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="two-columns">
+
+                <div class="field">
+
+                    <div class="field-heading">
+                        <span class="field-number">3</span>
+                        <label for="height">
+                            Height (cm) <span class="required">*</span>
+                        </label>
+                    </div>
+
+                    <input
+                        type="number"
+                        id="height"
+                        name="height"
+                        placeholder="e.g. 165"
+                        min="30"
+                        max="300"
+                        step="0.1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <div class="field-heading">
+                        <span class="field-number">4</span>
+                        <label for="weight">
+                            Weight (kg) <span class="required">*</span>
+                        </label>
+                    </div>
+
+                    <input
+                        type="number"
+                        id="weight"
+                        name="weight"
+                        placeholder="e.g. 60"
+                        min="1"
+                        max="500"
+                        step="0.1"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="conditions">
+                    Existing health conditions
+                    <span class="optional">(Optional)</span>
+                </label>
+
+                <textarea
+                    id="conditions"
+                    name="conditions"
+                    placeholder="Share any relevant conditions, or leave blank..."
+                    rows="2"
+                ></textarea>
+
+            </div>
+
+
+            <div class="field">
+
+                <span class="field-label">
+                    What would you like help with?
+                    <span class="optional">(Choose any)</span>
+                </span>
+
+                <div class="goal-options">
+
+                    <label class="goal-option">
+                        <input
+                            type="checkbox"
+                            name="health_goals"
+                            value="general_wellness"
+                        >
+                        <span>
+                            <i class="fa-solid fa-heart"></i>
+                            General wellness
+                        </span>
+                    </label>
+
+                    <label class="goal-option">
+                        <input
+                            type="checkbox"
+                            name="health_goals"
+                            value="symptom_information"
+                        >
+                        <span>
+                            <i class="fa-solid fa-notes-medical"></i>
+                            Understand symptoms
+                        </span>
+                    </label>
+
+                    <label class="goal-option">
+                        <input
+                            type="checkbox"
+                            name="health_goals"
+                            value="doctor_guidance"
+                        >
+                        <span>
+                            <i class="fa-solid fa-user-doctor"></i>
+                            Find the right doctor
+                        </span>
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <label class="consent">
+                <input
+                    type="checkbox"
+                    id="profileConsent"
+                    name="profile_consent"
+                    value="yes"
+                    required
+                >
+
+                <span>
+                    I understand that MediChat provides general health
+                    information and does not replace professional
+                    medical advice or diagnosis.
+                </span>
+            </label>
+
+
+            <button type="submit" class="submit-button">
+                Save profile and continue
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <div class="form-footer">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Only provide information you feel comfortable sharing.</span>
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<script>
+const form = document.getElementById("onboardingForm");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+
+function updateProgress() {
+    const fields = [
+        document.getElementById("age"),
+        document.getElementById("sex"),
+        document.getElementById("height"),
+        document.getElementById("weight")
+    ];
+
+    const completed = fields.filter(field =>
+        field.value.trim() !== ""
+    ).length;
+
+    progressFill.style.width = (completed / fields.length * 100) + "%";
+
+    if (completed === 4) {
+        progressText.textContent = "Ready to continue";
+    } else {
+        progressText.textContent = "Step " + (completed + 1) + " of 4";
+    }
+}
+
+form.querySelectorAll("input, select").forEach(field => {
+    field.addEventListener("input", updateProgress);
+    field.addEventListener("change", updateProgress);
+});
+</script>
+
+</body>
+</html>
